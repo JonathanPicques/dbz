@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=1]
 
-[node name="Stage" type="Node2D" index="0"]
+[node name="Stage" type="Node2D"]
 
 [node name="Sangoku" parent="." index="0" instance=ExtResource( 1 )]
 
