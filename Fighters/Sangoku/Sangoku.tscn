@@ -1,0 +1,847 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/BlockMedium/BlockMedium_01.png" type="Texture" id=3]
+[ext_resource path="res://Fighters/Sangoku/Sprites/BlockMedium/BlockMedium_02.png" type="Texture" id=4]
+[ext_resource path="res://Fighters/Sangoku/Sprites/BlockMedium/BlockMedium_03.png" type="Texture" id=5]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_02.png" type="Texture" id=6]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_03.png" type="Texture" id=7]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_04.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "BlockMedium"
+length = 0.1
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -1.17357, -3.90208 ), Vector2( 10.8845, -3.77361 ), Vector2( 9.2908, -5.56687 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0, 1, 0 ),
+"update": 0,
+"values": [ -16.9296, 0.838911, 0.838911 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -6.71032, -4.34898 ), Vector2( 15.5479, -17.243 ), Vector2( 15.8635, -21.987 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ 41.8939, 120.659, -20.1417 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -2.87773, 4.46297 ), Vector2( 0.0209827, 4.99002 ), Vector2( -0.0238037, 4.22514 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0, 1, 0 ),
+"update": 0,
+"values": [ 8.08757, 8.08757, 8.08757 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -7.78801, 3.79009 ), Vector2( -5.86298, 3.07662 ), Vector2( -5.51909, 2.89018 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ -33.8572, -188.319, -182.266 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -3.81855, 8.90378 ), Vector2( -4.89962, 5.13084 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 130.586, 419.484 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -10.349, 4.93516 ), Vector2( -11.2874, 4.9737 ), Vector2( -9.59068, 5.53928 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ -37.2791, -43.9467, -50.6143 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -4.8239, 3.25475 ), Vector2( 0.546316, -2.6873 ), Vector2( 0.11908, 1.91146 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ 70.7679, 79.4457, 70.7679 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( 0.479671, 3.33685 ), Vector2( 17.4168, -6.15052 ), Vector2( 19.795, -5.67487 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( 0.931774, -7.2477 ), Vector2( -24.6211, -21.1194 ), Vector2( 32.0357, -23.414 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ -50.9501, 66.4277, 90.4785 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -19.8863, 12.7798 ), Vector2( -81.6923, -21.5614 ), Vector2( -7.20571, -1.05827 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 0 ),
+"update": 0,
+"values": [ 91.9092, 83.656, 61.6055 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Standing"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1.17357, -3.90208 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -16.9296 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.404736, 0.130865 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 19.7604 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3.54358, 3.27383 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.08757 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.664413, 1.70104 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -47.7317 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.50095, 2.84282 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.2353 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -0.791092, 1.02058 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -37.2791 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.07037, 2.86276 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 70.7679 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.00671, 3.60037 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.404736, 0.130865 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61.1611 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.404736, 0.130865 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 51.0464 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 25.0934
+height = 39.9498
+
+[sub_resource type="CircleShape2D" id=13]
+
+custom_solver_bias = 0.0
+radius = 12.3999
+
+[sub_resource type="CapsuleShape2D" id=12]
+
+custom_solver_bias = 0.0
+radius = 9.80083
+height = 9.09814
+
+[sub_resource type="CapsuleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=7]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=8]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id=9]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id=10]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id=11]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="Sangoku" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = "Standing"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 0.5
+anims/BlockMedium = SubResource( 1 )
+anims/Standing = SubResource( 2 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+visible = false
+position = Vector2( 0, 13.3076 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Hurtboxes" type="Node2D" parent="." index="3"]
+
+[node name="Head" type="Area2D" parent="Hurtboxes" index="0"]
+
+position = Vector2( -14.7869, -33.6587 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Pickable" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Head" index="0"]
+
+modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
+position = Vector2( 1.00671, 3.60037 )
+shape = SubResource( 13 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Torso" type="Area2D" parent="Hurtboxes" index="1"]
+
+position = Vector2( -1.50801, -5.65608 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Torso" index="0"]
+
+modulate = Color( 0.664063, 0, 1, 1 )
+position = Vector2( -1.17357, -3.90208 )
+rotation = -0.295477
+shape = SubResource( 12 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmTopLeft" type="Area2D" parent="Hurtboxes" index="2"]
+
+position = Vector2( -24.2492, -11.754 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopLeft" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 0.344884
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmTopRight" type="Area2D" parent="Hurtboxes" index="3"]
+
+position = Vector2( 13.9119, -31.7063 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopRight" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -2.50095, 2.84282 )
+rotation = -1.5749
+shape = SubResource( 5 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmBottomLeft" type="Area2D" parent="Hurtboxes" index="4"]
+
+position = Vector2( -33.3536, 1.8058 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomLeft" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 1.06746
+shape = SubResource( 6 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmBottomRight" type="Area2D" parent="Hurtboxes" index="5"]
+
+position = Vector2( 22.8227, -25.3138 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomRight" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 0.890928
+shape = SubResource( 7 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegTopLeft" type="Area2D" parent="Hurtboxes" index="6"]
+
+position = Vector2( 20.3826, 14.559 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopLeft" index="0"]
+
+modulate = Color( 0.21875, 1, 0, 1 )
+position = Vector2( 0.664413, 1.70104 )
+rotation = -0.833075
+shape = SubResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="LegTopRight" type="Area2D" parent="Hurtboxes" index="7"]
+
+position = Vector2( -16.8237, 11.9707 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopRight" index="0"]
+
+modulate = Color( 0.21875, 1, 0, 1 )
+position = Vector2( 1.07037, 2.86276 )
+rotation = 1.23513
+shape = SubResource( 9 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegBottomLeft" type="Area2D" parent="Hurtboxes" index="8"]
+
+position = Vector2( 39.5098, 36.2357 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomLeft" index="0"]
+
+position = Vector2( -0.791092, 1.02058 )
+rotation = -0.650643
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegBottomRight" type="Area2D" parent="Hurtboxes" index="9"]
+
+position = Vector2( -30.9611, 28.3615 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomRight" index="0"]
+
+position = Vector2( 3.54358, 3.27383 )
+rotation = 0.141155
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+
