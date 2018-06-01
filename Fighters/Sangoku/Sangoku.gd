@@ -1,5 +1,16 @@
 extends KinematicBody2D
 
+enum FighterState {
+	standing,
+	blockinghigh,
+	blockinghigh2standing,
+	blockinglow,
+	blockinglow2standing,
+	jumping,
+	falling,
+	falling2standing,
+}
+
 class FighterInput:
 	var up = false
 	var down = false
@@ -17,22 +28,17 @@ class FighterInput:
 	var taunt_3 = false
 	var taunt_4 = false
 
-enum FighterState {
-	standing,
-	blockinghigh,
-	blockinghigh2standing,
-	blockinglow,
-	blockinglow2standing,
-	jumping,
-	jumping2standing
-}
-
 var input = FighterInput.new()
 var state = FighterState.standing
-var acc = 0.0
-var origin = 0.0
+var velocity = Vector2(0.0, 0.0)
+
+const gravity = 500
+const jump_strength = 240
+
+const ground_vector = Vector2(0.0, -1.0)
 
 func _process(delta):
+	# Set inputs
 	self.input.up = Input.is_action_pressed("ui_up")
 	self.input.down = Input.is_action_pressed("ui_down")
 	self.input.left = Input.is_action_pressed("ui_left")
@@ -42,6 +48,7 @@ func _process(delta):
 	self.input.attack = Input.is_action_pressed("player_1_attack")
 	self.input.attack_alt = Input.is_action_pressed("player_1_attack_alt")
 	
+	# Update current state
 	match state:
 		standing: self.state_standing(delta)
 		blockinghigh: self.state_blockinghigh(delta)
@@ -49,7 +56,11 @@ func _process(delta):
 		blockinglow: self.state_blockinglow(delta)
 		blockinglow2standing: self.state_blockinglow2standing(delta)
 		jumping: self.state_jumping(delta)
-		jumping2standing: self.state_jumping2standing(delta)
+		falling: self.state_falling(delta)
+		falling2standing: self.state_falling2standing(delta)
+	
+	# Update position
+	self.velocity = self.move_and_slide(self.velocity, self.ground_vector)
 
 func set_state(state, prev_state = self.state):
 	self.state = state
@@ -60,10 +71,11 @@ func set_state(state, prev_state = self.state):
 		blockinglow: self.pre_blockinglow()
 		blockinglow2standing: self.pre_blockinglow2standing()
 		jumping: self.pre_jumping()
-		jumping2standing: self.pre_jumping2standing()
+		falling: self.pre_falling()
+		falling2standing: self.pre_falling2standing()
 
 func pre_standing():
-	$AnimationPlayer.play("Standing")
+	$AnimationPlayer.play("1a - Standing")
 	
 func state_standing(delta):
 	if self.input.block:
@@ -72,7 +84,7 @@ func state_standing(delta):
 		self.set_state(FighterState.jumping)
 
 func pre_blockinghigh():
-	$AnimationPlayer.play("BlockingHigh")
+	$AnimationPlayer.play("4b - Blocking High")
 	
 func state_blockinghigh(delta):
 	if not $AnimationPlayer.is_playing():
@@ -83,14 +95,14 @@ func state_blockinghigh(delta):
 			self.set_state(FighterState.blockinghigh2standing)
 
 func pre_blockinghigh2standing():
-	$AnimationPlayer.play_backwards("BlockingHigh")
+	$AnimationPlayer.play_backwards("4b - Blocking High")
 
 func state_blockinghigh2standing(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
 
 func pre_blockinglow():
-	$AnimationPlayer.play("BlockingLow")
+	$AnimationPlayer.play("4a - Blocking Low")
 	
 func state_blockinglow(delta):
 	if not $AnimationPlayer.is_playing():
@@ -101,28 +113,33 @@ func state_blockinglow(delta):
 			self.set_state(FighterState.blockinglow2standing)
 
 func pre_blockinglow2standing():
-	$AnimationPlayer.play_backwards("BlockingLow")
-	
+	$AnimationPlayer.play_backwards("4a - Blocking Low")
+
 func state_blockinglow2standing(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
 
 func pre_jumping():
-	self.acc = 0
-	self.origin = self.position.y
-	$AnimationPlayer.play("Jumping")
-	
-func state_jumping(delta):
-	if self.position.y > self.origin:
-		self.set_state(FighterState.jumping2standing)
-		self.position = Vector2(self.position.x, self.origin)
-	else:
-		acc += 3 * delta
-		self.move_and_slide(Vector2(0, -200 * cos(acc)))
+	self.velocity.y = -self.jump_strength
+	$AnimationPlayer.play("2a - Jumping")
 
-func pre_jumping2standing():
-	$AnimationPlayer.play_backwards("Jumping")
-	
-func state_jumping2standing(delta):
-	if $AnimationPlayer.get_current_animation_position() <= 0.065:
+func state_jumping(delta):
+	self.velocity.y += self.gravity * delta
+	if self.velocity.y > 0:
+		self.set_state(falling)
+
+func pre_falling():
+	$AnimationPlayer.play("3a - Falling")
+
+func state_falling(delta):
+	if self.is_on_floor():
+		self.set_state(FighterState.falling2standing)
+	else:
+		self.velocity.y += self.gravity * delta
+
+func pre_falling2standing():
+	$AnimationPlayer.play("3b - Falling Recovery")
+
+func state_falling2standing(delta):
+	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.standing)

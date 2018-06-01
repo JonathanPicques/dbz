@@ -1,1007 +1,74 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingLow_03.png" type="Texture" id=2]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingHigh_01.png" type="Texture" id=3]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingHigh_02.png" type="Texture" id=4]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingHigh_03.png" type="Texture" id=5]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingLow_01.png" type="Texture" id=6]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingLow_02.png" type="Texture" id=7]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jab/Jab_01.png" type="Texture" id=8]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jab/Jab_02.png" type="Texture" id=9]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jab/Jab_03.png" type="Texture" id=10]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jab/Jab_04.png" type="Texture" id=11]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jumping/Jump_01.png" type="Texture" id=12]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jumping/Jump_02.png" type="Texture" id=13]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jumping/Jump_03.png" type="Texture" id=14]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Jumping/Jump_04.png" type="Texture" id=15]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=16]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_02.png" type="Texture" id=17]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_03.png" type="Texture" id=18]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_04.png" type="Texture" id=19]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
+[ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
+[ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
+[ext_resource path="res://Fighters/Sangoku/Anims/3b - Falling Recovery.tres" type="Animation" id=6]
+[ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
+[ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
 
-[sub_resource type="Animation" id=1]
-
-resource_name = "BlockingHigh"
-length = 0.2
-loop = false
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 9, -4.5 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 8.82643, -7.90208 ), Vector2( 20.8845, -8.77361 ), Vector2( 23.6016, -9.98824 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -16.9296, 0.838911, 0.838911 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 3.28968, -8.34898 ), Vector2( 20.2775, -14.6009 ), Vector2( 24.2824, -15.3863 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 41.8939, 305.078, 305.078 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.12227, 0.462971 ), Vector2( 10.021, -0.0099804 ), Vector2( 12.5234, -0.151429 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 8.08757, 8.08757, 9.72072 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 2.21199, -0.209912 ), Vector2( 4.13702, -1.92338 ), Vector2( 5.13702, -2.92338 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -33.8572, -188.319, -180.193 ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.49905, 8.066 ), Vector2( 5.3639, 0.657894 ), Vector2( 8.29565, 0.301801 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -14.9279, 419.484, 425.762 ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -0.349002, 0.935154 ), Vector2( -1.2874, -0.0263032 ), Vector2( -0.2874, -1.02631 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -37.2791, -43.9467, -46.4221 ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 5.17611, -0.745256 ), Vector2( 10.5463, -7.42378 ), Vector2( 13.9073, -6.70667 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 70.7679, 80.7752, 80.7752 ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.4797, -0.66315 ), Vector2( 25.5722, -10.36 ), Vector2( 26.5722, -11.36 ) ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 0.0, 0.0, 0.0 ]
-}
-tracks/19/type = "value"
-tracks/19/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.9318, -11.2477 ), Vector2( 35.7112, -35.3426 ), Vector2( 39.5015, -35.484 ) ]
-}
-tracks/20/type = "value"
-tracks/20/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -50.9501, 77.9126, 77.9126 ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -9.8863, 8.7798 ), Vector2( -20.833, -8.37856 ), Vector2( -16.1841, -8.09072 ) ]
-}
-tracks/22/type = "value"
-tracks/22/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 91.9092, 129.193, 128.012 ]
-}
-tracks/23/type = "value"
-tracks/23/path = NodePath(".:rotation_degrees")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=16]
-
-resource_name = "BlockingLow"
-length = 0.2
-loop = false
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.13 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -8.45, 5 ), Vector2( -7.45, 5 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 8.82643, -7.90208 ), Vector2( 20.8845, -8.77361 ), Vector2( 23.6016, -9.98824 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -16.9296, 0.838911, 0.838911 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 3.28968, -8.34898 ), Vector2( 20.2775, -14.6009 ), Vector2( 24.2824, -15.3863 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 41.8939, 305.078, 305.078 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.12227, 0.462971 ), Vector2( 10.021, -0.0099804 ), Vector2( 12.5234, -0.151429 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 8.08757, 8.08757, 9.72072 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 2.21199, -0.209912 ), Vector2( 4.13702, -1.92338 ), Vector2( 5.13702, -2.92338 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -33.8572, -188.319, -180.193 ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.49905, 8.066 ), Vector2( 5.3639, 0.657894 ), Vector2( 8.29565, 0.301801 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -14.9279, 419.484, 425.762 ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -0.349002, 0.935154 ), Vector2( -1.2874, -0.0263032 ), Vector2( -0.2874, -1.02631 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -37.2791, -43.9467, -46.4221 ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 5.17611, -0.745256 ), Vector2( 10.5463, -7.42378 ), Vector2( 13.9073, -6.70667 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 70.7679, 80.7752, 80.7752 ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.4797, -0.66315 ), Vector2( 25.5722, -10.36 ), Vector2( 26.5722, -11.36 ) ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 0.0, 0.0, 0.0 ]
-}
-tracks/19/type = "value"
-tracks/19/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.9318, -11.2477 ), Vector2( 35.7112, -35.3426 ), Vector2( 39.5015, -35.484 ) ]
-}
-tracks/20/type = "value"
-tracks/20/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -50.9501, 77.9126, 77.9126 ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -9.8863, 8.7798 ), Vector2( -20.833, -8.37856 ), Vector2( -16.1841, -8.09072 ) ]
-}
-tracks/22/type = "value"
-tracks/22/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 91.9092, 129.193, 128.012 ]
-}
-tracks/23/type = "value"
-tracks/23/path = NodePath(".:rotation_degrees")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-
-resource_name = "Jab"
-length = 0.38
-loop = false
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.17, 0.25, 0.33 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -17, -2.5 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-
-resource_name = "Jumping"
-length = 0.2
-loop = false
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, -22 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-
-length = 0.42
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42 ),
-"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0 ),
-"update": 1,
-"values": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( -1.17357, -3.90208 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ -16.9296 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 0.404736, 0.130865 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 19.7604 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 3.54358, 3.27383 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 8.08757 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 0.664413, 1.70104 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ -47.7317 ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( -2.50095, 2.84282 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ -90.2353 ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( -0.791092, 1.02058 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ -37.2791 ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 1.07037, 2.86276 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 70.7679 ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 1.00671, 3.60037 ) ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 0.404736, 0.130865 ) ]
-}
-tracks/19/type = "value"
-tracks/19/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 61.1611 ]
-}
-tracks/20/type = "value"
-tracks/20/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ Vector2( 0.404736, 0.130865 ) ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0 ),
-"update": 0,
-"values": [ 51.0464 ]
-}
-
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 25.0934
 height = 39.9498
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 12.3999
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 9.80083
 height = 9.09814
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 5.86162
 height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=7]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
+
+[sub_resource type="CapsuleShape2D" id=8]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id=9]
 
 custom_solver_bias = 0.0
-radius = 5.86162
-height = 10.1854
+radius = 10.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id=10]
 
 custom_solver_bias = 0.0
-radius = 5.86162
-height = 10.1854
+radius = 10.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id=11]
-
-custom_solver_bias = 0.0
-radius = 5.86162
-height = 10.1854
-
-[sub_resource type="CapsuleShape2D" id=12]
-
-custom_solver_bias = 0.0
-radius = 10.0
-height = 20.0
-
-[sub_resource type="CapsuleShape2D" id=13]
-
-custom_solver_bias = 0.0
-radius = 10.0
-height = 20.0
-
-[sub_resource type="CapsuleShape2D" id=14]
-
-custom_solver_bias = 0.0
-radius = 10.0
-height = 20.0
-
-[sub_resource type="CapsuleShape2D" id=15]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -1017,22 +84,22 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( -7.45, 5 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
-autoplay = "Standing"
+autoplay = "1a - Standing"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/BlockingHigh = SubResource( 1 )
-anims/BlockingLow = SubResource( 16 )
-anims/Jab = SubResource( 2 )
-anims/Jumping = SubResource( 3 )
-anims/Standing = SubResource( 4 )
+"anims/1a - Standing" = ExtResource( 3 )
+"anims/2a - Jumping" = ExtResource( 4 )
+"anims/3a - Falling" = ExtResource( 5 )
+"anims/3b - Falling Recovery" = ExtResource( 6 )
+"anims/4a - Blocking Low" = ExtResource( 7 )
+"anims/4b - Blocking High" = ExtResource( 8 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -1040,7 +107,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 visible = false
 position = Vector2( 0, 13.3076 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Hurtboxes" type="Node2D" parent="." index="3"]
@@ -1066,8 +133,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Head" index="0"]
 
 modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
-position = Vector2( 26.5722, -11.36 )
-shape = SubResource( 6 )
+position = Vector2( 1.00671, 3.60037 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Torso" type="Area2D" parent="Hurtboxes" index="1"]
@@ -1087,9 +154,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Torso" index="0"]
 
 modulate = Color( 0.664063, 0, 1, 1 )
-position = Vector2( 23.6016, -9.98824 )
-rotation = 0.0146418
-shape = SubResource( 7 )
+position = Vector2( -1.17357, -3.90208 )
+rotation = -0.295477
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmTopLeft" type="Area2D" parent="Hurtboxes" index="2"]
@@ -1109,9 +176,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopLeft" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 24.2824, -15.3863 )
-rotation = 5.32462
-shape = SubResource( 8 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 0.344884
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmTopRight" type="Area2D" parent="Hurtboxes" index="3"]
@@ -1131,9 +198,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopRight" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 8.29565, 0.301801 )
-rotation = 7.43095
-shape = SubResource( 9 )
+position = Vector2( -2.50095, 2.84282 )
+rotation = -1.5749
+shape = SubResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmBottomLeft" type="Area2D" parent="Hurtboxes" index="4"]
@@ -1153,9 +220,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomLeft" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 39.5015, -35.484 )
-rotation = 1.35983
-shape = SubResource( 10 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 1.06746
+shape = SubResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmBottomRight" type="Area2D" parent="Hurtboxes" index="5"]
@@ -1175,9 +242,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomRight" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -16.1841, -8.09072 )
-rotation = 2.23423
-shape = SubResource( 11 )
+position = Vector2( 0.404736, 0.130865 )
+rotation = 0.890928
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegTopLeft" type="Area2D" parent="Hurtboxes" index="6"]
@@ -1197,9 +264,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopLeft" index="0"]
 
 modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 5.13702, -2.92338 )
-rotation = -3.14496
-shape = SubResource( 12 )
+position = Vector2( 0.664413, 1.70104 )
+rotation = -0.833075
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LegTopRight" type="Area2D" parent="Hurtboxes" index="7"]
@@ -1219,9 +286,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopRight" index="0"]
 
 modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 13.9073, -6.70667 )
-rotation = 1.40979
-shape = SubResource( 13 )
+position = Vector2( 1.07037, 2.86276 )
+rotation = 1.23513
+shape = SubResource( 9 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegBottomLeft" type="Area2D" parent="Hurtboxes" index="8"]
@@ -1240,9 +307,9 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomLeft" index="0"]
 
-position = Vector2( -0.2874, -1.02631 )
-rotation = -0.810219
-shape = SubResource( 14 )
+position = Vector2( -0.791092, 1.02058 )
+rotation = -0.650643
+shape = SubResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegBottomRight" type="Area2D" parent="Hurtboxes" index="9"]
@@ -1261,9 +328,9 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomRight" index="0"]
 
-position = Vector2( 12.5234, -0.151429 )
-rotation = 0.169659
-shape = SubResource( 15 )
+position = Vector2( 3.54358, 3.27383 )
+rotation = 0.141155
+shape = SubResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="HELPER" type="Node2D" parent="." index="4"]
