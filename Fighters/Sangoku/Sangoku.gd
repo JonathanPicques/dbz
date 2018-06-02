@@ -13,6 +13,11 @@ enum FighterState {
 	falling_to_standing,
 }
 
+enum FighterDirection {
+	left = -1,
+	right = 1
+}
+
 class FighterInput:
 	var up = false
 	var down = false
@@ -33,10 +38,15 @@ class FighterInput:
 var input = FighterInput.new()
 var state = FighterState.standing
 var velocity = Vector2(0.0, 0.0)
+var direction = FighterDirection.left
 
 const gravity = 600
 const jump_strength = 360
 const jump2_strength = 320
+
+const walk_speed = 200
+const walk_acceleration = 400
+const walk_deceleration = 600
 
 const ground_vector = Vector2(0.0, -1.0)
 
@@ -82,11 +92,28 @@ func set_state(state, prev_state = self.state):
 		jumping2: self.pre_jumping2()
 		falling2: self.pre_falling2()
 
+func accelerate_horizontal(delta):
+	if self.input.left and not self.input.right:
+		self.velocity.x = clamp(self.velocity.x - self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
+	elif self.input.right and not self.input.left:
+		self.velocity.x = clamp(self.velocity.x + self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
+
+func decelerate_horizontal(delta, force = false):
+	if force or (not self.input.left and not self.input.right):
+		if self.velocity.x > 0:
+			self.velocity.x = clamp(self.velocity.x - self.walk_deceleration * delta, 0, self.walk_speed)
+		elif self.velocity.x < 0:
+			self.velocity.x = clamp(self.velocity.x + self.walk_deceleration * delta, -self.walk_speed, 0)
+
+func accelerate_vertical(delta):
+	self.velocity.y += self.gravity * delta
+
 func pre_standing():
 	$AnimationPlayer.play("1a - Standing")
 	
 func state_standing(delta):
-	if self.input.block:
+	self.decelerate_horizontal(delta, true)
+	if self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
 	elif self.input.jump:
 		self.set_state(FighterState.jumping)
@@ -132,6 +159,8 @@ func pre_jumping():
 	$AnimationPlayer.play("2a - Jumping")
 
 func state_jumping(delta):
+	self.accelerate_horizontal(delta)
+	self.decelerate_horizontal(delta)
 	self.velocity.y += self.gravity * delta
 	if self.velocity.y > 0:
 		self.set_state(FighterState.falling)
@@ -145,14 +174,18 @@ func state_falling(delta):
 	elif self.input.jump:
 		self.set_state(FighterState.jumping2)
 	else:
-		self.velocity.y += self.gravity * delta
+		self.accelerate_vertical(delta)
+		self.accelerate_horizontal(delta)
+		self.decelerate_horizontal(delta)
 
 func pre_jumping2():
 	self.velocity.y = -self.jump2_strength
 	$AnimationPlayer.play("2a - Jumping")
 
 func state_jumping2(delta):
-	self.velocity.y += self.gravity * delta
+	self.accelerate_vertical(delta)
+	self.accelerate_horizontal(delta)
+	self.decelerate_horizontal(delta)
 	if self.velocity.y > 0:
 		self.set_state(FighterState.falling2)
 
@@ -163,11 +196,14 @@ func state_falling2(delta):
 	if self.is_on_floor():
 		self.set_state(FighterState.falling_to_standing)
 	else:
-		self.velocity.y += self.gravity * delta
+		self.accelerate_vertical(delta)
+		self.accelerate_horizontal(delta)
+		self.decelerate_horizontal(delta)
 
 func pre_falling_to_standing():
 	$AnimationPlayer.play("3b - Falling Recovery")
 
 func state_falling_to_standing(delta):
+	self.decelerate_horizontal(delta, true)
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.standing)
