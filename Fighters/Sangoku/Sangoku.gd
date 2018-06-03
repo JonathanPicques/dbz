@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 enum FighterState {
 	standing,
+	crouching,
+	crouching_to_standing,
 	turning,
 	walking,
 	blockinghigh,
@@ -71,6 +73,8 @@ func _physics_process(delta):
 	# Update current state
 	match state:
 		FighterState.standing: self.state_standing(delta)
+		FighterState.crouching: self.state_crouching(delta)
+		FighterState.crouching_to_standing: self.state_crouching_to_standing(delta)
 		FighterState.turning: self.state_turning(delta)
 		FighterState.walking: self.state_walking(delta)
 		FighterState.blockinghigh: self.state_blockinghigh(delta)
@@ -90,6 +94,8 @@ func set_state(state, prev_state = self.state):
 	self.state = state
 	match state:
 		FighterState.standing: self.pre_standing()
+		FighterState.crouching: self.pre_crouching()
+		FighterState.crouching_to_standing: self.pre_crouching_to_standing()
 		FighterState.turning: self.pre_turning()
 		FighterState.walking: self.pre_walking()
 		FighterState.blockinghigh: self.pre_blockinghigh()
@@ -135,8 +141,27 @@ func state_standing(delta):
 		self.set_state(FighterState.walking)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
+	elif self.input.down:
+		self.set_state(FighterState.crouching)
 	elif self.input.jump and self.grounded:
 		self.set_state(FighterState.jumping)
+
+func pre_crouching():
+	$AnimationPlayer.play("6a - Crouching")
+
+func state_crouching(delta):
+	if not $AnimationPlayer.is_playing():
+		if self.input.block:
+			self.set_state(FighterState.blockinglow)
+		elif not self.input.down:
+			self.set_state(FighterState.crouching_to_standing)
+
+func pre_crouching_to_standing():
+	$AnimationPlayer.play_backwards("6a - Crouching")
+
+func state_crouching_to_standing(delta):
+	if not $AnimationPlayer.is_playing():
+		self.set_state(FighterState.standing)
 
 func pre_turning():
 	$Timer.set_wait_time(0.1)

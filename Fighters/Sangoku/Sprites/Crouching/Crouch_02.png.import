@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-581c5be0d92b23e1b6c9f99e97769339.stex"
+path="res://.import/Crouch_02.png-e70c4ea2975a3b28d96dda08856ae810.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Crouch/1.png"
+source_file="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png"
 source_md5="de51368a1fa99b36b71dedb861923e15"
 
-dest_files=[ "res://.import/1.png-581c5be0d92b23e1b6c9f99e97769339.stex" ]
+dest_files=[ "res://.import/Crouch_02.png-e70c4ea2975a3b28d96dda08856ae810.stex" ]
 dest_md5="f59ec4b23ca0d3f1c212cacc55c8875a"
 
 [params]

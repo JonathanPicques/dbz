@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Walk/Walk_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
 [ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
 [ext_resource path="res://Fighters/Sangoku/Anims/5a - Walking.tres" type="Animation" id=9]
+[ext_resource path="res://Fighters/Sangoku/Anims/6a - Crouching.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -69,7 +70,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26, 38 )
@@ -85,11 +86,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
+position = Vector2( -12, 5 )
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( 12.5, -2 )
+position = Vector2( 11, -1 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
@@ -319,7 +320,6 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="Helper" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
-visible = false
 position = Vector2( -90.3386, 28.3204 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Helper" index="0"]
@@ -355,13 +355,15 @@ playback_speed = 1.0
 "anims/4a - Blocking Low" = ExtResource( 7 )
 "anims/4b - Blocking High" = ExtResource( 8 )
 "anims/5a - Walking" = ExtResource( 9 )
+"anims/6a - Crouching" = ExtResource( 10 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
+visible = false
 position = Vector2( 0, 13.3 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 
