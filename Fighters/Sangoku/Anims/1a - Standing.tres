@@ -11,7 +11,7 @@ length = 0.42
 loop = true
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Flip/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("Flip/Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -35,7 +35,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Hurtboxes/Torso/CollisionShape2D:position")
+tracks/2/path = NodePath("Flip/Hurtboxes/Torso/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -47,7 +47,7 @@ tracks/2/keys = {
 "values": [ Vector2( -1.17357, -3.90208 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
+tracks/3/path = NodePath("Flip/Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -59,7 +59,7 @@ tracks/3/keys = {
 "values": [ -16.9296 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:position")
+tracks/4/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -71,7 +71,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0.404736, 0.130865 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
+tracks/5/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -83,7 +83,7 @@ tracks/5/keys = {
 "values": [ 19.7604 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:position")
+tracks/6/path = NodePath("Flip/Hurtboxes/LegBottomRight/CollisionShape2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -95,7 +95,7 @@ tracks/6/keys = {
 "values": [ Vector2( 3.54358, 3.27383 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
+tracks/7/path = NodePath("Flip/Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -107,7 +107,7 @@ tracks/7/keys = {
 "values": [ 8.08757 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:position")
+tracks/8/path = NodePath("Flip/Hurtboxes/LegTopLeft/CollisionShape2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -119,7 +119,7 @@ tracks/8/keys = {
 "values": [ Vector2( 0.664413, 1.70104 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
+tracks/9/path = NodePath("Flip/Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -131,7 +131,7 @@ tracks/9/keys = {
 "values": [ -47.7317 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:position")
+tracks/10/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -143,7 +143,7 @@ tracks/10/keys = {
 "values": [ Vector2( -2.50095, 2.84282 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
+tracks/11/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -155,7 +155,7 @@ tracks/11/keys = {
 "values": [ -90.2353 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:position")
+tracks/12/path = NodePath("Flip/Hurtboxes/LegBottomLeft/CollisionShape2D:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -167,7 +167,7 @@ tracks/12/keys = {
 "values": [ Vector2( -0.791092, 1.02058 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/13/path = NodePath("Flip/Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -179,7 +179,7 @@ tracks/13/keys = {
 "values": [ -37.2791 ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:position")
+tracks/14/path = NodePath("Flip/Hurtboxes/LegTopRight/CollisionShape2D:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -191,7 +191,7 @@ tracks/14/keys = {
 "values": [ Vector2( 1.07037, 2.86276 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
+tracks/15/path = NodePath("Flip/Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -203,7 +203,7 @@ tracks/15/keys = {
 "values": [ 70.7679 ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Hurtboxes/Head/CollisionShape2D:position")
+tracks/16/path = NodePath("Flip/Hurtboxes/Head/CollisionShape2D:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -215,7 +215,7 @@ tracks/16/keys = {
 "values": [ Vector2( 1.00671, 3.60037 ) ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("Hurtboxes/Head/CollisionShape2D:rotation_degrees")
+tracks/17/path = NodePath("Flip/Hurtboxes/Head/CollisionShape2D:rotation_degrees")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
@@ -227,7 +227,7 @@ tracks/17/keys = {
 "values": [ 0.0 ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
+tracks/18/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
@@ -239,7 +239,7 @@ tracks/18/keys = {
 "values": [ Vector2( 0.404736, 0.130865 ) ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/19/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -251,7 +251,7 @@ tracks/19/keys = {
 "values": [ 61.1611 ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:position")
+tracks/20/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -263,7 +263,7 @@ tracks/20/keys = {
 "values": [ Vector2( 0.404736, 0.130865 ) ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
+tracks/21/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false

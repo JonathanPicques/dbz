@@ -1,19 +1,13 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingHigh_03.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
 [ext_resource path="res://Fighters/Sangoku/Anims/3b - Falling Recovery.tres" type="Animation" id=6]
 [ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
 [ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
-
-[sub_resource type="CapsuleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 25.0934
-height = 39.9498
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -74,6 +68,12 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 25.0934
+height = 39.9498
+
 [node name="Sangoku" type="KinematicBody2D" index="0"]
 
 input_pickable = false
@@ -81,13 +81,266 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
+
+[node name="Sprite" type="Sprite" parent="Flip" index="0"]
+
+position = Vector2( 9, -4.5 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Hurtboxes" type="Node2D" parent="Flip" index="1"]
+
+editor/display_folded = true
+visible = false
+
+[node name="Head" type="Area2D" parent="Flip/Hurtboxes" index="0"]
+
+position = Vector2( -14.7869, -33.6587 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Pickable" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/Head" index="0"]
+
+modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
+position = Vector2( 26.5722, -11.36 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Torso" type="Area2D" parent="Flip/Hurtboxes" index="1"]
+
+position = Vector2( -1.50801, -5.65608 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/Torso" index="0"]
+
+modulate = Color( 0.664063, 0, 1, 1 )
+position = Vector2( 23.6016, -9.98824 )
+rotation = 0.0146418
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="ArmTopLeft" type="Area2D" parent="Flip/Hurtboxes" index="2"]
+
+position = Vector2( -24.2492, -11.754 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmTopLeft" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 24.2824, -15.3863 )
+rotation = 5.32462
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmTopRight" type="Area2D" parent="Flip/Hurtboxes" index="3"]
+
+position = Vector2( 13.9119, -31.7063 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmTopRight" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 8.29565, 0.301801 )
+rotation = 7.43095
+shape = SubResource( 5 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmBottomLeft" type="Area2D" parent="Flip/Hurtboxes" index="4"]
+
+position = Vector2( -33.3536, 1.8058 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmBottomLeft" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 39.5015, -35.484 )
+rotation = 1.35983
+shape = SubResource( 6 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="ArmBottomRight" type="Area2D" parent="Flip/Hurtboxes" index="5"]
+
+position = Vector2( 22.8227, -25.3138 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmBottomRight" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -16.1841, -8.09072 )
+rotation = 2.23423
+shape = SubResource( 7 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegTopLeft" type="Area2D" parent="Flip/Hurtboxes" index="6"]
+
+position = Vector2( 20.3826, 14.559 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegTopLeft" index="0"]
+
+modulate = Color( 0.21875, 1, 0, 1 )
+position = Vector2( 5.13702, -2.92338 )
+rotation = -3.14496
+shape = SubResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="LegTopRight" type="Area2D" parent="Flip/Hurtboxes" index="7"]
+
+position = Vector2( -16.8237, 11.9707 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegTopRight" index="0"]
+
+modulate = Color( 0.21875, 1, 0, 1 )
+position = Vector2( 13.9073, -6.70667 )
+rotation = 1.40979
+shape = SubResource( 9 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegBottomLeft" type="Area2D" parent="Flip/Hurtboxes" index="8"]
+
+position = Vector2( 39.5098, 36.2357 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegBottomLeft" index="0"]
+
+position = Vector2( -0.2874, -1.02631 )
+rotation = -0.810219
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LegBottomRight" type="Area2D" parent="Flip/Hurtboxes" index="9"]
+
+position = Vector2( -30.9611, 28.3615 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegBottomRight" index="0"]
+
+position = Vector2( 12.5234, -0.151429 )
+rotation = 0.169659
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Helper" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -90.3386, 28.3204 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Helper" index="0"]
+
+position = Vector2( 50.332, 24.6816 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
 autoplay = "1a - Standing"
@@ -103,250 +356,11 @@ playback_speed = 1.0
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
 visible = false
 position = Vector2( 0, 13.3076 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
-
-[node name="Hurtboxes" type="Node2D" parent="." index="3"]
-
-editor/display_folded = true
-visible = false
-
-[node name="Head" type="Area2D" parent="Hurtboxes" index="0"]
-
-position = Vector2( -14.7869, -33.6587 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Pickable" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Head" index="0"]
-
-modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
-position = Vector2( 1.00671, 3.60037 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Visibility" ]
-
-[node name="Torso" type="Area2D" parent="Hurtboxes" index="1"]
-
-position = Vector2( -1.50801, -5.65608 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Torso" index="0"]
-
-modulate = Color( 0.664063, 0, 1, 1 )
-position = Vector2( -1.17357, -3.90208 )
-rotation = -0.295477
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="ArmTopLeft" type="Area2D" parent="Hurtboxes" index="2"]
-
-position = Vector2( -24.2492, -11.754 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopLeft" index="0"]
-
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 0.404736, 0.130865 )
-rotation = 0.344884
-shape = SubResource( 4 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="ArmTopRight" type="Area2D" parent="Hurtboxes" index="3"]
-
-position = Vector2( 13.9119, -31.7063 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmTopRight" index="0"]
-
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -2.50095, 2.84282 )
-rotation = -1.5749
-shape = SubResource( 5 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="ArmBottomLeft" type="Area2D" parent="Hurtboxes" index="4"]
-
-position = Vector2( -33.3536, 1.8058 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomLeft" index="0"]
-
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 0.404736, 0.130865 )
-rotation = 1.06746
-shape = SubResource( 6 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="ArmBottomRight" type="Area2D" parent="Hurtboxes" index="5"]
-
-position = Vector2( 22.8227, -25.3138 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/ArmBottomRight" index="0"]
-
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 0.404736, 0.130865 )
-rotation = 0.890928
-shape = SubResource( 7 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="LegTopLeft" type="Area2D" parent="Hurtboxes" index="6"]
-
-position = Vector2( 20.3826, 14.559 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopLeft" index="0"]
-
-modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 0.664413, 1.70104 )
-rotation = -0.833075
-shape = SubResource( 8 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="LegTopRight" type="Area2D" parent="Hurtboxes" index="7"]
-
-position = Vector2( -16.8237, 11.9707 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegTopRight" index="0"]
-
-modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 1.07037, 2.86276 )
-rotation = 1.23513
-shape = SubResource( 9 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="LegBottomLeft" type="Area2D" parent="Hurtboxes" index="8"]
-
-position = Vector2( 39.5098, 36.2357 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomLeft" index="0"]
-
-position = Vector2( -0.791092, 1.02058 )
-rotation = -0.650643
-shape = SubResource( 10 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="LegBottomRight" type="Area2D" parent="Hurtboxes" index="9"]
-
-position = Vector2( -30.9611, 28.3615 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/LegBottomRight" index="0"]
-
-position = Vector2( 3.54358, 3.27383 )
-rotation = 0.141155
-shape = SubResource( 11 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="HELPER" type="Node2D" parent="." index="4"]
-
-position = Vector2( -90.3386, 28.3204 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="HELPER" index="0"]
-
-position = Vector2( 50.332, 24.6816 )
-node_a = NodePath("")
-node_b = NodePath("")
-bias = 0.0
-disable_collision = true
-softness = 0.0
-__meta__ = {
-"_edit_lock_": true
-}
 
 
