@@ -46,8 +46,8 @@ var grounded = false
 var direction = FighterDirection.left
 
 const gravity = 1200
-const jump_strength = 560
-const jump2_strength = 520
+const jump_strength = 600
+const jump2_strength = 560
 
 const walk_speed = 260
 const walk_acceleration = 420

@@ -1,16 +1,32 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Stages/StageCollider.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Stages/StageColliderThru.tscn" type="PackedScene" id=3]
 
 [node name="Stage" type="Node2D"]
 
 [node name="Sangoku" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 950, 438 )
+position = Vector2( 310, 410 )
 
 [node name="StageCollider" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 630, 550 )
+
+[node name="StageColliderThru" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 950, 380 )
+scale = Vector2( 0.1875, 0.34375 )
+
+[node name="StageColliderThru3" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 640, 250 )
+scale = Vector2( 0.40625, 0.34375 )
+
+[node name="StageColliderThru2" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 330, 380 )
+scale = Vector2( 0.1875, 0.34375 )
 
 
