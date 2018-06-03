@@ -40,6 +40,7 @@ class FighterInput:
 var input = FighterInput.new()
 var state = FighterState.falling2
 var velocity = Vector2(0, 0)
+var grounded = false
 var direction = FighterDirection.left
 
 const gravity = 600
@@ -63,6 +64,9 @@ func _process(delta):
 	self.input.block = Input.is_action_pressed("player_1_block")
 	self.input.attack = Input.is_action_pressed("player_1_attack")
 	self.input.attack_alt = Input.is_action_pressed("player_1_attack_alt")
+	
+	# Set grounded
+	self.grounded = self.test_move(self.transform, Vector2(0, 1))
 	
 	# Update current state
 	match state:
@@ -98,6 +102,10 @@ func set_state(state, prev_state = self.state):
 		FighterState.falling2: self.pre_falling2()
 		FighterState.falling_to_standing: self.pre_falling_to_standing()
 
+func handle_falling(delta):
+	if not grounded:
+		self.set_state(FighterState.falling)
+
 func accelerate_horizontal(delta):
 	if self.input.left and not self.input.right:
 		self.velocity.x = clamp(self.velocity.x - self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
@@ -119,6 +127,7 @@ func pre_standing():
 	$AnimationPlayer.play("1a - Standing")
 
 func state_standing(delta):
+	self.handle_falling(delta)
 	self.decelerate_horizontal(delta, true)
 	if ((self.direction == 1 and self.input.left and not self.input.right) or
 		(self.direction == -1 and self.input.right and not self.input.left)):
@@ -127,7 +136,7 @@ func state_standing(delta):
 		self.set_state(FighterState.walking)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
-	elif self.input.jump:
+	elif self.input.jump and self.grounded:
 		self.set_state(FighterState.jumping)
 
 func pre_turning():
@@ -144,9 +153,10 @@ func pre_walking():
 	$AnimationPlayer.play("5a - Walking")
 
 func state_walking(delta):
+	self.handle_falling(delta)
 	self.accelerate_horizontal(delta)
 	self.decelerate_horizontal(delta)
-	if self.input.jump:
+	if self.input.jump and self.grounded:
 		self.set_state(FighterState.jumping)
 	elif not $AnimationPlayer.is_playing() or self.velocity.x == 0:
 		if ((self.direction == -1 and self.input.left and not self.input.right) or

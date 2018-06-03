@@ -69,11 +69,10 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
-radius = 25.0934
-height = 39.9498
+extents = Vector2( 26, 38 )
 
 [node name="Sangoku" type="KinematicBody2D" index="0"]
 
@@ -85,6 +84,8 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
@@ -318,6 +319,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="Helper" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
+visible = false
 position = Vector2( -90.3386, 28.3204 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Helper" index="0"]
@@ -358,8 +360,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
-visible = false
-position = Vector2( 0, 13.3076 )
+position = Vector2( 0, 13.3 )
 shape = SubResource( 11 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 

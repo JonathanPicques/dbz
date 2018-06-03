@@ -7,10 +7,10 @@
 
 [node name="Sangoku" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 950, 550 )
+position = Vector2( 950, 438 )
 
 [node name="StageCollider" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 630, 660 )
+position = Vector2( 630, 550 )
 
 
