@@ -142,7 +142,7 @@ func state_standing(delta):
 		self.set_state(FighterState.walking)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
-	elif self.input.down:
+	elif self.input.down and self.velocity.x == 0:
 		self.set_state(FighterState.crouching)
 	elif self.input.jump and self.grounded:
 		self.set_state(FighterState.jumping)
