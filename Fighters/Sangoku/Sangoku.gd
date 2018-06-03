@@ -106,19 +106,18 @@ func handle_falling(delta):
 	if not grounded:
 		self.set_state(FighterState.falling)
 
-func accelerate_horizontal(delta):
-	if self.input.left and not self.input.right:
+func accelerate_horizontal(delta, restrict_direction = false):
+	if self.input.left and not self.input.right and (not restrict_direction or self.direction == FighterDirection.left):
 		self.velocity.x = clamp(self.velocity.x - self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
-	elif self.input.right and not self.input.left:
+	elif self.input.right and not self.input.left and (not restrict_direction or self.direction == FighterDirection.right):
 		self.velocity.x = clamp(self.velocity.x + self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
 
 func decelerate_horizontal(delta, force = false):
-	var modifier = 1 if not force else 1.6
-	if force or (not self.input.left and not self.input.right):
-		if self.velocity.x > 0:
-			self.velocity.x = clamp(self.velocity.x - modifier * self.walk_deceleration * delta, 0, self.walk_speed)
-		elif self.velocity.x < 0:
-			self.velocity.x = clamp(self.velocity.x + modifier * self.walk_deceleration * delta, -self.walk_speed, 0)
+	var modifier = 1 if not force else 2
+	if self.velocity.x < 0 and (force or (not self.input.left or self.input.right)):
+		self.velocity.x = clamp(self.velocity.x + self.walk_deceleration * modifier * delta, -self.walk_speed, 0)
+	elif self.velocity.x > 0 and (force or (not self.input.right or self.input.left)):
+		self.velocity.x = clamp(self.velocity.x - self.walk_deceleration * modifier * delta, 0, self.walk_speed)
 
 func accelerate_vertical(delta):
 	self.velocity.y += self.gravity * delta
@@ -128,9 +127,9 @@ func pre_standing():
 
 func state_standing(delta):
 	self.handle_falling(delta)
-	self.decelerate_horizontal(delta, true)
-	if ((self.direction == 1 and self.input.left and not self.input.right) or
-		(self.direction == -1 and self.input.right and not self.input.left)):
+	self.decelerate_horizontal(delta)
+	if ((self.direction == FighterDirection.left and self.input.right and not self.input.left) or
+		(self.direction == FighterDirection.right and self.input.left and not self.input.right)):
 		self.set_state(FighterState.turning)
 	elif (self.input.left and not self.input.right) or (self.input.right and not self.input.left):
 		self.set_state(FighterState.walking)
@@ -154,16 +153,12 @@ func pre_walking():
 
 func state_walking(delta):
 	self.handle_falling(delta)
-	self.accelerate_horizontal(delta)
+	self.accelerate_horizontal(delta, true)
 	self.decelerate_horizontal(delta)
 	if self.input.jump and self.grounded:
 		self.set_state(FighterState.jumping)
-	elif not $AnimationPlayer.is_playing() or self.velocity.x == 0:
-		if ((self.direction == -1 and self.input.left and not self.input.right) or
-			(self.direction == 1 and self.input.right and not self.input.left)):
-			self.set_state(FighterState.walking)
-		else:
-			self.set_state(FighterState.standing)
+	elif self.velocity.x == 0:
+		self.set_state(FighterState.standing)
 
 func pre_blockinghigh():
 	$AnimationPlayer.play("4b - Blocking High")

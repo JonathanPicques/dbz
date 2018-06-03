@@ -11,7 +11,7 @@
 
 resource_name = "5a - Walking"
 length = 0.6
-loop = false
+loop = true
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flip/Sprite:texture")
