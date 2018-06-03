@@ -43,17 +43,17 @@ var velocity = Vector2(0, 0)
 var grounded = false
 var direction = FighterDirection.left
 
-const gravity = 600
-const jump_strength = 360
-const jump2_strength = 320
+const gravity = 1200
+const jump_strength = 560
+const jump2_strength = 520
 
-const walk_speed = 200
-const walk_acceleration = 400
-const walk_deceleration = 600
+const walk_speed = 260
+const walk_acceleration = 420
+const walk_deceleration = 620
 
 const ground_vector = Vector2(0, -1)
 
-func _process(delta):
+func _physics_process(delta):
 	# Set inputs
 	self.input.up = Input.is_action_pressed("ui_up")
 	self.input.down = Input.is_action_pressed("ui_down")
@@ -206,9 +206,9 @@ func pre_jumping():
 	$AnimationPlayer.play("2a - Jumping")
 
 func state_jumping(delta):
+	self.accelerate_vertical(delta)
 	self.accelerate_horizontal(delta)
 	self.decelerate_horizontal(delta)
-	self.velocity.y += self.gravity * delta
 	if self.velocity.y > 0:
 		self.set_state(FighterState.falling)
 

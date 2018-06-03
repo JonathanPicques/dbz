@@ -49,3 +49,7 @@ player_1_attack_alt=[ Object(InputEventKey,"resource_local_to_scene":false,"reso
  ]
 player_1_block=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
  ]
+
+[physics]
+
+common/physics_fps=144
