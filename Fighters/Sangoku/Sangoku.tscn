@@ -1,24 +1,31 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Blocking/BlockingHigh_03.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Walk/Walk_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
 [ext_resource path="res://Fighters/Sangoku/Anims/3b - Falling Recovery.tres" type="Animation" id=6]
 [ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
 [ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
+[ext_resource path="res://Fighters/Sangoku/Anims/5a - Walking.tres" type="Animation" id=9]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 12.3999
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 9.80083
 height = 9.09814
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 5.86162
+height = 10.1854
 
 [sub_resource type="CapsuleShape2D" id=4]
 
@@ -41,8 +48,8 @@ height = 10.1854
 [sub_resource type="CapsuleShape2D" id=7]
 
 custom_solver_bias = 0.0
-radius = 5.86162
-height = 10.1854
+radius = 10.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id=8]
 
@@ -65,12 +72,6 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id=11]
 
 custom_solver_bias = 0.0
-radius = 10.0
-height = 20.0
-
-[sub_resource type="CapsuleShape2D" id=1]
-
-custom_solver_bias = 0.0
 radius = 25.0934
 height = 39.9498
 
@@ -85,11 +86,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( 9, -4.5 )
+position = Vector2( 12.5, -2 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
@@ -117,7 +116,7 @@ __meta__ = {
 
 modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
 position = Vector2( 26.5722, -11.36 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Torso" type="Area2D" parent="Flip/Hurtboxes" index="1"]
@@ -139,7 +138,7 @@ __meta__ = {
 modulate = Color( 0.664063, 0, 1, 1 )
 position = Vector2( 23.6016, -9.98824 )
 rotation = 0.0146418
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmTopLeft" type="Area2D" parent="Flip/Hurtboxes" index="2"]
@@ -161,7 +160,7 @@ __meta__ = {
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 24.2824, -15.3863 )
 rotation = 5.32462
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmTopRight" type="Area2D" parent="Flip/Hurtboxes" index="3"]
@@ -183,7 +182,7 @@ __meta__ = {
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 8.29565, 0.301801 )
 rotation = 7.43095
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmBottomLeft" type="Area2D" parent="Flip/Hurtboxes" index="4"]
@@ -205,7 +204,7 @@ __meta__ = {
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 39.5015, -35.484 )
 rotation = 1.35983
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmBottomRight" type="Area2D" parent="Flip/Hurtboxes" index="5"]
@@ -227,7 +226,7 @@ __meta__ = {
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -16.1841, -8.09072 )
 rotation = 2.23423
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegTopLeft" type="Area2D" parent="Flip/Hurtboxes" index="6"]
@@ -249,7 +248,7 @@ __meta__ = {
 modulate = Color( 0.21875, 1, 0, 1 )
 position = Vector2( 5.13702, -2.92338 )
 rotation = -3.14496
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LegTopRight" type="Area2D" parent="Flip/Hurtboxes" index="7"]
@@ -271,7 +270,7 @@ __meta__ = {
 modulate = Color( 0.21875, 1, 0, 1 )
 position = Vector2( 13.9073, -6.70667 )
 rotation = 1.40979
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegBottomLeft" type="Area2D" parent="Flip/Hurtboxes" index="8"]
@@ -292,7 +291,7 @@ __meta__ = {
 
 position = Vector2( -0.2874, -1.02631 )
 rotation = -0.810219
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="LegBottomRight" type="Area2D" parent="Flip/Hurtboxes" index="9"]
@@ -313,7 +312,7 @@ __meta__ = {
 
 position = Vector2( 12.5234, -0.151429 )
 rotation = 0.169659
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Helper" type="Node2D" parent="." index="1"]
@@ -353,6 +352,7 @@ playback_speed = 1.0
 "anims/3b - Falling Recovery" = ExtResource( 6 )
 "anims/4a - Blocking Low" = ExtResource( 7 )
 "anims/4b - Blocking High" = ExtResource( 8 )
+"anims/5a - Walking" = ExtResource( 9 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -360,7 +360,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 visible = false
 position = Vector2( 0, 13.3076 )
-shape = SubResource( 1 )
+shape = SubResource( 11 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 

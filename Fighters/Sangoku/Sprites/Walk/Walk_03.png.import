@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4.png-c018593ee0d05421fde4505eca9811a1.stex"
+path="res://.import/Walk_03.png-49b77d97895f8f23cb86d1523991cca1.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Walk/4.png"
-source_md5="d2c377f6eedac80d925386579b7a5b85"
+source_file="res://Fighters/Sangoku/Sprites/Walk/Walk_03.png"
+source_md5="4398e3b1572dea06b8c226818fefb031"
 
-dest_files=[ "res://.import/4.png-c018593ee0d05421fde4505eca9811a1.stex" ]
-dest_md5="4dbd305e925bd81ead39c8a21a4c5a43"
+dest_files=[ "res://.import/Walk_03.png-49b77d97895f8f23cb86d1523991cca1.stex" ]
+dest_md5="52e5ca2d3cd294a5d8e3b92523bc8b19"
 
 [params]
 

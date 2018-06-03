@@ -3,6 +3,7 @@ extends KinematicBody2D
 enum FighterState {
 	standing,
 	turning,
+	walking,
 	blockinghigh,
 	blockinghigh_to_standing,
 	blockinglow,
@@ -67,6 +68,7 @@ func _process(delta):
 	match state:
 		FighterState.standing: self.state_standing(delta)
 		FighterState.turning: self.state_turning(delta)
+		FighterState.walking: self.state_walking(delta)
 		FighterState.blockinghigh: self.state_blockinghigh(delta)
 		FighterState.blockinghigh_to_standing: self.state_blockinghigh_to_standing(delta)
 		FighterState.blockinglow: self.state_blockinglow(delta)
@@ -85,6 +87,7 @@ func set_state(state, prev_state = self.state):
 	match state:
 		FighterState.standing: self.pre_standing()
 		FighterState.turning: self.pre_turning()
+		FighterState.walking: self.pre_walking()
 		FighterState.blockinghigh: self.pre_blockinghigh()
 		FighterState.blockinghigh_to_standing: self.pre_blockinghigh_to_standing()
 		FighterState.blockinglow: self.pre_blockinglow()
@@ -105,7 +108,7 @@ func decelerate_horizontal(delta, force = false):
 	var modifier = 1 if not force else 1.6
 	if force or (not self.input.left and not self.input.right):
 		if self.velocity.x > 0:
-			self.velocity.x = clamp(self.velocity.x - modifier * self.walk_deceleration * delta, 0, +self.walk_speed)
+			self.velocity.x = clamp(self.velocity.x - modifier * self.walk_deceleration * delta, 0, self.walk_speed)
 		elif self.velocity.x < 0:
 			self.velocity.x = clamp(self.velocity.x + modifier * self.walk_deceleration * delta, -self.walk_speed, 0)
 
@@ -120,13 +123,15 @@ func state_standing(delta):
 	if ((self.direction == 1 and self.input.left and not self.input.right) or
 		(self.direction == -1 and self.input.right and not self.input.left)):
 		self.set_state(FighterState.turning)
+	elif (self.input.left and not self.input.right) or (self.input.right and not self.input.left):
+		self.set_state(FighterState.walking)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
 	elif self.input.jump:
 		self.set_state(FighterState.jumping)
 
 func pre_turning():
-	$Timer.set_wait_time(0.2)
+	$Timer.set_wait_time(0.1)
 	$Timer.start()
 
 func state_turning(delta):
@@ -134,6 +139,21 @@ func state_turning(delta):
 		$Flip.scale.x = self.direction
 		self.direction *= -1
 		self.set_state(FighterState.standing)
+
+func pre_walking():
+	$AnimationPlayer.play("5a - Walking")
+
+func state_walking(delta):
+	self.accelerate_horizontal(delta)
+	self.decelerate_horizontal(delta)
+	if self.input.jump:
+		self.set_state(FighterState.jumping)
+	elif not $AnimationPlayer.is_playing() or self.velocity.x == 0:
+		if ((self.direction == -1 and self.input.left and not self.input.right) or
+			(self.direction == 1 and self.input.right and not self.input.left)):
+			self.set_state(FighterState.walking)
+		else:
+			self.set_state(FighterState.standing)
 
 func pre_blockinghigh():
 	$AnimationPlayer.play("4b - Blocking High")
