@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-8fdb6279769d9aef945bd0c21ad2e7c3.stex"
+path="res://.import/Taunting2_01.png-3f144eb6b62fb2e5f0253cb734a10317.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Taunt1/2.png"
-source_md5="03ab5f7a5a35c819ece5bbe2ff647d86"
+source_file="res://Fighters/Sangoku/Sprites/Taunting/Taunting2_01.png"
+source_md5="5e562c3c4bcbde8f03913849fc9b095b"
 
-dest_files=[ "res://.import/2.png-8fdb6279769d9aef945bd0c21ad2e7c3.stex" ]
-dest_md5="1b299579045be8633eeb9e377b5c0718"
+dest_files=[ "res://.import/Taunting2_01.png-3f144eb6b62fb2e5f0253cb734a10317.stex" ]
+dest_md5="0398072093dbd0efabc03d581d9102b1"
 
 [params]
 

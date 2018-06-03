@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
@@ -9,8 +9,9 @@
 [ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
 [ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
 [ext_resource path="res://Fighters/Sangoku/Anims/5a - Walking.tres" type="Animation" id=9]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=10]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=11]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=10]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=11]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -71,7 +72,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 
 resource_name = "6a - Crouching"
 length = 0.2
@@ -87,7 +88,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 10 ), ExtResource( 11 ) ]
+"values": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -102,7 +103,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -3, -2 ), Vector2( -8, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
@@ -118,10 +119,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
+position = Vector2( 1, -4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
@@ -141,7 +144,6 @@ __meta__ = {
 [node name="Hurtboxes" type="Node2D" parent="Flip" index="2"]
 
 editor/display_folded = true
-visible = false
 
 [node name="Head" type="Area2D" parent="Flip/Hurtboxes" index="0"]
 
@@ -161,7 +163,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/Head" index="0"]
 
 modulate = Color( 0.201416, 0.6875, 0.209011, 1 )
-position = Vector2( 10.4797, -0.66315 )
+position = Vector2( 2.7869, 1.6587 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
@@ -182,8 +184,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/Torso" index="0"]
 
 modulate = Color( 0.664063, 0, 1, 1 )
-position = Vector2( 8.82643, -7.90208 )
-rotation = -0.295477
+position = Vector2( 0.137196, -7.12401 )
+rotation = -0.233849
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -204,8 +206,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmTopLeft" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 3.28968, -8.34898 )
-rotation = 0.731187
+position = Vector2( -1.50039, 2.82637 )
+rotation = 0.289072
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -226,8 +228,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmTopRight" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 7.49905, 8.066 )
-rotation = -0.260541
+position = Vector2( 6.64048, -2.0221 )
+rotation = -1.55038
 shape = SubResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -248,8 +250,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmBottomLeft" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 10.9318, -11.2477 )
-rotation = -0.889247
+position = Vector2( -4.49071, -2.0042 )
+rotation = 1.31974
 shape = SubResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -270,8 +272,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/ArmBottomRight" index="0"]
 
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -9.8863, 8.7798 )
-rotation = 1.60412
+position = Vector2( 1.13778, -2.43508 )
+rotation = 1.05961
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -292,8 +294,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegTopLeft" index="0"]
 
 modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 2.21199, -0.209912 )
-rotation = -0.59092
+position = Vector2( 0.216953, -2.8588 )
+rotation = -0.801707
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
@@ -314,8 +316,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegTopRight" index="0"]
 
 modulate = Color( 0.21875, 1, 0, 1 )
-position = Vector2( 5.17611, -0.745256 )
-rotation = 1.23513
+position = Vector2( 1.95651, -0.750218 )
+rotation = 1.2564
 shape = SubResource( 8 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -335,8 +337,8 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegBottomLeft" index="0"]
 
-position = Vector2( -0.349002, 0.935154 )
-rotation = -0.650643
+position = Vector2( -0.778294, -5.28941 )
+rotation = -0.629113
 shape = SubResource( 9 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -356,8 +358,8 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtboxes/LegBottomRight" index="0"]
 
-position = Vector2( 7.12227, 0.462971 )
-rotation = 0.141155
+position = Vector2( 3.47338, 0.248341 )
+rotation = 0.117001
 shape = SubResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -382,14 +384,15 @@ playback_speed = 1.0
 "anims/4a - Blocking Low" = ExtResource( 7 )
 "anims/4b - Blocking High" = ExtResource( 8 )
 "anims/5a - Walking" = ExtResource( 9 )
-"anims/6a - Crouching" = SubResource( 12 )
+"anims/6a - Crouching" = SubResource( 11 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
+visible = false
 position = Vector2( 0, 13.3 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 

@@ -34,10 +34,8 @@ class FighterInput:
 	var attack = false
 	var attack_alt = false
 	
-	var taunt_1 = false
-	var taunt_2 = false
-	var taunt_3 = false
-	var taunt_4 = false
+	var taunt1 = false
+	var taunt2 = false
 
 var input = FighterInput.new()
 var state = FighterState.falling2
@@ -57,15 +55,18 @@ const ground_vector = Vector2(0, -1)
 
 func _physics_process(delta):
 	# Set inputs
-	self.input.up = Input.is_action_pressed("ui_up")
-	self.input.down = Input.is_action_pressed("ui_down")
-	self.input.left = Input.is_action_pressed("ui_left")
-	self.input.right = Input.is_action_pressed("ui_right")
+	self.input.up = Input.is_action_pressed("player_1_up")
+	self.input.down = Input.is_action_pressed("player_1_down")
+	self.input.left = Input.is_action_pressed("player_1_left")
+	self.input.right = Input.is_action_pressed("player_1_right")
 	
-	self.input.jump = self.input.up
+	self.input.jump = Input.is_action_just_pressed("player_1_jump") or Input.is_action_just_pressed("player_1_up")
 	self.input.block = Input.is_action_pressed("player_1_block")
 	self.input.attack = Input.is_action_pressed("player_1_attack")
 	self.input.attack_alt = Input.is_action_pressed("player_1_attack_alt")
+	
+	self.input.taunt1 = Input.is_action_pressed("player_1_taunt1")
+	self.input.taunt2 = Input.is_action_pressed("player_1_taunt2")
 	
 	# Set grounded
 	self.grounded = self.test_move(self.transform, Vector2(0, 1))
