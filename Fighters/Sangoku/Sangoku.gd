@@ -37,7 +37,7 @@ class FighterInput:
 	var taunt_4 = false
 
 var input = FighterInput.new()
-var state = FighterState.standing
+var state = FighterState.falling2
 var velocity = Vector2(0, 0)
 var direction = FighterDirection.left
 
@@ -102,11 +102,12 @@ func accelerate_horizontal(delta):
 		self.velocity.x = clamp(self.velocity.x + self.walk_acceleration * delta, -self.walk_speed, self.walk_speed)
 
 func decelerate_horizontal(delta, force = false):
+	var modifier = 1 if not force else 1.6
 	if force or (not self.input.left and not self.input.right):
 		if self.velocity.x > 0:
-			self.velocity.x = clamp(self.velocity.x - self.walk_deceleration * delta, 0, self.walk_speed)
+			self.velocity.x = clamp(self.velocity.x - modifier * self.walk_deceleration * delta, 0, +self.walk_speed)
 		elif self.velocity.x < 0:
-			self.velocity.x = clamp(self.velocity.x + self.walk_deceleration * delta, -self.walk_speed, 0)
+			self.velocity.x = clamp(self.velocity.x + modifier * self.walk_deceleration * delta, -self.walk_speed, 0)
 
 func accelerate_vertical(delta):
 	self.velocity.y += self.gravity * delta
@@ -116,9 +117,8 @@ func pre_standing():
 
 func state_standing(delta):
 	self.decelerate_horizontal(delta, true)
-	if self.direction == 1 and self.input.left and not self.input.right:
-		self.set_state(FighterState.turning)
-	elif self.direction == -1 and self.input.right and not self.input.left:
+	if ((self.direction == 1 and self.input.left and not self.input.right) or
+		(self.direction == -1 and self.input.right and not self.input.left)):
 		self.set_state(FighterState.turning)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.blockinglow if self.input.down else FighterState.blockinghigh)
