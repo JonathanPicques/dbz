@@ -7,6 +7,7 @@
 
 [resource]
 
+resource_name = "1a - Stand"
 length = 0.42
 loop = true
 step = 0.01

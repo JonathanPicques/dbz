@@ -2,13 +2,13 @@
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
-[ext_resource path="res://Fighters/Sangoku/Anims/1a - Standing.tres" type="Animation" id=3]
-[ext_resource path="res://Fighters/Sangoku/Anims/2a - Jumping.tres" type="Animation" id=4]
-[ext_resource path="res://Fighters/Sangoku/Anims/3a - Falling.tres" type="Animation" id=5]
-[ext_resource path="res://Fighters/Sangoku/Anims/3b - Falling Recovery.tres" type="Animation" id=6]
-[ext_resource path="res://Fighters/Sangoku/Anims/4a - Blocking Low.tres" type="Animation" id=7]
-[ext_resource path="res://Fighters/Sangoku/Anims/4b - Blocking High.tres" type="Animation" id=8]
-[ext_resource path="res://Fighters/Sangoku/Anims/5a - Walking.tres" type="Animation" id=9]
+[ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=3]
+[ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=4]
+[ext_resource path="res://Fighters/Sangoku/Anims/3a - Fall.tres" type="Animation" id=5]
+[ext_resource path="res://Fighters/Sangoku/Anims/3b - Fall Recovery.tres" type="Animation" id=6]
+[ext_resource path="res://Fighters/Sangoku/Anims/4a - Block Low.tres" type="Animation" id=7]
+[ext_resource path="res://Fighters/Sangoku/Anims/4b - Block High.tres" type="Animation" id=8]
+[ext_resource path="res://Fighters/Sangoku/Anims/5a - Walk.tres" type="Animation" id=9]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=10]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=11]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=12]
@@ -74,6 +74,7 @@ height = 20.0
 
 [sub_resource type="Animation" id=11]
 
+resource_name = "6a - Crouch"
 length = 0.2
 loop = false
 step = 0.01
@@ -370,18 +371,18 @@ autostart = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
-autoplay = "1a - Standing"
+autoplay = "1a - Stand"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-"anims/1a - Standing" = ExtResource( 3 )
-"anims/2a - Jumping" = ExtResource( 4 )
-"anims/3a - Falling" = ExtResource( 5 )
-"anims/3b - Falling Recovery" = ExtResource( 6 )
-"anims/4a - Blocking Low" = ExtResource( 7 )
-"anims/4b - Blocking High" = ExtResource( 8 )
-"anims/5a - Walking" = ExtResource( 9 )
-"anims/6a - Crouching" = SubResource( 11 )
+"anims/1a - Stand" = ExtResource( 3 )
+"anims/2a - Jump" = ExtResource( 4 )
+"anims/3a - Fall" = ExtResource( 5 )
+"anims/3b - Fall Recovery" = ExtResource( 6 )
+"anims/4a - Block Low" = ExtResource( 7 )
+"anims/4b - Block High" = ExtResource( 8 )
+"anims/5a - Walk" = ExtResource( 9 )
+"anims/6a - Crouch" = SubResource( 11 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 

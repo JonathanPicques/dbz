@@ -7,7 +7,7 @@
 
 [resource]
 
-resource_name = "2a - Jumping"
+resource_name = "2a - Jump"
 length = 0.2
 loop = false
 step = 0.01
