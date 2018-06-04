@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Jab_04.png-cfd20c3d1c3b179d278ad9361f791e26.stex"
+path="res://.import/Neutral_01.png-f95c6b0b8afc3ef21ec67eea09d94b88.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Jab/Jab_04.png"
-source_md5="0104a34a1d381903fd90bd5d2e6439b7"
+source_file="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png"
+source_md5="c60069ccfad084046196eb76f8339fae"
 
-dest_files=[ "res://.import/Jab_04.png-cfd20c3d1c3b179d278ad9361f791e26.stex" ]
-dest_md5="540fab3f3d35b5da672b6a358882b922"
+dest_files=[ "res://.import/Neutral_01.png-f95c6b0b8afc3ef21ec67eea09d94b88.stex" ]
+dest_md5="07620caefaa4199bbab9cfcf74adca4e"
 
 [params]
 

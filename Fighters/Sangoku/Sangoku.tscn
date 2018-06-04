@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/3a - Fall.tres" type="Animation" id=5]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=10]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=11]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=12]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=13]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=14]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -103,6 +106,37 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -3, -2 ), Vector2( -8, 0 ) ]
 }
 
+[sub_resource type="Animation" id=13]
+
+resource_name = "7a - Ground neutral"
+length = 0.24
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flip/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 15 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flip/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
+}
+
 [sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
@@ -123,8 +157,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( 1, -4 )
+position = Vector2( -9, -9.5 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="SpritePt" type="PinJoint2D" parent="Flip" index="1"]
 
@@ -142,6 +177,7 @@ __meta__ = {
 [node name="Hurtboxes" type="Node2D" parent="Flip" index="2"]
 
 editor/display_folded = true
+visible = false
 
 [node name="Head" type="Area2D" parent="Flip/Hurtboxes" index="0"]
 
@@ -383,6 +419,7 @@ playback_speed = 1.0
 "anims/4b - Block High" = ExtResource( 8 )
 "anims/5a - Walk" = ExtResource( 9 )
 "anims/6a - Crouch" = SubResource( 11 )
+"anims/7a - Ground neutral" = SubResource( 13 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 

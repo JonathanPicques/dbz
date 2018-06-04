@@ -12,27 +12,22 @@ enum FighterState {
 	double_jump,
 	double_fall,
 	fall_to_stand,
-	
 	# Block
 	block_high,
 	block_high_to_stand,
 	block_low,
 	block_low_to_stand,
-	
 	# Ground attacks
 	dash_attack,
 	neutral_attack,
-	
 	# Tilt attacks
 	up_tilt,
 	down_tilt,
 	forward_tilt,
-	
 	# Smash attacks
 	up_smash,
 	down_smash,
 	forward_smash,
-	
 	# Aerial attacks
 	up_aerial,
 	down_aerial,
@@ -40,11 +35,9 @@ enum FighterState {
 	grab_aerial,
 	forward_aerial,
 	neutral_aerial,
-	
 	# Throws
 	grab,
 	throw,
-	
 	# Specials
 	up_special,
 	down_special,
@@ -79,6 +72,7 @@ var grounded = false
 var direction = FighterDirection.left
 
 const gravity = 1200
+const fall_speed = 1400
 const jump_strength = 600
 const double_jump_strength = 560
 
@@ -124,9 +118,15 @@ func _physics_process(delta):
 		FighterState.block_high_to_stand: self.state_block_high_to_stand(delta)
 		FighterState.block_low: self.state_block_low(delta)
 		FighterState.block_low_to_stand: self.state_block_low_to_stand(delta)
+		# Ground attacks
+		FighterState.neutral_attack: self.state_neutral_attack(delta)
 	
 	# Update position
 	self.velocity = self.move_and_slide(self.velocity, self.ground_vector)
+	
+	# TODO: Remove wrapping
+	self.position.x = fposmod(self.position.x, 1280)
+	self.position.y = fposmod(self.position.y, 720)
 
 func set_state(state, prev_state = self.state):
 	self.state = state
@@ -147,6 +147,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.block_high_to_stand: self.pre_block_high_to_stand()
 		FighterState.block_low: self.pre_block_low()
 		FighterState.block_low_to_stand: self.pre_block_low_to_stand()
+		# Ground attacks
+		FighterState.neutral_attack: self.pre_neutral_attack()
 
 func handle_fall(delta):
 	if not grounded:
@@ -166,12 +168,12 @@ func decelerate_horizontal(delta, force = false):
 		self.velocity.x = clamp(self.velocity.x - self.walk_deceleration * modifier * delta, 0, self.walk_speed)
 
 func accelerate_vertical(delta):
-	self.velocity.y += self.gravity * delta
+	self.velocity.y = min(self.velocity.y + self.gravity * delta, fall_speed)
 
 func pre_stand():
 	$AnimationPlayer.play("1a - Stand")
 
-# Move states
+# Move
 
 func state_stand(delta):
 	self.handle_fall(delta)
@@ -185,6 +187,8 @@ func state_stand(delta):
 		self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
 	elif self.input.down and self.velocity.x == 0:
 		self.set_state(FighterState.crouch)
+	elif self.input.attack and self.velocity.x == 0:
+		self.set_state(FighterState.neutral_attack)
 	elif self.input.jump and self.grounded:
 		self.set_state(FighterState.jump)
 
@@ -281,7 +285,7 @@ func state_fall_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.stand)
 
-# Block states
+# Block
 
 func pre_block_high():
 	$AnimationPlayer.play("4b - Block High")
@@ -303,7 +307,7 @@ func state_block_high_to_stand(delta):
 
 func pre_block_low():
 	$AnimationPlayer.play("4a - Block Low")
-	
+
 func state_block_low(delta):
 	if not $AnimationPlayer.is_playing():
 		if self.input.block:
@@ -318,3 +322,19 @@ func pre_block_low_to_stand():
 func state_block_low_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.stand if not self.input.block else FighterState.block_high)
+
+# Ground attacks
+
+func pre_neutral_attack():
+	$AnimationPlayer.play("7a - Ground neutral")
+
+func state_neutral_attack(delta):
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation_position >= 0.1 and $AnimationPlayer.current_animation_position <= 0.2:
+		$AnimationPlayer.set_speed_scale(0.3)
+	else:
+		$AnimationPlayer.set_speed_scale(1)
+	if not $AnimationPlayer.is_playing():
+		if self.input.attack:
+			self.set_state(FighterState.neutral_attack)
+		else:
+			self.set_state(FighterState.stand)
