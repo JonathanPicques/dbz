@@ -1,20 +1,29 @@
 extends KinematicBody2D
 
 enum FighterState {
+	# Move
 	standing,
 	crouching,
 	crouching_to_standing,
 	turning,
 	walking,
-	blockinghigh,
-	blockinghigh_to_standing,
-	blockinglow,
-	blockinglow_to_standing,
 	jumping,
 	falling,
 	jumping2,
 	falling2,
 	falling_to_standing,
+	
+	# Block
+	blockinghigh,
+	blockinghigh_to_standing,
+	blockinglow,
+	blockinglow_to_standing,
+	
+	# Neutral
+	neutral_a_standing
+	neutral_a_air # NOT MAPPED
+	neutral_b_standing # NOT MAPPED
+	neutral_b_air # NOT MAPPED
 }
 
 enum FighterDirection {
@@ -73,20 +82,24 @@ func _physics_process(delta):
 	
 	# Update current state
 	match state:
+		# Move
 		FighterState.standing: self.state_standing(delta)
 		FighterState.crouching: self.state_crouching(delta)
 		FighterState.crouching_to_standing: self.state_crouching_to_standing(delta)
 		FighterState.turning: self.state_turning(delta)
 		FighterState.walking: self.state_walking(delta)
-		FighterState.blockinghigh: self.state_blockinghigh(delta)
-		FighterState.blockinghigh_to_standing: self.state_blockinghigh_to_standing(delta)
-		FighterState.blockinglow: self.state_blockinglow(delta)
-		FighterState.blockinglow_to_standing: self.state_blockinglow_to_standing(delta)
 		FighterState.jumping: self.state_jumping(delta)
 		FighterState.falling: self.state_falling(delta)
 		FighterState.jumping2: self.state_jumping2(delta)
 		FighterState.falling2: self.state_falling2(delta)
 		FighterState.falling_to_standing: self.state_falling_to_standing(delta)
+		# Block
+		FighterState.blockinghigh: self.state_blockinghigh(delta)
+		FighterState.blockinghigh_to_standing: self.state_blockinghigh_to_standing(delta)
+		FighterState.blockinglow: self.state_blockinglow(delta)
+		FighterState.blockinglow_to_standing: self.state_blockinglow_to_standing(delta)
+		# Neutral
+		FighterState.neutral_a_standing: self.state_neutral_a_standing(delta)
 	
 	# Update position
 	self.velocity = self.move_and_slide(self.velocity, self.ground_vector)
@@ -94,20 +107,24 @@ func _physics_process(delta):
 func set_state(state, prev_state = self.state):
 	self.state = state
 	match state:
+		# Move
 		FighterState.standing: self.pre_standing()
 		FighterState.crouching: self.pre_crouching()
 		FighterState.crouching_to_standing: self.pre_crouching_to_standing()
 		FighterState.turning: self.pre_turning()
 		FighterState.walking: self.pre_walking()
-		FighterState.blockinghigh: self.pre_blockinghigh()
-		FighterState.blockinghigh_to_standing: self.pre_blockinghigh_to_standing()
-		FighterState.blockinglow: self.pre_blockinglow()
-		FighterState.blockinglow_to_standing: self.pre_blockinglow_to_standing()
 		FighterState.jumping: self.pre_jumping()
 		FighterState.falling: self.pre_falling()
 		FighterState.jumping2: self.pre_jumping2()
 		FighterState.falling2: self.pre_falling2()
 		FighterState.falling_to_standing: self.pre_falling_to_standing()
+		# Block
+		FighterState.blockinghigh: self.pre_blockinghigh()
+		FighterState.blockinghigh_to_standing: self.pre_blockinghigh_to_standing()
+		FighterState.blockinglow: self.pre_blockinglow()
+		FighterState.blockinglow_to_standing: self.pre_blockinglow_to_standing()
+		# Neutral
+		FighterState.neutral_a_standing: self.pre_neutral_a_standing()
 
 func handle_falling(delta):
 	if not grounded:
@@ -131,6 +148,8 @@ func accelerate_vertical(delta):
 
 func pre_standing():
 	$AnimationPlayer.play("1a - Standing")
+
+# Move states
 
 func state_standing(delta):
 	self.handle_falling(delta)
@@ -186,42 +205,6 @@ func state_walking(delta):
 	elif self.velocity.x == 0:
 		self.set_state(FighterState.standing)
 
-func pre_blockinghigh():
-	$AnimationPlayer.play("4b - Blocking High")
-
-func state_blockinghigh(delta):
-	if not $AnimationPlayer.is_playing():
-		if self.input.block:
-			if self.input.down:
-				self.set_state(FighterState.blockinglow)
-		else:
-			self.set_state(FighterState.blockinghigh_to_standing)
-
-func pre_blockinghigh_to_standing():
-	$AnimationPlayer.play_backwards("4b - Blocking High")
-
-func state_blockinghigh_to_standing(delta):
-	if not $AnimationPlayer.is_playing():
-		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
-
-func pre_blockinglow():
-	$AnimationPlayer.play("4a - Blocking Low")
-	
-func state_blockinglow(delta):
-	if not $AnimationPlayer.is_playing():
-		if self.input.block:
-			if not self.input.down:
-				self.set_state(FighterState.blockinghigh)
-		else:
-			self.set_state(FighterState.blockinglow_to_standing)
-
-func pre_blockinglow_to_standing():
-	$AnimationPlayer.play_backwards("4a - Blocking Low")
-
-func state_blockinglow_to_standing(delta):
-	if not $AnimationPlayer.is_playing():
-		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
-
 func pre_jumping():
 	self.velocity.y = -self.jump_strength
 	$AnimationPlayer.play("2a - Jumping")
@@ -275,3 +258,49 @@ func state_falling_to_standing(delta):
 	self.decelerate_horizontal(delta, true)
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.standing)
+
+# Block states
+
+func pre_blockinghigh():
+	$AnimationPlayer.play("4b - Blocking High")
+
+func state_blockinghigh(delta):
+	if not $AnimationPlayer.is_playing():
+		if self.input.block:
+			if self.input.down:
+				self.set_state(FighterState.blockinglow)
+		else:
+			self.set_state(FighterState.blockinghigh_to_standing)
+
+func pre_blockinghigh_to_standing():
+	$AnimationPlayer.play_backwards("4b - Blocking High")
+
+func state_blockinghigh_to_standing(delta):
+	if not $AnimationPlayer.is_playing():
+		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
+
+func pre_blockinglow():
+	$AnimationPlayer.play("4a - Blocking Low")
+	
+func state_blockinglow(delta):
+	if not $AnimationPlayer.is_playing():
+		if self.input.block:
+			if not self.input.down:
+				self.set_state(FighterState.blockinghigh)
+		else:
+			self.set_state(FighterState.blockinglow_to_standing)
+
+func pre_blockinglow_to_standing():
+	$AnimationPlayer.play_backwards("4a - Blocking Low")
+
+func state_blockinglow_to_standing(delta):
+	if not $AnimationPlayer.is_playing():
+		self.set_state(FighterState.standing if not self.input.block else FighterState.blockinghigh)
+
+# Neutral states
+
+func pre_neutral_a_standing():
+	pass
+
+func state_neutral_a_standing(delta):
+	self.set_state(FighterState.standing)
