@@ -74,7 +74,6 @@ height = 20.0
 
 [sub_resource type="Animation" id=11]
 
-resource_name = "6a - Crouching"
 length = 0.2
 loop = false
 step = 0.01
@@ -108,7 +107,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D" index="0"]
+[node name="Sangoku" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -119,14 +118,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
 position = Vector2( 1, -4 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="SpritePt" type="PinJoint2D" parent="Flip" index="1"]
 
@@ -185,7 +182,7 @@ __meta__ = {
 
 modulate = Color( 0.664063, 0, 1, 1 )
 position = Vector2( 0.137196, -7.12401 )
-rotation = -0.233849
+rotation = -0.233848
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -295,7 +292,7 @@ __meta__ = {
 
 modulate = Color( 0.21875, 1, 0, 1 )
 position = Vector2( 0.216953, -2.8588 )
-rotation = -0.801707
+rotation = -0.801706
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 

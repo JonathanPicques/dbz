@@ -1,0 +1,29 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float outline_size : hint_number;
+uniform vec4  outline_color : hint_color;
+
+void fragment()
+{
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (texture_color.a == 0.0)
+	{
+		if (texture(TEXTURE, UV + vec2(0.0,           +outline_size)).a  != 0.0 ||
+			texture(TEXTURE, UV + vec2(0.0,           -outline_size)).a  != 0.0 ||
+			texture(TEXTURE, UV + vec2(outline_size,  0.0)).a            != 0.0 ||
+			texture(TEXTURE, UV + vec2(-outline_size, 0.0)).a            != 0.0 ||
+			texture(TEXTURE, UV + vec2(-outline_size, +outline_size)).a  != 0.0 ||
+			texture(TEXTURE, UV + vec2(-outline_size, -outline_size)).a  != 0.0 ||
+			texture(TEXTURE, UV + vec2(outline_size,  +outline_size)).a  != 0.0 ||
+			texture(TEXTURE, UV + vec2(outline_size,  -outline_size)).a  != 0.0) {
+				texture_color = outline_color;
+		}
+	}
+	COLOR = texture_color;
+}"
+
