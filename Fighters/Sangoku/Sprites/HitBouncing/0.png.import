@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex"
+path="res://.import/0.png-03365b6cebad60bae73ad707dde173c7.stex"
 
 [deps]
 
-source_file="res://Effects/Aura/Aura.png"
-source_md5="4543f3087c72019d7d6c357b8d047c21"
+source_file="res://Fighters/Sangoku/Sprites/HitBouncing/0.png"
+source_md5="88af6c4ef76fa9655cfef888e50e413b"
 
-dest_files=[ "res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex" ]
-dest_md5="e6bff2c82a8608e7c48f905cb326169c"
+dest_files=[ "res://.import/0.png-03365b6cebad60bae73ad707dde173c7.stex" ]
+dest_md5="b7e78e4d7ddd8a07df9e855d5a740851"
 
 [params]
 

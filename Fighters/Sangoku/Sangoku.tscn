@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Hit1/2.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=5]
@@ -140,6 +140,37 @@ tracks/1/keys = {
 "values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
 }
 
+[sub_resource type="Animation" id=14]
+
+resource_name = "8a - Flinch"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flip/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flip/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -13.5, 0.5 ) ]
+}
+
 [sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
@@ -156,12 +187,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( 1, -4 )
+position = Vector2( -13.5, 0.5 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -447,6 +477,7 @@ playback_speed = 1.0
 "anims/5a - Walk" = ExtResource( 10 )
 "anims/6a - Crouch" = SubResource( 11 )
 "anims/7a - Ground neutral" = SubResource( 12 )
+"anims/8a - Flinch" = SubResource( 14 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 

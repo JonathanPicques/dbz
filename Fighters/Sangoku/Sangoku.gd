@@ -44,7 +44,8 @@ enum FighterState {
 	side_special,
 	neutral_special,
 	# Hit / Hurt
-	flinch
+	flinch,
+	flinch_slide
 }
 
 enum FighterDirection {
@@ -118,6 +119,7 @@ func _physics_process(delta):
 		FighterState.neutral_attack: self.state_neutral_attack(delta)
 		# Hit / Hurt
 		FighterState.flinch: self.state_flinch(delta)
+		FighterState.flinch_slide: self.state_flinch_slide(delta)
 	
 	# Update position
 	self.velocity = self.move_and_slide(self.velocity, self.ground_vector)
@@ -152,6 +154,7 @@ func set_state(state, prev_state = self.state):
 		FighterState.neutral_attack: self.pre_neutral_attack()
 		# Hit / Hurt
 		FighterState.flinch: self.pre_flinch()
+		FighterState.flinch_slide: self.pre_flinch_slide()
 
 func handle_fall(delta):
 	if not grounded:
@@ -345,20 +348,44 @@ func state_neutral_attack(delta):
 
 # Hit / Hurt
 
-var flinch_damage = 0
-var flinch_knockback = 0
-var flinch_freeze_frames = 0
+var pre_flinch_angle = 0
+var pre_flinch_damage = 0
+var pre_flinch_knockback = 0
+var pre_flinch_freeze_frames = 0
+var pre_flinch_knockback_angle = 0
 
 func pre_flinch():
 	self.damage += self.last_attack.damage
-	self.flinch_damage = self.last_attack.damage
-	self.flinch_knockback = self.last_attack.get_dealt_knockback(self)
-	self.flinch_freeze_frames = self.last_attack.get_dealt_freeze_frames(self)
-	$FrameTimer.start_for_frames(self.flinch_freeze_frames)
+	self.pre_flinch_damage = self.last_attack.damage
+	self.pre_flinch_knockback = self.last_attack.get_dealt_knockback(self)
+	self.pre_flinch_freeze_frames = 5 * self.last_attack.get_dealt_freeze_frames(self)
+	self.pre_flinch_knockback_angle = deg2rad(self.last_attack.knockback_angle)
+	$FrameTimer.start_for_frames(self.pre_flinch_freeze_frames)
+	$AnimationPlayer.play("8a - Flinch")
+
+var state_flinch_offset = 0
 
 func state_flinch(delta):
+	var strength = 5
+	if self.state_flinch_offset > 0.05:
+		$Flip/Sprite.set_offset(Vector2(rand_range(-strength, strength), rand_range(-strength, strength)))
+		self.state_flinch_offset = 0
+	self.state_flinch_offset += delta
 	if $FrameTimer.is_stopped():
-		if self.damage > 30:
-			self.set_state(FighterState.stand) # TODO: Tumble
+		self.velocity = Vector2(cos(self.pre_flinch_knockback_angle) * self.pre_flinch_knockback, -sin(self.pre_flinch_knockback_angle) * self.pre_flinch_knockback)
+		self.state_flinch_offset = 0
+		if self.pre_flinch_knockback > 500:
+			self.set_state(FighterState.flinch_slide) # TODO: Tumble
 		else:
-			self.set_state(FighterState.stand) # TODO: Flinch slide
+			self.set_state(FighterState.flinch_slide)
+
+func pre_flinch_slide():
+	pass
+
+func state_flinch_slide(delta):
+	var flinch_direction = sign(self.velocity.x)
+	self.velocity.x = self.velocity.x - sign(self.velocity.x) * self.walk_deceleration * delta
+	self.velocity.y = min(self.velocity.y + self.gravity * delta, fall_speed)
+	if sign(self.velocity.x) != flinch_direction or (self.velocity.y >= 0 and grounded): # TODO: hit stun
+		self.velocity.x = 0
+		self.set_state(FighterState.fall if not grounded else FighterState.fall_to_stand)

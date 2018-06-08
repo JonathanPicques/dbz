@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex"
+path="res://.import/1.png-576c052179ad6302f1e179cd6a45b8e0.stex"
 
 [deps]
 
-source_file="res://Effects/Aura/Aura.png"
-source_md5="4543f3087c72019d7d6c357b8d047c21"
+source_file="res://Fighters/Sangoku/Sprites/HitCrouch1/1.png"
+source_md5="22138d007c3895cabab8782eede2eb6f"
 
-dest_files=[ "res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex" ]
-dest_md5="e6bff2c82a8608e7c48f905cb326169c"
+dest_files=[ "res://.import/1.png-576c052179ad6302f1e179cd6a45b8e0.stex" ]
+dest_md5="ff9c4db6e5fa9a0d72fa9a5c3075579a"
 
 [params]
 

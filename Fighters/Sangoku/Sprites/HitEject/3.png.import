@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex"
+path="res://.import/3.png-add518719e62c36eae17a43c642f2d98.stex"
 
 [deps]
 
-source_file="res://Effects/Aura/Aura.png"
-source_md5="4543f3087c72019d7d6c357b8d047c21"
+source_file="res://Fighters/Sangoku/Sprites/HitEject/3.png"
+source_md5="3b93973b9b009de8714b9b060ae7cad9"
 
-dest_files=[ "res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex" ]
-dest_md5="e6bff2c82a8608e7c48f905cb326169c"
+dest_files=[ "res://.import/3.png-add518719e62c36eae17a43c642f2d98.stex" ]
+dest_md5="01874e6e7c0961ff90a377678160ca5d"
 
 [params]
 
