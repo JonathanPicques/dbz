@@ -1,7 +1,7 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Hit1/2.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=5]
@@ -17,7 +17,8 @@
 [ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=15]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=16]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=17]
-[ext_resource path="res://Fighters/Attack.gd" type="Script" id=18]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Hit1/2.png" type="Texture" id=18]
+[ext_resource path="res://Fighters/Attack.gd" type="Script" id=19]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -140,7 +141,7 @@ tracks/1/keys = {
 "values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=13]
 
 resource_name = "8a - Flinch"
 length = 1.0
@@ -156,7 +157,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 18 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -171,12 +172,12 @@ tracks/1/keys = {
 "values": [ Vector2( -13.5, 0.5 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D" index="0"]
+[node name="Sangoku" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -191,7 +192,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( -13.5, 0.5 )
+position = Vector2( 1, -4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -477,7 +478,7 @@ playback_speed = 1.0
 "anims/5a - Walk" = ExtResource( 10 )
 "anims/6a - Crouch" = SubResource( 11 )
 "anims/7a - Ground neutral" = SubResource( 12 )
-"anims/8a - Flinch" = SubResource( 14 )
+"anims/8a - Flinch" = SubResource( 13 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -485,8 +486,8 @@ _sections_unfolded = [ "Playback Options" ]
 
 visible = false
 position = Vector2( 0, 13.3 )
-shape = SubResource( 13 )
-script = ExtResource( 18 )
+shape = SubResource( 14 )
+script = ExtResource( 19 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 damage = 10
 knockback_base = 15

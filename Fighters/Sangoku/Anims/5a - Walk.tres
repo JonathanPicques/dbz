@@ -10,7 +10,7 @@
 [resource]
 
 resource_name = "5a - Walk"
-length = 0.6
+length = 0.5
 loop = true
 step = 0.01
 tracks/0/type = "value"

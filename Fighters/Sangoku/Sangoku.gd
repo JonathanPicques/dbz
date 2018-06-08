@@ -156,6 +156,10 @@ func set_state(state, prev_state = self.state):
 		FighterState.flinch: self.pre_flinch()
 		FighterState.flinch_slide: self.pre_flinch_slide()
 
+func set_direction(direction):
+	self.direction = direction
+	$Flip/Sprite.scale.x = -direction
+
 func handle_fall(delta):
 	if not grounded:
 		self.set_state(FighterState.fall)
@@ -222,8 +226,7 @@ func pre_turn_around():
 
 func state_turn_around(delta):
 	if $FrameTimer.is_stopped():
-		$Flip.scale.x = self.direction
-		self.direction *= -1
+		self.set_direction(-self.direction)
 		self.set_state(FighterState.stand)
 
 func pre_walk():
@@ -256,6 +259,10 @@ func state_fall(delta):
 	if self.is_on_floor():
 		self.set_state(FighterState.fall_to_stand)
 	elif self.input.jump:
+		if self.input.left and not self.input.right:
+			self.set_direction(FighterDirection.left)
+		elif self.input.right and not self.input.left:
+			self.set_direction(FighterDirection.right)
 		self.set_state(FighterState.double_jump)
 	else:
 		self.accelerate_vertical(delta)
@@ -368,12 +375,13 @@ var state_flinch_offset = 0
 func state_flinch(delta):
 	var strength = 5
 	if self.state_flinch_offset > 0.05:
-		$Flip/Sprite.set_offset(Vector2(rand_range(-strength, strength), rand_range(-strength, strength)))
 		self.state_flinch_offset = 0
+		$Flip/Sprite.set_offset(Vector2(rand_range(-strength, strength), rand_range(-strength, strength)))
 	self.state_flinch_offset += delta
 	if $FrameTimer.is_stopped():
 		self.velocity = Vector2(cos(self.pre_flinch_knockback_angle) * self.pre_flinch_knockback, -sin(self.pre_flinch_knockback_angle) * self.pre_flinch_knockback)
 		self.state_flinch_offset = 0
+		$Flip/Sprite.set_offset(Vector2(0, 0))
 		if self.pre_flinch_knockback > 500:
 			self.set_state(FighterState.flinch_slide) # TODO: Tumble
 		else:
