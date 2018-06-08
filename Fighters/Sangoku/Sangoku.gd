@@ -42,7 +42,9 @@ enum FighterState {
 	up_special,
 	down_special,
 	side_special,
-	neutral_special
+	neutral_special,
+	# Hit / Hurt
+	flinch
 }
 
 enum FighterDirection {
@@ -50,26 +52,15 @@ enum FighterDirection {
 	right = 1
 }
 
-class FighterInput:
-	var up = false
-	var down = false
-	var left = false
-	var right = false
-	
-	var jump = false
-	var grab = false
-	var block = false
-	var attack = false
-	var attack_alt = false
-	
-	var taunt1 = false
-	var taunt2 = false
-
-var input = FighterInput.new()
+var input = preload("../Input.gd").new()
 var state = FighterState.double_fall
 var velocity = Vector2(0, 0)
 var grounded = false
 var direction = FighterDirection.left
+
+var damage = 0
+var weight = 100
+var last_attack = preload("../Attack.gd").new()
 
 const gravity = 1200
 const fall_speed = 1400
@@ -81,6 +72,9 @@ const walk_acceleration = 420
 const walk_deceleration = 620
 
 const ground_vector = Vector2(0, -1)
+
+func nearly_equal(a, b, epsilon = 1):
+    return abs(a - b) <= epsilon
 
 func _physics_process(delta):
 	# Set inputs
@@ -96,6 +90,8 @@ func _physics_process(delta):
 	
 	self.input.taunt1 = Input.is_action_pressed("player_1_taunt1")
 	self.input.taunt2 = Input.is_action_pressed("player_1_taunt2")
+	
+	self.input.debug_input = Input.is_action_pressed("ui_accept")
 	
 	# Set grounded
 	self.grounded = self.test_move(self.transform, Vector2(0, 1))
@@ -120,6 +116,8 @@ func _physics_process(delta):
 		FighterState.block_low_to_stand: self.state_block_low_to_stand(delta)
 		# Ground attacks
 		FighterState.neutral_attack: self.state_neutral_attack(delta)
+		# Hit / Hurt
+		FighterState.flinch: self.state_flinch(delta)
 	
 	# Update position
 	self.velocity = self.move_and_slide(self.velocity, self.ground_vector)
@@ -127,6 +125,9 @@ func _physics_process(delta):
 	# TODO: Remove wrapping
 	self.position.x = fposmod(self.position.x, 1280)
 	self.position.y = fposmod(self.position.y, 720)
+	
+	# TODO: Remove display damage
+	$Damage.set_text(str(self.damage) + "%")
 
 func set_state(state, prev_state = self.state):
 	self.state = state
@@ -149,6 +150,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.block_low_to_stand: self.pre_block_low_to_stand()
 		# Ground attacks
 		FighterState.neutral_attack: self.pre_neutral_attack()
+		# Hit / Hurt
+		FighterState.flinch: self.pre_flinch()
 
 func handle_fall(delta):
 	if not grounded:
@@ -191,6 +194,8 @@ func state_stand(delta):
 		self.set_state(FighterState.neutral_attack)
 	elif self.input.jump and self.grounded:
 		self.set_state(FighterState.jump)
+	elif self.input.debug_input:
+		self.set_state(FighterState.flinch)
 
 func pre_crouch():
 	$AnimationPlayer.play("6a - Crouch")
@@ -210,11 +215,10 @@ func state_crouch_to_stand(delta):
 		self.set_state(FighterState.stand)
 
 func pre_turn_around():
-	$Timer.set_wait_time(0.1)
-	$Timer.start()
+	$FrameTimer.start_for_frames(5)
 
 func state_turn_around(delta):
-	if $Timer.is_stopped():
+	if $FrameTimer.is_stopped():
 		$Flip.scale.x = self.direction
 		self.direction *= -1
 		self.set_state(FighterState.stand)
@@ -338,3 +342,23 @@ func state_neutral_attack(delta):
 			self.set_state(FighterState.neutral_attack)
 		else:
 			self.set_state(FighterState.stand)
+
+# Hit / Hurt
+
+var flinch_damage = 0
+var flinch_knockback = 0
+var flinch_freeze_frames = 0
+
+func pre_flinch():
+	self.damage += self.last_attack.damage
+	self.flinch_damage = self.last_attack.damage
+	self.flinch_knockback = self.last_attack.get_dealt_knockback(self)
+	self.flinch_freeze_frames = self.last_attack.get_dealt_freeze_frames(self)
+	$FrameTimer.start_for_frames(self.flinch_freeze_frames)
+
+func state_flinch(delta):
+	if $FrameTimer.is_stopped():
+		if self.damage > 30:
+			self.set_state(FighterState.stand) # TODO: Tumble
+		else:
+			self.set_state(FighterState.stand) # TODO: Flinch slide

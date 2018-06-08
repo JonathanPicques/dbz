@@ -1,20 +1,23 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=2]
-[ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=3]
-[ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=4]
-[ext_resource path="res://Fighters/Sangoku/Anims/3a - Fall.tres" type="Animation" id=5]
-[ext_resource path="res://Fighters/Sangoku/Anims/3b - Fall Recovery.tres" type="Animation" id=6]
-[ext_resource path="res://Fighters/Sangoku/Anims/4a - Block Low.tres" type="Animation" id=7]
-[ext_resource path="res://Fighters/Sangoku/Anims/4b - Block High.tres" type="Animation" id=8]
-[ext_resource path="res://Fighters/Sangoku/Anims/5a - Walk.tres" type="Animation" id=9]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=10]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=11]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=12]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=13]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=14]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=15]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=3]
+[ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=4]
+[ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=5]
+[ext_resource path="res://Fighters/Sangoku/Anims/3a - Fall.tres" type="Animation" id=6]
+[ext_resource path="res://Fighters/Sangoku/Anims/3b - Fall Recovery.tres" type="Animation" id=7]
+[ext_resource path="res://Fighters/Sangoku/Anims/4a - Block Low.tres" type="Animation" id=8]
+[ext_resource path="res://Fighters/Sangoku/Anims/4b - Block High.tres" type="Animation" id=9]
+[ext_resource path="res://Fighters/Sangoku/Anims/5a - Walk.tres" type="Animation" id=10]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=11]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=12]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=13]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=14]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=15]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=16]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=17]
+[ext_resource path="res://Fighters/Attack.gd" type="Script" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -91,7 +94,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -106,7 +109,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -3, -2 ), Vector2( -8, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 
 resource_name = "7a - Ground neutral"
 length = 0.24
@@ -122,7 +125,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 15 ) ]
+"values": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -137,7 +140,7 @@ tracks/1/keys = {
 "values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
@@ -153,11 +156,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( -9, -9.5 )
+position = Vector2( 1, -4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -397,37 +401,66 @@ rotation = 0.117001
 shape = SubResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Timer" type="Timer" parent="." index="1"]
+[node name="Damage" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = -90.0
+margin_right = 20.0
+margin_bottom = -76.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "0 %"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="FrameTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
+script = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
 autoplay = "1a - Stand"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-"anims/1a - Stand" = ExtResource( 3 )
-"anims/2a - Jump" = ExtResource( 4 )
-"anims/3a - Fall" = ExtResource( 5 )
-"anims/3b - Fall Recovery" = ExtResource( 6 )
-"anims/4a - Block Low" = ExtResource( 7 )
-"anims/4b - Block High" = ExtResource( 8 )
-"anims/5a - Walk" = ExtResource( 9 )
+"anims/1a - Stand" = ExtResource( 4 )
+"anims/2a - Jump" = ExtResource( 5 )
+"anims/3a - Fall" = ExtResource( 6 )
+"anims/3b - Fall Recovery" = ExtResource( 7 )
+"anims/4a - Block Low" = ExtResource( 8 )
+"anims/4b - Block High" = ExtResource( 9 )
+"anims/5a - Walk" = ExtResource( 10 )
 "anims/6a - Crouch" = SubResource( 11 )
-"anims/7a - Ground neutral" = SubResource( 13 )
+"anims/7a - Ground neutral" = SubResource( 12 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
 visible = false
 position = Vector2( 0, 13.3 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
+script = ExtResource( 18 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
+damage = 10
+knockback_base = 15
+knockback_angle = 45
+knockback_scaling = 1.0
+freeze_frame_scaling = 1.0
 
 
