@@ -2,7 +2,7 @@ extends CollisionShape2D
 
 export var damage = 3
 export var knockback_base = 3
-export var knockback_angle = 30
+export var knockback_angle = 10
 export var knockback_scaling = 1.0
 export var freeze_frame_scaling = 1.0
 
