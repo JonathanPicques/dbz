@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-ca5b2df1bbc9ff77912704f9b24b7544.stex"
+path="res://.import/FlinchBounce_03.png-49ef504f1050ed0054e1573dfdb6c773.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/HitBouncing/1.png"
-source_md5="bece37c10f50c9befa61230e0e9f109c"
+source_file="res://Fighters/Sangoku/Sprites/Flinch/FlinchBounce_03.png"
+source_md5="04908db0eecac1cc604e0900bb40b9fb"
 
-dest_files=[ "res://.import/1.png-ca5b2df1bbc9ff77912704f9b24b7544.stex" ]
-dest_md5="b977e2ae44aeb8c3bd1228a0a68ec357"
+dest_files=[ "res://.import/FlinchBounce_03.png-49ef504f1050ed0054e1573dfdb6c773.stex" ]
+dest_md5="f80344aee7effa8ccb3a78d3afcc1b6a"
 
 [params]
 

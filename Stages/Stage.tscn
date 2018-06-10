@@ -21,7 +21,7 @@ texture = ExtResource( 1 )
 
 [node name="Sangoku" parent="." index="2" instance=ExtResource( 2 )]
 
-position = Vector2( 760, 460 )
+position = Vector2( 510, 460 )
 
 [node name="Aura" parent="Sangoku" index="4" instance=ExtResource( 3 )]
 
