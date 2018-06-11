@@ -211,7 +211,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D"]
+[node name="Sangoku" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1

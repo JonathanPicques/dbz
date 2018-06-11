@@ -52,7 +52,7 @@ func process_state(delta):
 		FighterState.flinch_tumble: self.state_flinch_tumble(delta)
 		FighterState.flinch_tumble_bounce: self.state_flinch_tumble_bounce(delta)
 
-func set_state(state, prev_state = state):
+func set_state(state, prev_state = self.state):
 	self.state = state
 	match state:
 		# Move
@@ -90,8 +90,8 @@ func state_stand(delta):
 	self.jumps = 2
 	self.handle_fall(delta)
 	self.handle_decelerate_horizontal(delta, walk_deceleration)
-	if ((direction == FighterDirection.left and self.input.right and not self.input.left) or
-		(direction == FighterDirection.right and self.input.left and not self.input.right)):
+	if ((self.direction == FighterDirection.left and self.input.right and not self.input.left) or
+		(self.direction == FighterDirection.right and self.input.left and not self.input.right)):
 		self.set_state(FighterState.turn_around)
 	elif (self.input.left and not self.input.right) or (self.input.right and not self.input.left):
 		self.set_state(FighterState.walk)
@@ -128,7 +128,7 @@ func pre_turn_around():
 
 func state_turn_around(delta):
 	if $FrameTimer.is_stopped():
-		self.set_direction(-direction)
+		self.set_direction(-self.direction)
 		self.set_state(FighterState.stand)
 
 func pre_walk():
@@ -302,7 +302,6 @@ func pre_flinch_slide():
 	$FrameTimer.wait_for(pre_flinch_hit_stun)
 
 func state_flinch_slide(delta):
-	var flinch_direction = sign(self.velocity.x)
 	self.velocity.x = self.velocity.x - sign(self.velocity.x) * walk_deceleration * delta
 	self.velocity.y = min(self.velocity.y + gravity * delta, fall_max_speed)
 	if is_on_wall():
