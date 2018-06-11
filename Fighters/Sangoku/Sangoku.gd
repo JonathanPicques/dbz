@@ -230,18 +230,20 @@ func pre_block_low():
 
 func state_block_low(delta):
 	if not $AnimationPlayer.is_playing():
-		if self.input.block:
-			if not self.input.down:
-				self.set_state(FighterState.block_high)
-		else:
+		if not self.input.block:
 			self.set_state(FighterState.block_low_to_stand)
+		elif not self.input.down:
+			self.set_state(FighterState.block_high)
 
 func pre_block_low_to_stand():
 	$AnimationPlayer.play_backwards("4a - Block Low")
 
 func state_block_low_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
-		self.set_state(FighterState.stand if not self.input.block else FighterState.block_high)
+		if self.input.block:
+			self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
+		else:
+			self.set_state(FighterState.stand)
 
 ##################
 # Ground attacks #
