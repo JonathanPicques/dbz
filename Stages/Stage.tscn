@@ -9,69 +9,76 @@
 
 [node name="Stage" type="Node2D" index="0"]
 
-[node name="StageCollider" parent="." index="0" instance=ExtResource( 1 )]
+[node name="StageColliderFinalDestination" parent="." index="0" instance=ExtResource( 1 )]
 
 editor/display_folded = true
 position = Vector2( 640, 560 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="FinalDestination2" type="Sprite" parent="StageCollider" index="1"]
+[node name="FinalDestination2" type="Sprite" parent="StageColliderFinalDestination" index="1"]
 
 position = Vector2( -170, 40 )
 texture = ExtResource( 2 )
 
-[node name="FinalDestination3" type="Sprite" parent="StageCollider" index="2"]
+[node name="FinalDestination3" type="Sprite" parent="StageColliderFinalDestination" index="2"]
 
 position = Vector2( 170, 40 )
 texture = ExtResource( 2 )
 
-[node name="StageColliderThru" parent="." index="1" instance=ExtResource( 3 )]
+[node name="StageCollider" parent="StageColliderFinalDestination" index="3" instance=ExtResource( 1 )]
 
-editor/display_folded = true
-position = Vector2( 840, 420 )
-scale = Vector2( 0.15, 0.35 )
+position = Vector2( 415.076, -55.907 )
+rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
-[node name="ColorRect" parent="StageColliderThru" index="1" instance=ExtResource( 4 )]
-
-margin_left = -467.0
-margin_top = -39.0
-margin_right = 533.0
-margin_bottom = 4.0
-
-[node name="StageColliderThru2" parent="." index="2" instance=ExtResource( 3 )]
+[node name="StageColliderThruTop" parent="." index="1" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-position = Vector2( 420, 420 )
-scale = Vector2( 0.15, 0.35 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="ColorRect" parent="StageColliderThru2" index="1" instance=ExtResource( 4 )]
-
-margin_left = -533.0
-margin_top = -39.0
-margin_right = 533.0
-margin_bottom = 7.0
-
-[node name="StageColliderThru3" parent="." index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 630, 300 )
+position = Vector2( 630, 310 )
 scale = Vector2( 0.25, 0.35 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ColorRect" parent="StageColliderThru3" index="1" instance=ExtResource( 4 )]
+[node name="ColorRect" parent="StageColliderThruTop" index="1" instance=ExtResource( 4 )]
 
 margin_left = -520.0
 margin_top = -39.0
 margin_right = 520.0
 margin_bottom = 1.0
 
-[node name="Sangoku" parent="." index="4" instance=ExtResource( 5 )]
+[node name="StageColliderThruLeft" parent="." index="2" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-position = Vector2( 510, 460 )
+position = Vector2( 420, 420 )
+scale = Vector2( 0.15, 0.35 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Aura" parent="Sangoku" index="4" instance=ExtResource( 6 )]
+[node name="ColorRect" parent="StageColliderThruLeft" index="1" instance=ExtResource( 4 )]
+
+margin_left = -533.0
+margin_top = -39.0
+margin_right = 533.0
+margin_bottom = 7.0
+
+[node name="StageColliderThruRight" parent="." index="3" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 840, 420 )
+scale = Vector2( 0.15, 0.35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ColorRect" parent="StageColliderThruRight" index="1" instance=ExtResource( 4 )]
+
+margin_left = -467.0
+margin_top = -39.0
+margin_right = 533.0
+margin_bottom = 4.0
+
+[node name="Sangoku - Player 1" parent="." index="4" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+position = Vector2( 928.779, 485.397 )
+
+[node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
 
 visible = false
 position = Vector2( 0, -50 )

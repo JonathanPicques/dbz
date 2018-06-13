@@ -211,14 +211,15 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D" index="0"]
+[node name="Sangoku" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 0
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision" ]
+player_index = "1"
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
@@ -529,5 +530,12 @@ knockback_base = 15
 knockback_angle = 45
 knockback_scaling = 1.0
 freeze_frame_scaling = 1.0
+
+[node name="GroundRayCast2D" type="RayCast2D" parent="." index="5"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
 
 

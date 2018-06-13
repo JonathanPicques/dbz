@@ -11,6 +11,7 @@ enum FighterState {
 	fall,
 	double_jump,
 	double_fall,
+	fall_through,
 	fall_to_stand,
 	# Block
 	block_high,
@@ -72,16 +73,18 @@ class FighterInputState:
 	
 	var debug_input = false
 
-var player_index = "1"
+export var player_index = "1"
 
 var state = FighterState.double_fall
 var input = FighterInputState.new()
 
 var jumps = 2
+var walled = false
 var grounded = false
 var velocity = Vector2(0, 0)
 var pvelocity = Vector2(0, 0)
 var direction = FighterDirection.left
+var ground_collider = null
 
 var damage = 220
 var weight = 100
@@ -111,9 +114,11 @@ func process_inputs():
 	
 	self.input.debug_input = Input.is_action_pressed("player_" + str(player_index) + "_debug")
 
-# update ground status
-func process_ground():
-	self.grounded = self.test_move(transform, Vector2(0, 1)) and not self.is_on_wall() and not self.is_on_ceiling()
+# update surroundings
+func process_surroundings():
+	self.walled = self.test_move(transform, Vector2(self.direction, 0))
+	self.grounded = self.test_move(transform, Vector2(0, 1))
+	self.ground_collider = $GroundRayCast2D.get_collider() if self.grounded else null
 
 # update velocity
 func process_velocity():
@@ -124,11 +129,15 @@ func process_velocity():
 # change direction and flip sprite if needed
 func set_direction(direction):
 	self.direction = direction
-	$Flip/Sprite.scale.x = -direction
+	$Flip.scale.x = -direction
 
 # get the fall state depending on the number of jumps remaining
 func get_fall_state():
 	return FighterState.fall if jumps >= 1 else FighterState.double_fall
+
+# returns true if the fighter is standing on a one-way platform
+func is_on_one_way_platform():
+	return self.ground_collider != null and self.ground_collider.is_in_group("OneWayPlatform")
 
 # transition to fall state if not grounded
 func handle_fall(delta):
@@ -137,9 +146,9 @@ func handle_fall(delta):
 
 # handle horizontal acceleration
 func handle_accelerate_horizontal(delta, acceleration, maximum_speed, restrict_direction = false):
-	if self.input.left and not self.input.right and (not restrict_direction or direction == FighterDirection.left) and self.velocity.x > -maximum_speed:
+	if not self.walled and self.input.left and not self.input.right and (not restrict_direction or direction == FighterDirection.left) and self.velocity.x > -maximum_speed:
 		self.velocity.x = max(self.velocity.x - acceleration * delta, -maximum_speed)
-	elif self.input.right and not self.input.left and (not restrict_direction or direction == FighterDirection.right) and self.velocity.x < maximum_speed:
+	elif not self.walled and self.input.right and not self.input.left and (not restrict_direction or direction == FighterDirection.right) and self.velocity.x < maximum_speed:
 		self.velocity.x = min(self.velocity.x + acceleration * delta, maximum_speed)
 
 # handle horizontal deceleration

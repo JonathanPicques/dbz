@@ -15,7 +15,7 @@ func _physics_process(delta):
 	self.process_inputs()
 	
 	# Set grounded
-	self.process_ground()
+	self.process_surroundings()
 	
 	# Update current state
 	self.process_state(delta)
@@ -38,6 +38,7 @@ func process_state(delta):
 		FighterState.fall: self.state_fall(delta)
 		FighterState.double_jump: self.state_double_jump(delta)
 		FighterState.double_fall: self.state_double_fall(delta)
+		FighterState.fall_through : self.state_fall_through(delta)
 		FighterState.fall_to_stand: self.state_fall_to_stand(delta)
 		# Block
 		FighterState.block_high: self.state_block_high(delta)
@@ -65,6 +66,7 @@ func set_state(state, prev_state = self.state):
 		FighterState.fall: self.pre_fall()
 		FighterState.double_jump: self.pre_double_jump()
 		FighterState.double_fall: self.pre_double_fall()
+		FighterState.fall_through : self.pre_fall_through()
 		FighterState.fall_to_stand: self.pre_fall_to_stand()
 		# Block
 		FighterState.block_high: self.pre_block_high()
@@ -94,11 +96,15 @@ func state_stand(delta):
 		(self.direction == FighterDirection.right and self.input.left and not self.input.right)):
 		self.set_state(FighterState.turn_around)
 	elif (self.input.left and not self.input.right) or (self.input.right and not self.input.left):
-		self.set_state(FighterState.walk)
+		if not self.walled:
+			self.set_state(FighterState.walk)
 	elif self.input.block and self.velocity.x == 0:
 		self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
 	elif self.input.down and self.velocity.x == 0:
-		self.set_state(FighterState.crouch)
+		if self.is_on_one_way_platform():
+			self.set_state(FighterState.fall_through)
+		else:
+			self.set_state(FighterState.crouch)
 	elif self.input.attack and self.velocity.x == 0:
 		self.set_state(FighterState.neutral_attack)
 	elif self.input.jump and self.grounded:
@@ -140,7 +146,9 @@ func state_walk(delta):
 	self.handle_decelerate_horizontal(delta, walk_deceleration)
 	if self.input.jump and self.grounded:
 		self.set_state(FighterState.jump)
-	elif self.velocity.x == 0:
+	elif self.input.down and self.is_on_one_way_platform():
+		self.set_state(FighterState.fall_through)
+	elif self.walled or self.velocity.x == 0:
 		self.set_state(FighterState.stand)
 
 func pre_jump():
@@ -194,6 +202,12 @@ func state_double_fall(delta):
 		self.handle_accelerate_vertical(delta, gravity, fall_max_speed)
 		self.handle_accelerate_horizontal(delta, walk_acceleration, walk_max_speed)
 		self.handle_decelerate_horizontal(delta, walk_deceleration)
+
+func pre_fall_through():
+	self.position = Vector2(self.position.x, self.position.y + 1)
+
+func state_fall_through(delta):
+	self.set_state(FighterState.fall)
 
 func pre_fall_to_stand():
 	$AnimationPlayer.play("3b - Fall Recovery")
