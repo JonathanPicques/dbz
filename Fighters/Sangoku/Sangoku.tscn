@@ -211,7 +211,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D"]
+[node name="Sangoku" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -219,10 +219,11 @@ collision_mask = 0
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-player_index = "1"
+player_index = 1
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
@@ -520,7 +521,6 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
-visible = false
 position = Vector2( 0, 13.3 )
 shape = SubResource( 15 )
 script = ExtResource( 22 )
@@ -537,5 +537,6 @@ enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
 collision_mask = 1
+_sections_unfolded = [ "Transform" ]
 
 

@@ -7,6 +7,7 @@ enum FighterState {
 	crouch_to_stand,
 	turn_around,
 	walk,
+	walk_wall,
 	jump,
 	fall,
 	double_jump,
@@ -48,117 +49,80 @@ enum FighterState {
 	flinch,
 	flinch_slide,
 	flinch_tumble,
-	flinch_tumble_bounce
+	flinch_tumble_bounce,
+	flinch_recover
 }
+enum FighterDirection {left = -1, none = 0, right = 1}
 
-enum FighterDirection {
-	left = -1,
-	right = 1
-}
+export var player_index = 1
 
-class FighterInputState:
-	var up = false
-	var down = false
-	var left = false
-	var right = false
-	
-	var jump = false
-	var grab = false
-	var block = false
-	var attack = false
-	var attack_alt = false
-	
-	var taunt1 = false
-	var taunt2 = false
-	
-	var debug_input = false
+var input = preload("Input.gd").new(player_index)
+var state = FighterState.fall
 
-export var player_index = "1"
+var velocity = Vector2()
+var velocity_prev = Vector2()
+var velocity_direction = FighterDirection.none
 
-var state = FighterState.double_fall
-var input = FighterInputState.new()
-
-var jumps = 2
-var walled = false
-var grounded = false
-var velocity = Vector2(0, 0)
-var pvelocity = Vector2(0, 0)
+var jumps = 0
 var direction = FighterDirection.left
-var ground_collider = null
+var input_direction = FighterDirection.none
 
-var damage = 220
-var weight = 100
-var last_attack = preload("Attack.gd").new()
+const up_vector = Vector2(0, -1)
+const down_vector = Vector2(0, 1)
+const left_vector = Vector2(-1, 0)
+const right_vector = Vector2(1, 0)
 
-const ground_vector = Vector2(0, -1)
+func udpate_input():
+	self.input.update_input()
+	self.input_direction = self.get_input_direction()
 
-# returns true if a and b are nearly equal
-func nearly_equal(a, b, epsilon = 1):
-    return abs(a - b) <= epsilon
-
-# update self.input status depending on user key/gamepad actions
-func process_inputs():
-	self.input.up = Input.is_action_pressed("player_" + str(player_index) + "_up")
-	self.input.down = Input.is_action_pressed("player_" + str(player_index) + "_down")
-	self.input.left = Input.is_action_pressed("player_" + str(player_index) + "_left")
-	self.input.right = Input.is_action_pressed("player_" + str(player_index) + "_right")
-	
-	self.input.jump = Input.is_action_just_pressed("player_" + str(player_index) + "_jump") or \
-		Input.is_action_just_pressed("player_" + str(player_index) + "_up") # TODO: disable tap-to-jump
-	self.input.block = Input.is_action_pressed("player_" + str(player_index) + "_block")
-	self.input.attack = Input.is_action_pressed("player_" + str(player_index) + "_attack")
-	self.input.attack_alt = Input.is_action_pressed("player_" + str(player_index) + "_attack_alt")
-	
-	self.input.taunt1 = Input.is_action_pressed("player_" + str(player_index) + "_taunt1")
-	self.input.taunt2 = Input.is_action_pressed("player_" + str(player_index) + "_taunt2")
-	
-	self.input.debug_input = Input.is_action_pressed("player_" + str(player_index) + "_debug")
-
-# update surroundings
-func process_surroundings():
-	self.walled = self.test_move(transform, Vector2(self.direction, 0))
-	self.grounded = self.test_move(transform, Vector2(0, 1))
-	self.ground_collider = $GroundRayCast2D.get_collider() if self.grounded else null
-
-# update velocity
-func process_velocity():
-	self.pvelocity = self.velocity
-	self.velocity = self.move_and_slide(self.velocity, ground_vector)
+func update_velocity():
+	self.velocity = self.move_and_slide(self.velocity, up_vector)
 	self.position = Vector2(fposmod(self.position.x, 1280), fposmod(self.position.y, 720)) # TODO: remove warping
+	self.velocity_direction = self.get_velocity_direction()
 
-# change direction and flip sprite if needed
-func set_direction(direction):
+func change_direction(direction):
 	self.direction = direction
 	$Flip.scale.x = -direction
 
-# get the fall state depending on the number of jumps remaining
-func get_fall_state():
-	return FighterState.fall if jumps >= 1 else FighterState.double_fall
+func is_on_floor():
+	return self.test_move(self.transform, down_vector)
 
-# returns true if the fighter is standing on a one-way platform
+func is_on_wall(direction = self.input_direction):
+	match direction:
+		FighterDirection.left: return self.test_move(self.transform, left_vector)
+		FighterDirection.right: return self.test_move(self.transform, right_vector)
+		_: return false
+
+func is_on_ceiling():
+	return .is_on_ceiling()
+
 func is_on_one_way_platform():
-	return self.ground_collider != null and self.ground_collider.is_in_group("OneWayPlatform")
+	if self.is_on_floor() and $GroundRayCast2D.is_colliding():
+		return $GroundRayCast2D.get_collider().is_in_group("OneWayPlatform")
+	return false
 
-# transition to fall state if not grounded
-func handle_fall(delta):
-	if not grounded:
-		set_state(get_fall_state())
+func get_input_direction():
+	var opposed = self.input.left and self.input.right or (not self.input.left and not self.input.right)
+	return FighterDirection.none if opposed else FighterDirection.left if self.input.left else FighterDirection.right
 
-# handle horizontal acceleration
-func handle_accelerate_horizontal(delta, acceleration, maximum_speed, restrict_direction = false):
-	if not self.walled and self.input.left and not self.input.right and (not restrict_direction or direction == FighterDirection.left) and self.velocity.x > -maximum_speed:
-		self.velocity.x = max(self.velocity.x - acceleration * delta, -maximum_speed)
-	elif not self.walled and self.input.right and not self.input.left and (not restrict_direction or direction == FighterDirection.right) and self.velocity.x < maximum_speed:
-		self.velocity.x = min(self.velocity.x + acceleration * delta, maximum_speed)
+func get_vector_direction(vector):
+	return int(sign(vector.x))
 
-# handle horizontal deceleration
-func handle_decelerate_horizontal(delta, deceleration, force = false):
-	var modifier = 1 if not force else 2
-	if self.velocity.x < 0 and (force or (not self.input.left or self.input.right)):
-		self.velocity.x = min(self.velocity.x + deceleration * modifier * delta, 0)
-	elif self.velocity.x > 0 and (force or (not self.input.right or self.input.left)):
-		self.velocity.x = max(self.velocity.x - deceleration * modifier * delta, 0)
+func get_velocity_direction():
+	return self.get_vector_direction(self.velocity)
 
-# handle vertical acceleration (aka gravity)
-func handle_accelerate_vertical(delta, gravity, maximum_speed):
-	self.velocity.y = min(self.velocity.y + gravity * delta, maximum_speed)
+func get_horizontal_acceleration(delta, velocity, direction, acceleration, maximum_speed):
+	match direction:
+		FighterDirection.left: return Vector2(max(velocity.x - acceleration * delta, -maximum_speed), velocity.y)
+		FighterDirection.right: return Vector2(min(velocity.x + acceleration * delta, maximum_speed), velocity.y)
+		_: return velocity
+
+func get_horizontal_deceleration(delta, velocity, deceleration):
+	match self.get_vector_direction(velocity):
+		FighterDirection.left: return Vector2(min(velocity.x + deceleration * delta, 0), velocity.y)
+		FighterDirection.right: return Vector2(max(velocity.x - deceleration * delta, 0), velocity.y)
+		_: return velocity
+
+func get_vertical_acceleration(delta, velocity, acceleration, maximum_speed):
+	return Vector2(velocity.x, min(self.velocity.y + acceleration * delta, maximum_speed))

@@ -7,11 +7,12 @@
 [ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/Aura/Aura.tscn" type="PackedScene" id=6]
 
-[node name="Stage" type="Node2D" index="0"]
+[node name="Stage" type="Node2D"]
+
+_sections_unfolded = [ "Transform" ]
 
 [node name="StageColliderFinalDestination" parent="." index="0" instance=ExtResource( 1 )]
 
-editor/display_folded = true
 position = Vector2( 640, 560 )
 _sections_unfolded = [ "Transform" ]
 
@@ -27,7 +28,7 @@ texture = ExtResource( 2 )
 
 [node name="StageCollider" parent="StageColliderFinalDestination" index="3" instance=ExtResource( 1 )]
 
-position = Vector2( 415.076, -55.907 )
+position = Vector2( 424.599, -130.727 )
 rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
@@ -76,7 +77,7 @@ margin_bottom = 4.0
 [node name="Sangoku - Player 1" parent="." index="4" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 928.779, 485.397 )
+position = Vector2( 954.626, 221.485 )
 
 [node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
 
