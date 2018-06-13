@@ -3,8 +3,8 @@ extends "../Fighter.gd"
 const gravity = 1500
 const fall_max_speed = 1400
 
-const jump_strength = 630
-const double_jump_strength = 590
+const jump_strength = 530
+const double_jump_strength = 500
 
 const walk_max_speed = 260
 const walk_acceleration = 420
@@ -121,6 +121,7 @@ func state_turn_around(delta):
 	if $FrameTimer.is_stopped():
 		self.change_direction(-self.direction)
 		self.set_state(FighterState.stand)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
 
 func pre_walk():
 	$AnimationPlayer.play("5a - Walk")
@@ -136,12 +137,14 @@ func state_walk(delta):
 	elif self.input.down and self.is_on_floor() and self.is_on_one_way_platform():
 		self.set_state(FighterState.fall_through)
 	else:
-		match self.input_direction:
-			FighterDirection.none: self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
-			direction: self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.input_direction, walk_acceleration, walk_max_speed)
-			_: self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 0.7) + (walk_deceleration * 1.2))
-		if self.get_velocity_direction() == FighterDirection.none:
-			self.set_state(FighterState.stand)
+		if self.input_direction == FighterDirection.none:
+			self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
+		elif self.input_direction == self.direction:
+			self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.direction, walk_acceleration, walk_max_speed)
+		else:
+			self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 0.7) + (walk_deceleration * 1.2))
+	if self.get_velocity_direction() == FighterDirection.none:
+		self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_walk_wall():
@@ -158,16 +161,22 @@ func state_walk_wall(delta):
 
 func pre_jump():
 	self.jumps -= 1
-	self.velocity = Vector2(self.velocity.x, -jump_strength)
+	self.velocity = Vector2(self.velocity.x, -jump_strength if self.jumps > 0 else -double_jump_strength)
+	$FrameTimer.wait_for(15)
 	$AnimationPlayer.play("2a - Jump")
 
 func state_jump(delta):
 	if self.velocity.y > -0:
 		self.set_state(FighterState.fall)
+	elif $FrameTimer.is_stopped() and self.input.jump and self.jumps > 0:
+		if self.input_direction != FighterDirection.none:
+			self.change_direction(self.input_direction)
+		self.set_state(FighterState.jump)
 	match self.input_direction:
 		FighterDirection.none: self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
 		_: self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.input_direction, walk_acceleration, walk_max_speed)
-	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
+	if not self.input.jump_held or $FrameTimer.after_frame(5): # ignore gravity for 5 frames if jump is held
+		self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_fall():
 	self.velocity = Vector2(self.velocity.x, 0)

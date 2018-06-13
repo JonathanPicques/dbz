@@ -6,6 +6,8 @@ var left = false
 var right = false
 
 var jump = false
+var jump_held = false
+
 var grab = false
 var block = false
 var attack = false
@@ -27,6 +29,9 @@ func update_input():
 	
 	self.jump = Input.is_action_just_pressed("player_" + str(self.player_index) + "_jump") or \
 		Input.is_action_just_pressed("player_" + str(self.player_index) + "_up") # TODO: disable tap-to-jump
+	self.jump_held = Input.is_action_pressed("player_" + str(self.player_index) + "_jump") or \
+		Input.is_action_pressed("player_" + str(self.player_index) + "_up") # TODO: disable tap-to-jump
+	
 	self.block = Input.is_action_pressed("player_" + str(self.player_index) + "_block")
 	self.attack = Input.is_action_pressed("player_" + str(self.player_index) + "_attack")
 	self.attack_alt = Input.is_action_pressed("player_" + str(self.player_index) + "_attack_alt")
