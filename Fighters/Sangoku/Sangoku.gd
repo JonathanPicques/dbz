@@ -143,8 +143,8 @@ func state_walk(delta):
 			self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.direction, walk_acceleration, walk_max_speed)
 		else:
 			self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 0.7) + (walk_deceleration * 1.2))
-	if self.get_velocity_direction() == FighterDirection.none:
-		self.set_state(FighterState.stand)
+		if self.get_velocity_direction() == FighterDirection.none:
+			self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_walk_wall():
@@ -155,8 +155,6 @@ func state_walk_wall(delta):
 		self.set_state(FighterState.fall)
 	elif not self.is_on_wall():
 		self.set_state(FighterState.stand)
-	elif self.input_direction == self.direction:
-		self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.input_direction, walk_acceleration, walk_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_jump():
