@@ -1,0 +1,38 @@
+[gd_resource type="Animation" load_steps=5 format=2]
+
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=1]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=3]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=4]
+
+[resource]
+
+resource_name = "7a - Ground neutral"
+length = 0.24
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flip/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flip/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
+}
+

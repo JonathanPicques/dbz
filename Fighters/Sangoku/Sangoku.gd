@@ -21,11 +21,12 @@ func update_state(delta):
 		FighterState.stand: self.state_stand(delta)
 		FighterState.crouch: self.state_crouch(delta)
 		FighterState.crouch_to_stand: self.state_crouch_to_stand(delta)
-		FighterState.turn_around: self.state_turn_around(delta)
 		FighterState.walk: self.state_walk(delta)
 		FighterState.walk_wall: self.state_walk_wall(delta)
+		FighterState.walk_turn_around: self.state_walk_turn_around(delta)
 		FighterState.run: self.state_run(delta)
 		FighterState.run_wall: self.state_run_wall(delta)
+		FighterState.run_turn_around: self.state_run_turn_around(delta)
 		FighterState.jump: self.state_jump(delta)
 		FighterState.fall: self.state_fall(delta)
 		FighterState.fall_through : self.state_fall_through(delta)
@@ -51,11 +52,12 @@ func set_state(state, prev_state = self.state):
 		FighterState.stand: self.pre_stand()
 		FighterState.crouch: self.pre_crouch()
 		FighterState.crouch_to_stand: self.pre_crouch_to_stand()
-		FighterState.turn_around: self.pre_turn_around()
 		FighterState.walk: self.pre_walk()
 		FighterState.walk_wall: self.pre_walk_wall()
+		FighterState.walk_turn_around: self.pre_walk_turn_around()
 		FighterState.run: self.pre_run()
 		FighterState.run_wall: self.pre_run_wall()
+		FighterState.run_turn_around: self.pre_run_turn_around()
 		FighterState.jump: self.pre_jump()
 		FighterState.fall: self.pre_fall()
 		FighterState.fall_through : self.pre_fall_through()
@@ -94,7 +96,10 @@ func state_stand(delta):
 		elif self.input.block:
 			self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
 		elif self.input_direction != FighterDirection.none:
-			self.set_state(FighterState.walk if self.direction == self.input_direction else FighterState.turn_around)
+			if self.input.run:
+				self.set_state(FighterState.run if self.direction == self.input_direction else FighterState.run_turn_around)
+			else:
+				self.set_state(FighterState.walk if self.direction == self.input_direction else FighterState.walk_turn_around)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
 
@@ -117,15 +122,6 @@ func pre_crouch_to_stand():
 func state_crouch_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.stand)
-
-func pre_turn_around():
-	$FrameTimer.wait_for(5)
-
-func state_turn_around(delta):
-	if $FrameTimer.is_stopped():
-		self.change_direction(-self.direction)
-		self.set_state(FighterState.stand)
-	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
 
 func pre_walk():
 	$AnimationPlayer.play("5a - Walk")
@@ -161,17 +157,40 @@ func state_walk_wall(delta):
 		self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
+func pre_walk_turn_around():
+	$FrameTimer.wait_for(5)
+
+func state_walk_turn_around(delta):
+	if $FrameTimer.is_stopped():
+		self.change_direction(-self.direction)
+		self.set_state(FighterState.stand)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
+
 func pre_run():
-	pass
+	$AnimationPlayer.play("9a - Run")
 
 func state_run(delta):
-	pass
+	if self.input_direction == FighterDirection.none:
+		self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
+	elif self.input_direction == self.direction:
+		self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.direction, walk_acceleration * 2, walk_max_speed * 2)
+	else:
+		self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 1.2) + (walk_deceleration * 1.2))
+	if self.get_velocity_direction() == FighterDirection.none:
+		self.set_state(FighterState.stand)
+	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_run_wall():
 	pass
 
 func state_run_wall(delta):
 	pass
+
+func pre_run_turn_around():
+	self.pre_walk_turn_around()
+
+func state_run_turn_around(delta):
+	self.state_walk_turn_around(delta)
 
 func pre_jump():
 	self.jumps -= 1

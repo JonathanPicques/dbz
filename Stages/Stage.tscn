@@ -7,12 +7,13 @@
 [ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/Aura/Aura.tscn" type="PackedScene" id=6]
 
-[node name="Stage" type="Node2D" index="0"]
+[node name="Stage" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
 [node name="StageColliderFinalDestination" parent="." index="0" instance=ExtResource( 1 )]
 
+editor/display_folded = true
 position = Vector2( 640, 560 )
 _sections_unfolded = [ "Transform" ]
 

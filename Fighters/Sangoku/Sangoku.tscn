@@ -1,7 +1,7 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Standing/Standing_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Run/Run_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=3]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/2a - Jump.tres" type="Animation" id=5]
@@ -13,15 +13,11 @@
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_01.png" type="Texture" id=11]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_02.png" type="Texture" id=12]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png" type="Texture" id=13]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=14]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=15]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=16]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=17]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Hit1/2.png" type="Texture" id=18]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Flinch/FlinchBounce_01.png" type="Texture" id=19]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Flinch/FlinchBounce_02.png" type="Texture" id=20]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Flinch/FlinchBounce_03.png" type="Texture" id=21]
-[ext_resource path="res://Fighters/Attack.gd" type="Script" id=22]
+[ext_resource path="res://Fighters/Sangoku/Anims/7a - Ground neutral.tres" type="Animation" id=14]
+[ext_resource path="res://Fighters/Sangoku/Anims/8a - Flinch.tres" type="Animation" id=15]
+[ext_resource path="res://Fighters/Sangoku/Anims/8b - Flinch Bounce.tres" type="Animation" id=16]
+[ext_resource path="res://Fighters/Sangoku/Anims/9a - Run.tres" type="Animation" id=17]
+[ext_resource path="res://Fighters/Attack.gd" type="Script" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -113,99 +109,6 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -3, -2 ), Vector2( -8, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
-
-resource_name = "7a - Ground neutral"
-length = 0.24
-loop = false
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flip/Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Flip/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.24 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( -16, -6.5 ), Vector2( -10, -10.5 ), Vector2( -9, -9.5 ), Vector2( -21, -8.5 ) ]
-}
-
-[sub_resource type="Animation" id=13]
-
-resource_name = "8a - Flinch"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flip/Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 18 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Flip/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( -13.5, 0.5 ) ]
-}
-
-[sub_resource type="Animation" id=14]
-
-resource_name = "8a - Flinch Bounce"
-length = 0.2
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flip/Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Flip/Sprite:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 10, 10 ), Vector2( 10, 0 ), Vector2( 10, 10 ) ]
-}
-
 [sub_resource type="RectangleShape2D" id=15]
 
 custom_solver_bias = 0.0
@@ -223,7 +126,6 @@ player_index = 1
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
@@ -513,9 +415,10 @@ playback_speed = 1.0
 "anims/4b - Block High" = ExtResource( 9 )
 "anims/5a - Walk" = ExtResource( 10 )
 "anims/6a - Crouch" = SubResource( 11 )
-"anims/7a - Ground neutral" = SubResource( 12 )
-"anims/8a - Flinch" = SubResource( 13 )
-"anims/8a - Flinch Bounce" = SubResource( 14 )
+"anims/7a - Ground neutral" = ExtResource( 14 )
+"anims/8a - Flinch" = ExtResource( 15 )
+"anims/8b - Flinch Bounce" = ExtResource( 16 )
+"anims/9a - Run" = ExtResource( 17 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -523,7 +426,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 position = Vector2( 0, 13.3 )
 shape = SubResource( 15 )
-script = ExtResource( 22 )
+script = ExtResource( 18 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 damage = 10
 knockback_base = 15

@@ -5,6 +5,7 @@ var down = false
 var left = false
 var right = false
 
+var run = false
 var jump = false
 var jump_held = false
 
@@ -27,6 +28,7 @@ func update_input(delta):
 	self.left = Input.is_action_pressed("player_" + str(self.player_index) + "_left")
 	self.right = Input.is_action_pressed("player_" + str(self.player_index) + "_right")
 	
+	self.run = Input.is_action_pressed("player_" + str(self.player_index) + "_run")
 	self.jump = Input.is_action_just_pressed("player_" + str(self.player_index) + "_jump") or \
 		Input.is_action_just_pressed("player_" + str(self.player_index) + "_up") # TODO: disable tap-to-jump
 	self.jump_held = Input.is_action_pressed("player_" + str(self.player_index) + "_jump") or \
