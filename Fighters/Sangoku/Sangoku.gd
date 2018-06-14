@@ -10,9 +10,9 @@ const walk_max_speed = 260
 const walk_acceleration = 420
 const walk_deceleration = 620
 
-const run_max_speed = 380
-const run_acceleration = 720
-const run_deceleration = 820
+const run_max_speed = 480
+const run_acceleration = 920
+const run_deceleration = 1020
 
 const air_max_speed = 260
 const air_acceleration = 600
@@ -96,18 +96,17 @@ func state_stand(delta):
 	if not self.is_on_floor():
 		self.jumps = 1
 		self.set_state(FighterState.fall)
-	elif self.is_on_floor():
-		if self.input.down:
-			self.set_state(FighterState.fall_through if self.is_on_one_way_platform() else FighterState.crouch)
-		elif self.input.jump:
-			self.set_state(FighterState.jump)
-		elif self.input.block:
-			self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
-		elif self.input_direction != FighterDirection.none:
-			if self.input.run:
-				self.set_state(FighterState.run if self.direction == self.input_direction else FighterState.run_turn_around)
-			else:
-				self.set_state(FighterState.walk if self.direction == self.input_direction else FighterState.walk_turn_around)
+	elif self.input.down:
+		self.set_state(FighterState.fall_through if self.is_on_one_way_platform() else FighterState.crouch)
+	elif self.input.jump:
+		self.set_state(FighterState.jump)
+	elif self.input.block:
+		self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
+	elif self.input_direction != FighterDirection.none:
+		if self.input.run:
+			self.set_state(FighterState.run if self.direction == self.input_direction else FighterState.run_turn_around)
+		else:
+			self.set_state(FighterState.walk if self.direction == self.input_direction else FighterState.walk_turn_around)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
 
@@ -144,6 +143,8 @@ func state_walk(delta):
 		self.set_state(FighterState.jump)
 	elif self.input.down and self.is_on_floor() and self.is_on_one_way_platform():
 		self.set_state(FighterState.fall_through)
+	elif self.input.run:
+		self.set_state(FighterState.run)
 	else:
 		self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.direction, walk_acceleration, walk_deceleration, walk_max_speed)
 		if self.get_velocity_direction() == FighterDirection.none:
@@ -151,7 +152,7 @@ func state_walk(delta):
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_walk_wall():
-	$AnimationPlayer.play("4b - Block High")
+	$AnimationPlayer.play("9b - Run Wall")
 
 func state_walk_wall(delta):
 	if not self.is_on_floor():
@@ -173,13 +174,20 @@ func pre_run():
 	$AnimationPlayer.play("9a - Run")
 
 func state_run(delta):
+	if not self.is_on_floor():
+		self.jumps = 1
+		self.set_state(FighterState.fall)
+	elif self.is_on_wall():
+		self.set_state(FighterState.run_wall)
+	elif self.input.jump and self.jumps > 0:
+		self.set_state(FighterState.jump)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.direction, run_acceleration, run_deceleration, run_max_speed)
 	if self.get_velocity_direction() == FighterDirection.none:
 		self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_run_wall():
-	pass
+	self.set_state(FighterState.walk_wall)
 
 func state_run_wall(delta):
 	pass

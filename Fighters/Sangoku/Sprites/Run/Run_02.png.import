@@ -7,10 +7,10 @@ path="res://.import/Run_02.png-6e7ea2c2147316345a8b1b5476f3ea3e.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Run/Run_02.png"
-source_md5="513a383c7424799413bd6e38426492e2"
+source_md5="6c643ea0be85fd16e1934ae7bc6b8b96"
 
 dest_files=[ "res://.import/Run_02.png-6e7ea2c2147316345a8b1b5476f3ea3e.stex" ]
-dest_md5="b0595173d3336b6702a3ad385c17ada3"
+dest_md5="074a654b1ec9283ecf88ed68e8fe934f"
 
 [params]
 

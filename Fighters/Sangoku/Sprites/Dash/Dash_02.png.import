@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Run_01.png-6f92307c5576ef7fc534e6e364fc0571.stex"
+path="res://.import/Dash_02.png-7d8c14804c5ce8c181d0703f8223b1f6.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Run/Run_01.png"
-source_md5="e10cae3e8382540bda423eae569b5eea"
+source_file="res://Fighters/Sangoku/Sprites/Dash/Dash_02.png"
+source_md5="513a383c7424799413bd6e38426492e2"
 
-dest_files=[ "res://.import/Run_01.png-6f92307c5576ef7fc534e6e364fc0571.stex" ]
-dest_md5="ac2d4e08617789e318c9b1674ff95aa4"
+dest_files=[ "res://.import/Dash_02.png-7d8c14804c5ce8c181d0703f8223b1f6.stex" ]
+dest_md5="b0595173d3336b6702a3ad385c17ada3"
 
 [params]
 

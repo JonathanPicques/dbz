@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Run_01.png-6f92307c5576ef7fc534e6e364fc0571.stex"
+path="res://.import/RunWall_03.png-a09cecd6f31a80adc446cea6e78d6072.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Run/Run_01.png"
-source_md5="e10cae3e8382540bda423eae569b5eea"
+source_file="res://Fighters/Sangoku/Sprites/RunWall/RunWall_03.png"
+source_md5="4ef42afd1eb1c9b85a0ac0f0baa1ff75"
 
-dest_files=[ "res://.import/Run_01.png-6f92307c5576ef7fc534e6e364fc0571.stex" ]
-dest_md5="ac2d4e08617789e318c9b1674ff95aa4"
+dest_files=[ "res://.import/RunWall_03.png-a09cecd6f31a80adc446cea6e78d6072.stex" ]
+dest_md5="178bb8aee5bd734f5a224d440ce9e535"
 
 [params]
 
