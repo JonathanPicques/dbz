@@ -127,5 +127,13 @@ func get_horizontal_deceleration(delta, velocity, deceleration):
 		FighterDirection.right: return Vector2(max(velocity.x - deceleration * delta, 0), velocity.y)
 		_: return velocity
 
+func get_horizontal_input_movement(delta, velocity, direction, acceleration, deceleration, maximum_speed):
+	if self.input_direction == FighterDirection.none:
+		return self.get_horizontal_deceleration(delta, velocity, deceleration)
+	elif self.input_direction == direction:
+		return self.get_horizontal_acceleration(delta, velocity, self.input_direction, acceleration, maximum_speed)
+	else:
+		return self.get_horizontal_deceleration(delta, velocity, (acceleration + deceleration))
+
 func get_vertical_acceleration(delta, velocity, acceleration, maximum_speed):
 	return Vector2(velocity.x, min(self.velocity.y + acceleration * delta, maximum_speed))

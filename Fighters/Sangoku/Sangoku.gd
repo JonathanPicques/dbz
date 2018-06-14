@@ -10,6 +10,14 @@ const walk_max_speed = 260
 const walk_acceleration = 420
 const walk_deceleration = 620
 
+const run_max_speed = 380
+const run_acceleration = 720
+const run_deceleration = 820
+
+const air_max_speed = 260
+const air_acceleration = 600
+const air_deceleration = 900
+
 func _physics_process(delta):
 	self.udpate_input(delta)
 	self.update_state(delta)
@@ -137,12 +145,7 @@ func state_walk(delta):
 	elif self.input.down and self.is_on_floor() and self.is_on_one_way_platform():
 		self.set_state(FighterState.fall_through)
 	else:
-		if self.input_direction == FighterDirection.none:
-			self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
-		elif self.input_direction == self.direction:
-			self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.direction, walk_acceleration, walk_max_speed)
-		else:
-			self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 0.7) + (walk_deceleration * 1.2))
+		self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.direction, walk_acceleration, walk_deceleration, walk_max_speed)
 		if self.get_velocity_direction() == FighterDirection.none:
 			self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
@@ -170,12 +173,7 @@ func pre_run():
 	$AnimationPlayer.play("9a - Run")
 
 func state_run(delta):
-	if self.input_direction == FighterDirection.none:
-		self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
-	elif self.input_direction == self.direction:
-		self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.direction, walk_acceleration * 2, walk_max_speed * 2)
-	else:
-		self.velocity = self.get_horizontal_deceleration(delta, self.velocity, (walk_acceleration * 1.2) + (walk_deceleration * 1.2))
+	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.direction, run_acceleration, run_deceleration, run_max_speed)
 	if self.get_velocity_direction() == FighterDirection.none:
 		self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
@@ -202,12 +200,10 @@ func state_jump(delta):
 	if self.velocity.y > -0:
 		self.set_state(FighterState.fall)
 	elif $FrameTimer.is_stopped() and self.input.jump and self.jumps > 0:
-		if self.input_direction != FighterDirection.none:
-			self.change_direction(self.input_direction)
+		if self.input_direction != self.direction:
+			self.velocity = Vector2(0, self.velocity.y)
 		self.set_state(FighterState.jump)
-	match self.input_direction:
-		FighterDirection.none: self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
-		_: self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.input_direction, walk_acceleration, walk_max_speed)
+	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	if not self.input.jump_held or $FrameTimer.after_frame(5): # ignore gravity for 5 frames if jump is held
 		self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
@@ -219,12 +215,10 @@ func state_fall(delta):
 	if self.is_on_floor():
 		self.set_state(FighterState.fall_to_stand)
 	elif self.input.jump and self.jumps > 0:
-		if self.input_direction != FighterDirection.none:
-			self.change_direction(self.input_direction)
+		if self.input_direction != self.direction:
+			self.velocity = Vector2(0, self.velocity.y)
 		self.set_state(FighterState.jump)
-	match self.input_direction:
-		FighterDirection.none: self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
-		_: self.velocity = self.get_horizontal_acceleration(delta, self.velocity, self.input_direction, walk_acceleration, walk_max_speed)
+	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_fall_through():
