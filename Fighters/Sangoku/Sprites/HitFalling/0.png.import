@@ -7,10 +7,10 @@ path="res://.import/0.png-6abfaa137b19015699cf7aa671867aad.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/HitFalling/0.png"
-source_md5="63164d63828f4cb9b2ddc05f22cb9f71"
+source_md5="e785c6fee1911f9968a2c82df603e5e9"
 
 dest_files=[ "res://.import/0.png-6abfaa137b19015699cf7aa671867aad.stex" ]
-dest_md5="36a7a17b34494059f3d28c83a4a07102"
+dest_md5="1f80cd8f7693c27df98a0fd137c554e3"
 
 [params]
 
