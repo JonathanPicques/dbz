@@ -8,6 +8,8 @@ enum FighterState {
 	turn_around,
 	walk,
 	walk_wall,
+	run,
+	run_wall,
 	jump,
 	fall,
 	double_jump,
@@ -72,8 +74,8 @@ const down_vector = Vector2(0, 1)
 const left_vector = Vector2(-1, 0)
 const right_vector = Vector2(1, 0)
 
-func udpate_input():
-	self.input.update_input()
+func udpate_input(delta):
+	self.input.update_input(delta)
 	self.input_direction = self.get_input_direction()
 
 func update_velocity():

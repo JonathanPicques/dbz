@@ -21,7 +21,7 @@ var debug_input = false
 func _init(player_index):
 	self.player_index = player_index
 
-func update_input():
+func update_input(delta):
 	self.up = Input.is_action_pressed("player_" + str(self.player_index) + "_up")
 	self.down = Input.is_action_pressed("player_" + str(self.player_index) + "_down")
 	self.left = Input.is_action_pressed("player_" + str(self.player_index) + "_left")

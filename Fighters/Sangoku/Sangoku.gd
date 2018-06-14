@@ -11,7 +11,7 @@ const walk_acceleration = 420
 const walk_deceleration = 620
 
 func _physics_process(delta):
-	self.udpate_input()
+	self.udpate_input(delta)
 	self.update_state(delta)
 	self.update_velocity()
 
@@ -24,6 +24,8 @@ func update_state(delta):
 		FighterState.turn_around: self.state_turn_around(delta)
 		FighterState.walk: self.state_walk(delta)
 		FighterState.walk_wall: self.state_walk_wall(delta)
+		FighterState.run: self.state_run(delta)
+		FighterState.run_wall: self.state_run_wall(delta)
 		FighterState.jump: self.state_jump(delta)
 		FighterState.fall: self.state_fall(delta)
 		FighterState.fall_through : self.state_fall_through(delta)
@@ -52,6 +54,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.turn_around: self.pre_turn_around()
 		FighterState.walk: self.pre_walk()
 		FighterState.walk_wall: self.pre_walk_wall()
+		FighterState.run: self.pre_run()
+		FighterState.run_wall: self.pre_run_wall()
 		FighterState.jump: self.pre_jump()
 		FighterState.fall: self.pre_fall()
 		FighterState.fall_through : self.pre_fall_through()
@@ -156,6 +160,18 @@ func state_walk_wall(delta):
 	elif not self.is_on_wall():
 		self.set_state(FighterState.stand)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
+
+func pre_run():
+	pass
+
+func state_run(delta):
+	pass
+
+func pre_run_wall():
+	pass
+
+func state_run_wall(delta):
+	pass
 
 func pre_jump():
 	self.jumps -= 1

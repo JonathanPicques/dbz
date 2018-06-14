@@ -7,7 +7,7 @@
 [ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/Aura/Aura.tscn" type="PackedScene" id=6]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
