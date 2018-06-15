@@ -97,7 +97,6 @@ color = Color( 0, 0, 0, 0.0883922 )
 
 [node name="StageColliderFinalDestination" parent="." index="4" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 position = Vector2( 640, 560 )
 _sections_unfolded = [ "Transform" ]
 
@@ -111,15 +110,9 @@ texture = ExtResource( 4 )
 position = Vector2( 170, 40 )
 texture = ExtResource( 4 )
 
-[node name="StageCollider" parent="StageColliderFinalDestination" index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 424.599, -130.727 )
-rotation = 1.5708
-_sections_unfolded = [ "Transform" ]
-
 [node name="Sangoku - Player 1" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 954.626, 221.485 )
+position = Vector2( 632.435, 462.451 )
 
 [node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
 

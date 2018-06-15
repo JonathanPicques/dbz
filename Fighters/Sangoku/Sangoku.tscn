@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Stand/Stand_01.png" type="Texture" id=2]
 [ext_resource path="res://Fighters/Sangoku/Sprites/Stand/Stand_01_Normal.png" type="Texture" id=3]
 [ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=4]
 [ext_resource path="res://Fighters/Sangoku/Anims/1a - Stand.tres" type="Animation" id=5]
@@ -165,7 +165,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( -16, -6.5 )
+position = Vector2( 1, -4 )
 texture = ExtResource( 2 )
 normal_map = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
