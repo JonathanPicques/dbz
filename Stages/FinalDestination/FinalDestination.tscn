@@ -16,7 +16,7 @@ _sections_unfolded = [ "Transform" ]
 stream = ExtResource( 1 )
 volume_db = -20.0
 pitch_scale = 1.0
-autoplay = true
+autoplay = false
 mix_target = 0
 bus = "Master"
 

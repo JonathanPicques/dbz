@@ -263,7 +263,9 @@ func pre_block_high():
  
 func state_block_high(delta):
 	if not $AnimationPlayer.is_playing():
-		if not self.input.block:
+		if self.input_direction != FighterDirection.none:
+			self.set_state(FighterState.block_roll)
+		elif not self.input.block:
 			self.set_state(FighterState.block_high_to_stand)
 		elif self.input.down:
 			self.set_state(FighterState.block_low)
@@ -282,7 +284,9 @@ func pre_block_low():
  
 func state_block_low(delta):
 	if not $AnimationPlayer.is_playing():
-		if not self.input.block:
+		if self.input_direction != FighterDirection.none:
+			self.set_state(FighterState.block_roll)
+		elif not self.input.block:
 			self.set_state(FighterState.block_low_to_stand)
 		elif not self.input.down:
 			self.set_state(FighterState.block_high)
@@ -299,18 +303,32 @@ func state_block_low_to_stand(delta):
 			self.set_state(FighterState.stand)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
+enum _block_roll_states { disappear = 0, teleport = 1, reappear = 2 }
+
+var _block_roll_state = _block_roll_states.disappear
 var _block_roll_direction = 0
 
 func pre_block_roll():
+	_block_roll_state = _block_roll_states.disappear
 	_block_roll_direction = self.input_direction
-	$FrameTimer.wait_for(24)
-	$AnimationPlayer.play("3a - Fall")
+	$AnimationPlayer.play("4c - Block Roll")
 
 func state_block_roll(delta):
-	self.velocity = Vector2(_block_roll_direction * 400, self.velocity.y)
-	if $FrameTimer.is_stopped():
-		self.velocity = Vector2(0, self.velocity.y)
-		self.set_state(FighterState.stand)
+	match _block_roll_state:
+		_block_roll_states.disappear:
+			if $Flip/Sprite.get_texture() == null:
+				self.velocity = Vector2(self.velocity.x + _block_roll_direction * 2000, self.velocity.y)
+				_block_roll_state = _block_roll_states.teleport
+				$AnimationPlayer.play_backwards("4c - Block Roll")
+				if _block_roll_direction == self.direction:
+					self.change_direction(-self.direction)
+		_block_roll_states.teleport:
+			if $Flip/Sprite.get_texture() != null:
+				self.velocity = Vector2(0, self.velocity.y)
+				_block_roll_state = _block_roll_states.reappear
+		_block_roll_states.reappear:
+			if not $AnimationPlayer.is_playing():
+				self.set_state(FighterState.stand)
 
 func pre_block_spot_dodge():
 	pass

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlockingLow_02.png-496f25a3e3b85658ebb65c1ae2c2adac.stex"
+path="res://.import/BlockHigh_02.png-67b786983bf5af26dfa98f6342c647cb.stex"
 
 [deps]
 
-source_file="res://Fighters/Sangoku/Sprites/Blocking/BlockingLow_02.png"
-dest_files=[ "res://.import/BlockingLow_02.png-496f25a3e3b85658ebb65c1ae2c2adac.stex" ]
+source_file="res://Fighters/Sangoku/Sprites/Block/BlockHigh_02.png"
+dest_files=[ "res://.import/BlockHigh_02.png-67b786983bf5af26dfa98f6342c647cb.stex" ]
 
 [params]
 
