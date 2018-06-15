@@ -119,7 +119,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sangoku - Player 1" parent="." index="5" instance=ExtResource( 5 )]
 
-editor/display_folded = true
 position = Vector2( 954.626, 221.485 )
 
 [node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
