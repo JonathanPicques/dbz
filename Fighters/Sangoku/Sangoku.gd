@@ -6,17 +6,20 @@ const fall_max_speed = 1400
 const jump_strength = 530
 const double_jump_strength = 500
 
-const walk_max_speed = 260
-const walk_acceleration = 420
-const walk_deceleration = 620
-
-const run_max_speed = 480
-const run_acceleration = 920
-const run_deceleration = 1020
-
 const air_max_speed = 260
+const run_max_speed = 480
+const walk_max_speed = 260
+
 const air_acceleration = 600
+const run_acceleration = 920
+const walk_acceleration = 420
+
 const air_deceleration = 900
+const run_deceleration = 1020
+const walk_deceleration = 620
+const block_deceleration = 720
+const stand_deceleration = 720
+const crouch_deceleration = 720
 
 func _physics_process(delta):
 	self.udpate_input(delta)
@@ -108,7 +111,7 @@ func state_stand(delta):
 		else:
 			self.set_state(FighterState.walk if self.direction == self.input_direction else FighterState.walk_turn_around)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
-	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, stand_deceleration)
 
 func pre_crouch():
 	$AnimationPlayer.play("6a - Crouch")
@@ -122,6 +125,7 @@ func state_crouch(delta):
 			self.set_state(FighterState.crouch_to_stand)
 		elif self.input.block:
 			self.set_state(FighterState.block_low)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, crouch_deceleration)
 
 func pre_crouch_to_stand():
 	$AnimationPlayer.play_backwards("6a - Crouch")
@@ -259,6 +263,7 @@ func state_block_high(delta):
 			self.set_state(FighterState.block_high_to_stand)
 		elif self.input.down:
 			self.set_state(FighterState.block_low)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
 func pre_block_high_to_stand():
 	$AnimationPlayer.play_backwards("4b - Block High")
@@ -266,6 +271,7 @@ func pre_block_high_to_stand():
 func state_block_high_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
 		self.set_state(FighterState.stand if not self.input.block else FighterState.block_high)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
  
 func pre_block_low():
 	$AnimationPlayer.play("4a - Block Low")
@@ -276,6 +282,7 @@ func state_block_low(delta):
 			self.set_state(FighterState.block_low_to_stand)
 		elif not self.input.down:
 			self.set_state(FighterState.block_high)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
  
 func pre_block_low_to_stand():
 	$AnimationPlayer.play_backwards("4a - Block Low")
@@ -286,6 +293,7 @@ func state_block_low_to_stand(delta):
 			self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
 		else:
 			self.set_state(FighterState.stand)
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
 ##################
 # Ground attacks #
