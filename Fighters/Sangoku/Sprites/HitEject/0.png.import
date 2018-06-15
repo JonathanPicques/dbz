@@ -7,10 +7,7 @@ path="res://.import/0.png-4ff43bb9d736f61e862d1f42bdaca562.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/HitEject/0.png"
-source_md5="d72fd47f79a4b65287916e72fe83fd51"
-
 dest_files=[ "res://.import/0.png-4ff43bb9d736f61e862d1f42bdaca562.stex" ]
-dest_md5="e5f41d11049e9893d55f315dbfd1f014"
 
 [params]
 

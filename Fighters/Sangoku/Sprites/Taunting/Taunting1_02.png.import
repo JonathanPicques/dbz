@@ -7,10 +7,7 @@ path="res://.import/Taunting1_02.png-472f81259e860d3ec0c8a225919303c1.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Taunting/Taunting1_02.png"
-source_md5="9d1bbd8997b4bba558cd4eead5a60c6a"
-
 dest_files=[ "res://.import/Taunting1_02.png-472f81259e860d3ec0c8a225919303c1.stex" ]
-dest_md5="77bad03bedb8f9e7b4a8202131273075"
 
 [params]
 

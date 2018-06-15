@@ -7,10 +7,7 @@ path="res://.import/4.png-076bf09d49f6cd4a500eaea2cd5fd72a.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Recovery/4.png"
-source_md5="889ed12c9538ae19689d51866fa5b291"
-
 dest_files=[ "res://.import/4.png-076bf09d49f6cd4a500eaea2cd5fd72a.stex" ]
-dest_md5="987590fa79f97455f84aaee169ab171e"
 
 [params]
 

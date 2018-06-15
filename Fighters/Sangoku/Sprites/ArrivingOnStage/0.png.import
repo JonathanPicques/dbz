@@ -7,10 +7,7 @@ path="res://.import/0.png-9f41e74abfe2e321f888b11dd5b85f4e.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/ArrivingOnStage/0.png"
-source_md5="41298a853f642f292e80a2d8ca101381"
-
 dest_files=[ "res://.import/0.png-9f41e74abfe2e321f888b11dd5b85f4e.stex" ]
-dest_md5="bbc103327b609cd6583c1b6eb727db08"
 
 [params]
 

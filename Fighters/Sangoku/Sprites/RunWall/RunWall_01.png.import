@@ -7,10 +7,7 @@ path="res://.import/RunWall_01.png-cb341fb05ba98720657f05433e9a3afe.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/RunWall/RunWall_01.png"
-source_md5="33e2f62e842cd8608fe369ca3a634574"
-
 dest_files=[ "res://.import/RunWall_01.png-cb341fb05ba98720657f05433e9a3afe.stex" ]
-dest_md5="396d4245a86453539a8b73f9a37b5852"
 
 [params]
 

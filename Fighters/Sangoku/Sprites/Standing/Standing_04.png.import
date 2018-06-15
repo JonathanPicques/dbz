@@ -7,10 +7,7 @@ path="res://.import/Standing_04.png-c08c4fb6b2e22a174c1c0a27d9315a23.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Standing/Standing_04.png"
-source_md5="879f318b1e6bb96a82dcacc97251f4df"
-
 dest_files=[ "res://.import/Standing_04.png-c08c4fb6b2e22a174c1c0a27d9315a23.stex" ]
-dest_md5="2896a78e896ab97501ea74ad521ab629"
 
 [params]
 

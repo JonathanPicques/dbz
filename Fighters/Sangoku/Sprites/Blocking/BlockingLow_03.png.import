@@ -7,10 +7,7 @@ path="res://.import/BlockingLow_03.png-ff3560897ab9acd4f6ed5c8806b8b6a2.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Blocking/BlockingLow_03.png"
-source_md5="ee3c2ae5732f72c37f7b22777f0f23c2"
-
 dest_files=[ "res://.import/BlockingLow_03.png-ff3560897ab9acd4f6ed5c8806b8b6a2.stex" ]
-dest_md5="bcfca9cb8306b0b463d38ba629111f96"
 
 [params]
 

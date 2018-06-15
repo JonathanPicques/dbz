@@ -7,10 +7,7 @@ path="res://.import/4.png-786d9f4d774cd64b3232328da610eb51.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Meteor/4.png"
-source_md5="76970ef6be94de9e90c75e47af5705e5"
-
 dest_files=[ "res://.import/4.png-786d9f4d774cd64b3232328da610eb51.stex" ]
-dest_md5="afe9c870073f5296816cc1a2fc03186c"
 
 [params]
 

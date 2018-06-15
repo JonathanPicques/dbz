@@ -7,10 +7,7 @@ path="res://.import/4.png-21cec962e7b93c693ed27edef3161a4d.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Jumping2/4.png"
-source_md5="e8b899cc1ed84279e74a7bafb25731f8"
-
 dest_files=[ "res://.import/4.png-21cec962e7b93c693ed27edef3161a4d.stex" ]
-dest_md5="7fe4677f792f7ac908df23c90e94d9e2"
 
 [params]
 

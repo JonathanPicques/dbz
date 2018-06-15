@@ -7,10 +7,7 @@ path="res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex"
 [deps]
 
 source_file="res://Effects/Aura/Aura.png"
-source_md5="4543f3087c72019d7d6c357b8d047c21"
-
 dest_files=[ "res://.import/Aura.png-4c3a6e3ca055875c0488e7ca9a45d060.stex" ]
-dest_md5="e6bff2c82a8608e7c48f905cb326169c"
 
 [params]
 

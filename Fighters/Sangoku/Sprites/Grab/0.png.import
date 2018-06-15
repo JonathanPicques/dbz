@@ -7,10 +7,7 @@ path="res://.import/0.png-4aa118de88085e05659d3b32c4b8007e.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Grab/0.png"
-source_md5="8d0d9c3e0817c156005963e4d3ca607f"
-
 dest_files=[ "res://.import/0.png-4aa118de88085e05659d3b32c4b8007e.stex" ]
-dest_md5="4b4e37db56a69dc95ae7944811b7f9b3"
 
 [params]
 

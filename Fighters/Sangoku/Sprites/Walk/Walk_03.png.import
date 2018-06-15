@@ -7,10 +7,7 @@ path="res://.import/Walk_03.png-49b77d97895f8f23cb86d1523991cca1.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Walk/Walk_03.png"
-source_md5="4398e3b1572dea06b8c226818fefb031"
-
 dest_files=[ "res://.import/Walk_03.png-49b77d97895f8f23cb86d1523991cca1.stex" ]
-dest_md5="52e5ca2d3cd294a5d8e3b92523bc8b19"
 
 [params]
 

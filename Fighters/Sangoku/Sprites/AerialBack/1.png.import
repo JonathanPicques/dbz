@@ -7,10 +7,7 @@ path="res://.import/1.png-7f45093e89d6efd6ef24348b05f36a64.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/AerialBack/1.png"
-source_md5="5a4a72840403aab6b290930ddb5b045c"
-
 dest_files=[ "res://.import/1.png-7f45093e89d6efd6ef24348b05f36a64.stex" ]
-dest_md5="6edd4fbc7eea1a28462537ced178e158"
 
 [params]
 

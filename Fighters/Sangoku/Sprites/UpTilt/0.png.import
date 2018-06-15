@@ -7,10 +7,7 @@ path="res://.import/0.png-0c93d6fe869a39ab98373fac04793959.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/UpTilt/0.png"
-source_md5="9cca7211bd9a7765698defb27e785ce6"
-
 dest_files=[ "res://.import/0.png-0c93d6fe869a39ab98373fac04793959.stex" ]
-dest_md5="3e963190af5a00c1e760b31578e8b8c4"
 
 [params]
 

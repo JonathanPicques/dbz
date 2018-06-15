@@ -7,10 +7,7 @@ path="res://.import/Dash_01.png-279a1593faaed99067e8102c403b28f1.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Dash/Dash_01.png"
-source_md5="50f56fe40e2287afd24bbf84a93687e6"
-
 dest_files=[ "res://.import/Dash_01.png-279a1593faaed99067e8102c403b28f1.stex" ]
-dest_md5="5d69cf7a7c9d1e631e02f1af375ad6d3"
 
 [params]
 

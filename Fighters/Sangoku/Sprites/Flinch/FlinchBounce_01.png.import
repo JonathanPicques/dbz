@@ -7,10 +7,7 @@ path="res://.import/FlinchBounce_01.png-2ee63203a2a4caae57a139021dbaa5a9.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Flinch/FlinchBounce_01.png"
-source_md5="7113f79c8631fd507199ff07db1ca78f"
-
 dest_files=[ "res://.import/FlinchBounce_01.png-2ee63203a2a4caae57a139021dbaa5a9.stex" ]
-dest_md5="75b7dd6f520c05d9d93484cdb84da133"
 
 [params]
 

@@ -7,10 +7,7 @@ path="res://.import/4.png-69b156a302ada6d9b8c10975c1244cdc.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/DownB/4.png"
-source_md5="004865a2512443eebb182e9a0f64b74c"
-
 dest_files=[ "res://.import/4.png-69b156a302ada6d9b8c10975c1244cdc.stex" ]
-dest_md5="3b6092d1a6d383d60aa9c6baa9a07e0e"
 
 [params]
 

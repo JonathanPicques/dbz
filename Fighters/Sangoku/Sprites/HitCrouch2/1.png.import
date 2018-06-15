@@ -7,10 +7,7 @@ path="res://.import/1.png-1a9de10f6e6dc895f99000e8cbe4c98c.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/HitCrouch2/1.png"
-source_md5="3f937608c5f7e368eef274a72cf820cf"
-
 dest_files=[ "res://.import/1.png-1a9de10f6e6dc895f99000e8cbe4c98c.stex" ]
-dest_md5="5a80565a017c6863fd2671e24a1ebb82"
 
 [params]
 

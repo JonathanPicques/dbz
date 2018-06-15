@@ -7,10 +7,7 @@ path="res://.import/Icon.png-57ddc614b529adfaef2137711dbd1409.stex"
 [deps]
 
 source_file="res://Settings/Icon.png"
-source_md5="ae7e641067601e2184afcade49abd283"
-
 dest_files=[ "res://.import/Icon.png-57ddc614b529adfaef2137711dbd1409.stex" ]
-dest_md5="84511021bbc8c9d37c7f0f4d181de883"
 
 [params]
 

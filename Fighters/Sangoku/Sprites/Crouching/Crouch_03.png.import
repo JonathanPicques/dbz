@@ -7,10 +7,7 @@ path="res://.import/Crouch_03.png-fea210f1203935da1946a62c2b8f971d.stex"
 [deps]
 
 source_file="res://Fighters/Sangoku/Sprites/Crouching/Crouch_03.png"
-source_md5="a0193b9543b017c0b5a465fc822a5ba3"
-
 dest_files=[ "res://.import/Crouch_03.png-fea210f1203935da1946a62c2b8f971d.stex" ]
-dest_md5="fa255c7851363fab0e6d51bd4fffa8e8"
 
 [params]
 
