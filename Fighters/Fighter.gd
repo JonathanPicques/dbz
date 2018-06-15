@@ -18,10 +18,8 @@ enum FighterState {
 	fall_through,
 	fall_to_stand,
 	# Block
-	block_high,
-	block_high_to_stand,
-	block_low,
-	block_low_to_stand,
+	block,
+	block_to_stand,
 	block_roll,
 	block_spot_dodge,
 	# Ground attacks

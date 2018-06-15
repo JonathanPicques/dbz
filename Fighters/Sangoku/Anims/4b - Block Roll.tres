@@ -5,7 +5,7 @@
 
 [resource]
 
-resource_name = "4c - Block Roll"
+resource_name = "4b - Block Roll"
 length = 0.1
 loop = false
 step = 0.01

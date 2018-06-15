@@ -43,10 +43,8 @@ func update_state(delta):
 		FighterState.fall_through : self.state_fall_through(delta)
 		FighterState.fall_to_stand: self.state_fall_to_stand(delta)
 		# Block
-		FighterState.block_high: self.state_block_high(delta)
-		FighterState.block_high_to_stand: self.state_block_high_to_stand(delta)
-		FighterState.block_low: self.state_block_low(delta)
-		FighterState.block_low_to_stand: self.state_block_low_to_stand(delta)
+		FighterState.block: self.state_block(delta)
+		FighterState.block_to_stand: self.state_block_to_stand(delta)
 		FighterState.block_roll: self.state_block_roll(delta)
 		FighterState.block_spot_dodge: self.state_block_spot_dodge(delta)
 		# Ground attacks
@@ -76,10 +74,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.fall_through : self.pre_fall_through()
 		FighterState.fall_to_stand: self.pre_fall_to_stand()
 		# Block
-		FighterState.block_high: self.pre_block_high()
-		FighterState.block_high_to_stand: self.pre_block_high_to_stand()
-		FighterState.block_low: self.pre_block_low()
-		FighterState.block_low_to_stand: self.pre_block_low_to_stand()
+		FighterState.block: self.pre_block()
+		FighterState.block_to_stand: self.pre_block_to_stand()
 		FighterState.block_roll: self.pre_block_roll()
 		FighterState.block_spot_dodge: self.pre_block_spot_dodge()
 		# Ground attacks
@@ -108,7 +104,7 @@ func state_stand(delta):
 	elif self.input.jump:
 		self.set_state(FighterState.jump)
 	elif self.input.block:
-		self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
+		self.set_state(FighterState.block_low if self.input.down else FighterState.block)
 	elif self.input_direction != FighterDirection.none:
 		if self.input.run:
 			self.set_state(FighterState.run if self.direction == self.input_direction else FighterState.run_turn_around)
@@ -128,7 +124,7 @@ func state_crouch(delta):
 		if not self.input.down:
 			self.set_state(FighterState.crouch_to_stand)
 		elif self.input.block:
-			self.set_state(FighterState.block_low)
+			self.set_state(FighterState.block)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, crouch_deceleration)
 
 func pre_crouch_to_stand():
@@ -258,49 +254,25 @@ func state_fall_to_stand(delta):
 # Block #
 #########
 
-func pre_block_high():
-	$AnimationPlayer.play("4b - Block High")
+func pre_block():
+	$AnimationPlayer.play("4a - Block")
  
-func state_block_high(delta):
+func state_block(delta):
 	if not $AnimationPlayer.is_playing():
 		if self.input_direction != FighterDirection.none:
 			self.set_state(FighterState.block_roll)
 		elif not self.input.block:
-			self.set_state(FighterState.block_high_to_stand)
-		elif self.input.down:
-			self.set_state(FighterState.block_low)
+			self.set_state(FighterState.block_to_stand)
+		elif self.input.down_once:
+			self.set_state(FighterState.block_spot_dodge)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
-func pre_block_high_to_stand():
-	$AnimationPlayer.play_backwards("4b - Block High")
+func pre_block_to_stand():
+	$AnimationPlayer.play_backwards("4a - Block")
  
-func state_block_high_to_stand(delta):
+func state_block_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
-		self.set_state(FighterState.stand if not self.input.block else FighterState.block_high)
-	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
- 
-func pre_block_low():
-	$AnimationPlayer.play("4a - Block Low")
- 
-func state_block_low(delta):
-	if not $AnimationPlayer.is_playing():
-		if self.input_direction != FighterDirection.none:
-			self.set_state(FighterState.block_roll)
-		elif not self.input.block:
-			self.set_state(FighterState.block_low_to_stand)
-		elif not self.input.down:
-			self.set_state(FighterState.block_high)
-	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
- 
-func pre_block_low_to_stand():
-	$AnimationPlayer.play_backwards("4a - Block Low")
- 
-func state_block_low_to_stand(delta):
-	if not $AnimationPlayer.is_playing():
-		if self.input.block:
-			self.set_state(FighterState.block_low if self.input.down else FighterState.block_high)
-		else:
-			self.set_state(FighterState.stand)
+		self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
 enum _block_roll_states { disappear = 0, teleport = 1, reappear = 2 }
@@ -309,9 +281,9 @@ var _block_roll_state = _block_roll_states.disappear
 var _block_roll_direction = 0
 
 func pre_block_roll():
+	$AnimationPlayer.play("4b - Block Roll")
 	_block_roll_state = _block_roll_states.disappear
 	_block_roll_direction = self.input_direction
-	$AnimationPlayer.play("4c - Block Roll")
 
 func state_block_roll(delta):
 	match _block_roll_state:
@@ -319,7 +291,7 @@ func state_block_roll(delta):
 			if $Flip/Sprite.get_texture() == null:
 				self.velocity = Vector2(self.velocity.x + _block_roll_direction * 2000, self.velocity.y)
 				_block_roll_state = _block_roll_states.teleport
-				$AnimationPlayer.play_backwards("4c - Block Roll")
+				$AnimationPlayer.play_backwards("4b - Block Roll")
 				if _block_roll_direction == self.direction:
 					self.change_direction(-self.direction)
 		_block_roll_states.teleport:
@@ -328,13 +300,23 @@ func state_block_roll(delta):
 				_block_roll_state = _block_roll_states.reappear
 		_block_roll_states.reappear:
 			if not $AnimationPlayer.is_playing():
-				self.set_state(FighterState.stand)
+				self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
 func pre_block_spot_dodge():
-	pass
+	$FrameTimer.wait_for(12)
+	$AnimationPlayer.play("4b - Block Roll")
+	_block_roll_state = _block_roll_states.disappear
 
 func state_block_spot_dodge(delta):
-	pass
+	match _block_roll_state:
+		_block_roll_states.disappear:
+			if $FrameTimer.is_stopped():
+				$FrameTimer.wait_for(12)
+				$AnimationPlayer.play_backwards("4b - Block Roll")
+				_block_roll_state = _block_roll_states.reappear
+		_block_roll_states.reappear:
+			if $FrameTimer.is_stopped():
+				self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
 ##################
 # Ground attacks #
