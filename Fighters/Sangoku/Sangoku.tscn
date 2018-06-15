@@ -112,7 +112,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -3, -2 ), Vector2( -8, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 
 resource_name = "9b - Run Wall"
 length = 0.3
@@ -143,16 +143,16 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26, 33.3 )
 
-[node name="Sangoku" type="KinematicBody2D"]
+[node name="Sangoku" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 0
+collision_mask = 6
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
@@ -160,6 +160,7 @@ player_index = 1
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
@@ -453,14 +454,14 @@ playback_speed = 1.0
 "anims/8a - Flinch" = ExtResource( 15 )
 "anims/8b - Flinch Bounce" = ExtResource( 16 )
 "anims/9a - Run" = ExtResource( 17 )
-"anims/9b - Run Wall" = SubResource( 13 )
+"anims/9b - Run Wall" = SubResource( 14 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
 position = Vector2( 0, 13.3 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 script = ExtResource( 21 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 damage = 10
@@ -471,10 +472,9 @@ freeze_frame_scaling = 1.0
 
 [node name="GroundRayCast2D" type="RayCast2D" parent="." index="5"]
 
-enabled = true
+enabled = false
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
+collision_mask = 7
 
 

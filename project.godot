@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Dragon Ball Z"
-run/main_scene="res://Stages/Stage.tscn"
+run/main_scene="res://Stages/FinalDestination/FinalDestination.tscn"
 config/icon="res://Settings/Icon.png"
 
 [display]

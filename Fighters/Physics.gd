@@ -1,5 +1,5 @@
 enum PhysicsLayer {
-	player = 1,
-	stage = 2,
-	one_way = 3
+	player = 0,
+	stage = 1,
+	one_way = 2
 }

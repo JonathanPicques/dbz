@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Musics/Rampage.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Stages/StageColliderOneWay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Stages/StageCollider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Stages/FinalDestination/FinalDestination.png" type="Texture" id=4]
+[ext_resource path="res://Fighters/Sangoku/Sangoku.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Effects/Aura/Aura.tscn" type="PackedScene" id=6]
+
+[node name="Stage" type="Node2D" index="0"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
+
+stream = ExtResource( 1 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="StageColliderThruTop" parent="." index="1" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+position = Vector2( 630, 310 )
+scale = Vector2( 0.25, 0.35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ColorRect" type="ColorRect" parent="StageColliderThruTop" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -520.0
+margin_top = -39.0
+margin_right = 520.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.0883922 )
+
+[node name="StageColliderThruLeft" parent="." index="2" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+position = Vector2( 420, 420 )
+scale = Vector2( 0.15, 0.35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ColorRect" type="ColorRect" parent="StageColliderThruLeft" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -533.0
+margin_top = -39.0
+margin_right = 533.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.0883922 )
+
+[node name="StageColliderThruRight" parent="." index="3" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+position = Vector2( 840, 420 )
+scale = Vector2( 0.15, 0.35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ColorRect" type="ColorRect" parent="StageColliderThruRight" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -467.0
+margin_top = -39.0
+margin_right = 533.0
+margin_bottom = 4.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.0883922 )
+
+[node name="StageColliderFinalDestination" parent="." index="4" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 640, 560 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="FinalDestination2" type="Sprite" parent="StageColliderFinalDestination" index="1"]
+
+position = Vector2( -170, 40 )
+texture = ExtResource( 4 )
+
+[node name="FinalDestination3" type="Sprite" parent="StageColliderFinalDestination" index="2"]
+
+position = Vector2( 170, 40 )
+texture = ExtResource( 4 )
+
+[node name="StageCollider" parent="StageColliderFinalDestination" index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 424.599, -130.727 )
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sangoku - Player 1" parent="." index="5" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+position = Vector2( 954.626, 221.485 )
+
+[node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
+
+visible = false
+position = Vector2( 0, -50 )
+
+

@@ -228,6 +228,7 @@ func state_fall(delta):
 		self.set_state(FighterState.jump)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
+	self.set_collision_mask_bit(PhysicsLayer.one_way, not self.input.down)
 
 func pre_fall_through():
 	self.jumps = 1
