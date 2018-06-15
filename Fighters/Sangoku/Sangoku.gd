@@ -47,6 +47,8 @@ func update_state(delta):
 		FighterState.block_high_to_stand: self.state_block_high_to_stand(delta)
 		FighterState.block_low: self.state_block_low(delta)
 		FighterState.block_low_to_stand: self.state_block_low_to_stand(delta)
+		FighterState.block_roll: self.state_block_roll(delta)
+		FighterState.block_spot_dodge: self.state_block_spot_dodge(delta)
 		# Ground attacks
 		FighterState.neutral_attack: self.state_neutral_attack(delta)
 		# Hit / Hurt
@@ -78,6 +80,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.block_high_to_stand: self.pre_block_high_to_stand()
 		FighterState.block_low: self.pre_block_low()
 		FighterState.block_low_to_stand: self.pre_block_low_to_stand()
+		FighterState.block_roll: self.pre_block_roll()
+		FighterState.block_spot_dodge: self.pre_block_spot_dodge()
 		# Ground attacks
 		FighterState.neutral_attack: self.pre_neutral_attack()
 		# Hit / Hurt
@@ -212,7 +216,7 @@ func state_jump(delta):
 	if self.velocity.y > -0:
 		self.set_state(FighterState.fall)
 	elif $FrameTimer.is_stopped() and self.input.jump and self.jumps > 0:
-		if self.input_direction != self.direction:
+		if self.input_direction != self.direction and self.input_direction != self.velocity_direction:
 			self.velocity = Vector2(0, self.velocity.y)
 		self.set_state(FighterState.jump)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
@@ -227,7 +231,7 @@ func state_fall(delta):
 	if self.is_on_floor():
 		self.set_state(FighterState.fall_to_stand)
 	elif self.input.jump and self.jumps > 0:
-		if self.input_direction != self.direction:
+		if self.input_direction != self.direction and self.input_direction != self.velocity_direction:
 			self.velocity = Vector2(0, self.velocity.y)
 		self.set_state(FighterState.jump)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
@@ -294,6 +298,25 @@ func state_block_low_to_stand(delta):
 		else:
 			self.set_state(FighterState.stand)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
+
+var _block_roll_direction = 0
+
+func pre_block_roll():
+	_block_roll_direction = self.input_direction
+	$FrameTimer.wait_for(24)
+	$AnimationPlayer.play("3a - Fall")
+
+func state_block_roll(delta):
+	self.velocity = Vector2(_block_roll_direction * 400, self.velocity.y)
+	if $FrameTimer.is_stopped():
+		self.velocity = Vector2(0, self.velocity.y)
+		self.set_state(FighterState.stand)
+
+func pre_block_spot_dodge():
+	pass
+
+func state_block_spot_dodge(delta):
+	pass
 
 ##################
 # Ground attacks #

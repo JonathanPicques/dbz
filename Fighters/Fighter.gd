@@ -22,6 +22,8 @@ enum FighterState {
 	block_high_to_stand,
 	block_low,
 	block_low_to_stand,
+	block_roll,
+	block_spot_dodge,
 	# Ground attacks
 	dash_attack,
 	neutral_attack,
