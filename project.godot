@@ -85,6 +85,8 @@ player_1_run=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_na
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_2="Stage"
+2d_physics/layer_3="OneWay"
 
 [physics]
 

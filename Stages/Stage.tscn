@@ -92,6 +92,7 @@ position = Vector2( 954.626, 221.485 )
 
 [node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 7 )]
 
+visible = false
 position = Vector2( 0, -50 )
 
 

@@ -187,10 +187,10 @@ func state_run(delta):
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_run_wall():
-	self.set_state(FighterState.walk_wall)
+	self.pre_walk_wall()
 
 func state_run_wall(delta):
-	pass
+	self.state_walk_wall(delta)
 
 func pre_run_turn_around():
 	self.pre_walk_turn_around()
