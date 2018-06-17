@@ -98,7 +98,7 @@ func set_state(state, prev_state = self.state):
 
 func pre_stand():
 	self.jumps = 2
-	$AnimationPlayer.play("1a - Stand")
+	$AnimationPlayer.play("Stand")
 
 func state_stand(delta):
 	if not self.is_on_floor():
@@ -119,7 +119,7 @@ func state_stand(delta):
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, stand_deceleration)
 
 func pre_crouch():
-	$AnimationPlayer.play("6a - Crouch")
+	$AnimationPlayer.play("Crouch")
 
 func state_crouch(delta):
 	if not self.is_on_floor():
@@ -133,14 +133,14 @@ func state_crouch(delta):
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, crouch_deceleration)
 
 func pre_crouch_to_stand():
-	$AnimationPlayer.play_backwards("6a - Crouch")
+	$AnimationPlayer.play_backwards("Crouch")
 
 func state_crouch_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
 		return self.set_state(FighterState.stand)
 
 func pre_walk():
-	$AnimationPlayer.play("5a - Walk")
+	$AnimationPlayer.play("Walk")
 
 func state_walk(delta):
 	if not self.is_on_floor():
@@ -161,7 +161,7 @@ func state_walk(delta):
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_walk_wall():
-	$AnimationPlayer.play("9b - Run Wall")
+	$AnimationPlayer.play("Run Wall")
 
 func state_walk_wall(delta):
 	if not self.is_on_floor():
@@ -180,7 +180,7 @@ func state_walk_turn_around(delta):
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
 
 func pre_run():
-	$AnimationPlayer.play("9a - Run")
+	$AnimationPlayer.play("Run")
 
 func state_run(delta):
 	if not self.is_on_floor():
@@ -211,7 +211,7 @@ func pre_jump():
 	self.jumps -= 1
 	self.velocity = Vector2(self.velocity.x, -jump_strength if self.jumps > 0 else -double_jump_strength)
 	$FrameTimer.wait_for(15)
-	$AnimationPlayer.play("2a - Jump")
+	$AnimationPlayer.play("Jump")
 
 func state_jump(delta):
 	if self.velocity.y > -0:
@@ -229,7 +229,7 @@ func state_jump(delta):
 
 func pre_fall():
 	self.velocity = Vector2(self.velocity.x, 0)
-	$AnimationPlayer.play("3a - Fall")
+	$AnimationPlayer.play("Fall")
 
 func state_fall(delta):
 	if self.is_on_floor():
@@ -252,7 +252,7 @@ func state_fall_through(delta):
 	return self.set_state(FighterState.fall)
 
 func pre_fall_to_stand():
-	$AnimationPlayer.play("3b - Fall Recovery")
+	$AnimationPlayer.play("Fall Recovery")
 
 func state_fall_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
@@ -261,7 +261,7 @@ func state_fall_to_stand(delta):
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_helpless():
-	$AnimationPlayer.play("10a - Helpless")
+	$AnimationPlayer.play("Helpless")
 
 func state_helpless(delta):
 	if self.is_on_floor():
@@ -276,7 +276,7 @@ func state_helpless(delta):
 #########
 
 func pre_block():
-	$AnimationPlayer.play("4a - Block")
+	$AnimationPlayer.play("Block")
  
 func state_block(delta):
 	if not $AnimationPlayer.is_playing():
@@ -289,7 +289,7 @@ func state_block(delta):
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
 func pre_block_to_stand():
-	$AnimationPlayer.play_backwards("4a - Block")
+	$AnimationPlayer.play_backwards("Block")
  
 func state_block_to_stand(delta):
 	if not $AnimationPlayer.is_playing():
@@ -302,7 +302,7 @@ var _block_roll_state = _block_roll_states.disappear
 var _block_roll_direction = 0
 
 func pre_block_roll():
-	$AnimationPlayer.play("4b - Block Roll")
+	$AnimationPlayer.play("Block Roll")
 	_block_roll_state = _block_roll_states.disappear
 	_block_roll_direction = self.input_direction
 
@@ -312,7 +312,7 @@ func state_block_roll(delta):
 			if $Flip/Sprite.get_texture() == null:
 				self.velocity = Vector2(self.velocity.x + _block_roll_direction * 2000, self.velocity.y)
 				_block_roll_state = _block_roll_states.teleport
-				$AnimationPlayer.play_backwards("4b - Block Roll")
+				$AnimationPlayer.play_backwards("Block Roll")
 				if _block_roll_direction == self.direction:
 					self.change_direction(-self.direction)
 		_block_roll_states.teleport:
@@ -325,7 +325,7 @@ func state_block_roll(delta):
 
 func pre_block_spot_dodge():
 	$FrameTimer.wait_for(12)
-	$AnimationPlayer.play("4b - Block Roll")
+	$AnimationPlayer.play("Block Roll")
 	_block_roll_state = _block_roll_states.disappear
 
 func state_block_spot_dodge(delta):
@@ -333,7 +333,7 @@ func state_block_spot_dodge(delta):
 		_block_roll_states.disappear:
 			if $FrameTimer.is_stopped():
 				$FrameTimer.wait_for(12)
-				$AnimationPlayer.play_backwards("4b - Block Roll")
+				$AnimationPlayer.play_backwards("Block Roll")
 				_block_roll_state = _block_roll_states.reappear
 		_block_roll_states.reappear:
 			if $FrameTimer.is_stopped():
@@ -341,7 +341,7 @@ func state_block_spot_dodge(delta):
 
 func pre_block_airborne_dodge():
 	$FrameTimer.wait_for(16)
-	$AnimationPlayer.play("4b - Block Roll")
+	$AnimationPlayer.play("Block Roll")
 	self.velocity = Vector2(1, 0.35) * 560
 	self.set_collision_mask_bit(PhysicsLayer.one_way, true)
 
@@ -351,8 +351,8 @@ func state_block_airborne_dodge(delta):
 			self.velocity = self.velocity * 0.6
 			return self.set_state(FighterState.stand)
 		return self.set_state(FighterState.helpless)
-	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "1a - Stand":
-		$AnimationPlayer.play("1a - Stand")
+	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Stand":
+		$AnimationPlayer.play("Stand")
 		self.velocity = self.velocity * 0.6
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 

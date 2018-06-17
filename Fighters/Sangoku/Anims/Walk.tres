@@ -15,7 +15,7 @@
 
 [resource]
 
-resource_name = "5a - Walk"
+resource_name = "Walk"
 length = 0.5
 loop = true
 step = 0.01

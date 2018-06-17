@@ -5,7 +5,7 @@
 
 [resource]
 
-resource_name = "9a - Run"
+resource_name = "Run"
 length = 0.1
 loop = false
 step = 0.01

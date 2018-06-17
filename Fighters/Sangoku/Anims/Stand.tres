@@ -11,7 +11,7 @@
 
 [resource]
 
-resource_name = "1a - Stand"
+resource_name = "Stand"
 length = 0.42
 loop = true
 step = 0.01
