@@ -29,10 +29,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.07 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 9, -7.5 ), Vector2( 9, -7.5 ) ]
+"values": [ Vector2( 9, -7.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Flip/Hurtboxes/Torso/CollisionShape2D:position")
@@ -42,9 +42,9 @@ tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 8.82643, -7.90208 ), Vector2( 20.8845, -8.77361 ), Vector2( 23.6016, -9.98824 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 8.82643, -9.90208 ), Vector2( 20.8845, -10.7736 ), Vector2( 23.6016, -11.9882 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Flip/Hurtboxes/Torso/CollisionShape2D:rotation_degrees")
@@ -53,10 +53,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -16.9296, 0.838911, 0.838911 ]
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 0, 0 ),
+"update": 1,
+"values": [ -16.9296, 0.838911 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:position")
@@ -66,9 +66,9 @@ tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 3.28968, -8.34898 ), Vector2( 20.2775, -14.6009 ), Vector2( 24.2824, -15.3863 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 3.28968, -10.349 ), Vector2( 20.2775, -16.6009 ), Vector2( 24.2824, -17.3863 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
@@ -77,10 +77,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 41.8939, 305.078, 305.078 ]
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 0, 0 ),
+"update": 1,
+"values": [ 41.8939, 305.078 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Flip/Hurtboxes/LegBottomRight/CollisionShape2D:position")
@@ -90,9 +90,9 @@ tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.12227, 0.462971 ), Vector2( 10.021, -0.0099804 ), Vector2( 12.5234, -0.151429 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 7.12227, -1.53703 ), Vector2( 10.021, -2.00998 ), Vector2( 12.5234, -2.15143 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Flip/Hurtboxes/LegBottomRight/CollisionShape2D:rotation_degrees")
@@ -101,10 +101,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 8.08757, 8.08757, 9.72072 ]
+"times": PoolRealArray( 0, 0.13, 0.15 ),
+"transitions": PoolRealArray( 0, 0, 1 ),
+"update": 1,
+"values": [ 8.08757, 9.72072, 0.0 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Flip/Hurtboxes/LegTopLeft/CollisionShape2D:position")
@@ -114,9 +114,9 @@ tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 2.21199, -0.209912 ), Vector2( 4.13702, -1.92338 ), Vector2( 5.13702, -2.92338 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2.21199, -2.20991 ), Vector2( 4.13702, -3.92338 ), Vector2( 5.13702, -4.92338 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Flip/Hurtboxes/LegTopLeft/CollisionShape2D:rotation_degrees")
@@ -127,7 +127,7 @@ tracks/9/enabled = true
 tracks/9/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
 "transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
+"update": 1,
 "values": [ -33.8572, -188.319, -180.193 ]
 }
 tracks/10/type = "value"
@@ -138,9 +138,9 @@ tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 7.49905, 8.066 ), Vector2( 5.3639, 0.657894 ), Vector2( 8.29565, 0.301801 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 7.49905, 6.066 ), Vector2( 5.3639, -1.34211 ), Vector2( 8.29565, -1.6982 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
@@ -151,7 +151,7 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
 "transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
+"update": 1,
 "values": [ -14.9279, 419.484, 425.762 ]
 }
 tracks/12/type = "value"
@@ -162,9 +162,9 @@ tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -0.349002, 0.935154 ), Vector2( -1.2874, -0.0263032 ), Vector2( -0.2874, -1.02631 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -0.349001, -1.06485 ), Vector2( -1.2874, -2.0263 ), Vector2( -0.287401, -3.02631 ) ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("Flip/Hurtboxes/LegBottomLeft/CollisionShape2D:rotation_degrees")
@@ -175,7 +175,7 @@ tracks/13/enabled = true
 tracks/13/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
 "transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
+"update": 1,
 "values": [ -37.2791, -43.9467, -46.4221 ]
 }
 tracks/14/type = "value"
@@ -186,9 +186,9 @@ tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 5.17611, -0.745256 ), Vector2( 10.5463, -7.42378 ), Vector2( 13.9073, -6.70667 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 5.17611, -2.74526 ), Vector2( 10.5463, -9.42378 ), Vector2( 13.9073, -8.70667 ) ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("Flip/Hurtboxes/LegTopRight/CollisionShape2D:rotation_degrees")
@@ -197,10 +197,10 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 70.7679, 80.7752, 80.7752 ]
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 0, 0 ),
+"update": 1,
+"values": [ 70.7679, 80.7752 ]
 }
 tracks/16/type = "value"
 tracks/16/path = NodePath("Flip/Hurtboxes/Head/CollisionShape2D:position")
@@ -210,9 +210,9 @@ tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.4797, -0.66315 ), Vector2( 25.5722, -10.36 ), Vector2( 26.5722, -11.36 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 10.4797, -2.66315 ), Vector2( 25.5722, -12.36 ), Vector2( 26.5722, -13.36 ) ]
 }
 tracks/17/type = "value"
 tracks/17/path = NodePath("Flip/Hurtboxes/Head/CollisionShape2D:rotation_degrees")
@@ -221,10 +221,10 @@ tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ 0.0, 0.0, 0.0 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0 ),
+"update": 1,
+"values": [ 0.0 ]
 }
 tracks/18/type = "value"
 tracks/18/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
@@ -234,9 +234,9 @@ tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( 10.9318, -11.2477 ), Vector2( 35.7112, -35.3426 ), Vector2( 39.5015, -35.484 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 10.9318, -13.2477 ), Vector2( 35.7112, -37.3426 ), Vector2( 39.5015, -37.484 ) ]
 }
 tracks/19/type = "value"
 tracks/19/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
@@ -245,10 +245,10 @@ tracks/19/loop_wrap = true
 tracks/19/imported = false
 tracks/19/enabled = true
 tracks/19/keys = {
-"times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ -50.9501, 77.9126, 77.9126 ]
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 0, 0 ),
+"update": 1,
+"values": [ -50.9501, 77.9126 ]
 }
 tracks/20/type = "value"
 tracks/20/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:position")
@@ -258,9 +258,9 @@ tracks/20/imported = false
 tracks/20/enabled = true
 tracks/20/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
-"transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
-"values": [ Vector2( -9.8863, 8.7798 ), Vector2( -20.833, -8.37856 ), Vector2( -16.1841, -8.09072 ) ]
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -9.8863, 6.7798 ), Vector2( -20.833, -10.3786 ), Vector2( -16.1841, -10.0907 ) ]
 }
 tracks/21/type = "value"
 tracks/21/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
@@ -271,7 +271,7 @@ tracks/21/enabled = true
 tracks/21/keys = {
 "times": PoolRealArray( 0, 0.07, 0.13 ),
 "transitions": PoolRealArray( 0, 0, 0 ),
-"update": 0,
+"update": 1,
 "values": [ 91.9092, 129.193, 128.012 ]
 }
 tracks/22/type = "value"
@@ -283,7 +283,7 @@ tracks/22/enabled = true
 tracks/22/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 0 ),
-"update": 0,
+"update": 1,
 "values": [ 0.0 ]
 }
 
