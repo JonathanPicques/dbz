@@ -17,11 +17,13 @@ enum FighterState {
 	double_fall,
 	fall_through,
 	fall_to_stand,
+	helpless,
 	# Block
 	block,
 	block_to_stand,
 	block_roll,
 	block_spot_dodge,
+	block_airborne_dodge,
 	# Ground attacks
 	dash_attack,
 	neutral_attack,
@@ -61,6 +63,7 @@ export var player_index = 1
 
 var input = preload("Input.gd").new(player_index)
 var state = FighterState.fall
+var state_prev = FighterState.fall
 
 var velocity = Vector2()
 var velocity_prev = Vector2()
@@ -107,6 +110,12 @@ func is_on_one_way_platform():
 	if self.is_on_floor() and $GroundRayCast2D.is_colliding():
 		return $GroundRayCast2D.get_collider().get_collision_layer_bit(PhysicsLayer.one_way)
 	return false
+
+func get_input_velocity():
+	# TODO: get axis raw value
+	var vertical = -1 if self.input.up and not self.input.down else 1 if self.input.down and not self.input.up else 0
+	var horizontal = -1 if self.input.left and not self.input.right else 1 if self.input.right and not self.input.left else 0
+	return Vector2(horizontal, vertical)
 
 func get_input_direction():
 	var opposed = self.input.left and self.input.right or (not self.input.left and not self.input.right)

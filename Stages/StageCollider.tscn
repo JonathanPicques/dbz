@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 400, 25 )
+extents = Vector2( 380, 25 )
 
 [node name="StageCollider" type="Node2D" index="0"]
 

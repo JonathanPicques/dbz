@@ -97,6 +97,7 @@ color = Color( 0, 0, 0, 0.0883922 )
 
 [node name="StageColliderFinalDestination" parent="." index="4" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 position = Vector2( 640, 560 )
 _sections_unfolded = [ "Transform" ]
 
