@@ -148,7 +148,7 @@ tracks/10/keys = {
 "values": [ -45.9344 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:position")
+tracks/11/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -160,7 +160,7 @@ tracks/11/keys = {
 "values": [ Vector2( -1.50039, 2.82637 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
+tracks/12/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -172,7 +172,7 @@ tracks/12/keys = {
 "values": [ 16.5626 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:position")
+tracks/13/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -184,7 +184,7 @@ tracks/13/keys = {
 "values": [ Vector2( 1.13778, -2.43508 ) ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
+tracks/14/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -196,7 +196,7 @@ tracks/14/keys = {
 "values": [ 60.7114 ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:position")
+tracks/15/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -208,7 +208,7 @@ tracks/15/keys = {
 "values": [ Vector2( 6.64048, -2.0221 ) ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Flip/Hurtboxes/ArmTopRight/CollisionShape2D:rotation_degrees")
+tracks/16/path = NodePath("Flip/Hurtboxes/ArmTopLeft/CollisionShape2D:rotation_degrees")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -268,7 +268,7 @@ tracks/20/keys = {
 "values": [ 0.0 ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:position")
+tracks/21/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -280,7 +280,7 @@ tracks/21/keys = {
 "values": [ Vector2( -4.49071, -2.0042 ) ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("Flip/Hurtboxes/ArmBottomLeft/CollisionShape2D:rotation_degrees")
+tracks/22/path = NodePath("Flip/Hurtboxes/ArmBottomRight/CollisionShape2D:rotation_degrees")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
