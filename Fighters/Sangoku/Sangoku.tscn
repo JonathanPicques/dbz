@@ -83,7 +83,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 
 resource_name = "Crouch"
 length = 0.15
@@ -354,9 +354,8 @@ tracks/21/keys = {
 "values": [ -96.2975, -96.2975 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 
-resource_name = "Helpless"
 length = 0.3
 loop = true
 step = 0.01
@@ -445,6 +444,7 @@ player_index = 1
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
@@ -472,6 +472,8 @@ __meta__ = {
 
 [node name="Hurtboxes" type="Node2D" parent="Flip" index="2"]
 
+editor/display_folded = true
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -736,13 +738,13 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Block = ExtResource( 5 )
 "anims/Block Roll" = ExtResource( 6 )
-anims/Crouch = SubResource( 12 )
+anims/Crouch = SubResource( 11 )
 anims/Fall = ExtResource( 10 )
 "anims/Fall Recovery" = ExtResource( 11 )
 anims/Flinch = ExtResource( 12 )
 "anims/Flinch Bounce" = ExtResource( 13 )
 "anims/Ground neutral" = ExtResource( 14 )
-anims/Helpless = SubResource( 11 )
+anims/Helpless = SubResource( 12 )
 anims/Jump = ExtResource( 16 )
 anims/Run = ExtResource( 17 )
 "anims/Run Wall" = SubResource( 13 )

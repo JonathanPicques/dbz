@@ -238,7 +238,7 @@ func state_fall(delta):
 		if self.input_direction != self.direction and self.input_direction != self.velocity_direction:
 			self.velocity = Vector2(0, self.velocity.y)
 		return self.set_state(FighterState.jump)
-	elif self.input.block:
+	elif self.input.block_once:
 		return self.set_state(FighterState.block_airborne_dodge)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
@@ -260,6 +260,8 @@ func state_fall_to_stand(delta):
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration * 2)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
+var _helpless_blink = 0
+
 func pre_helpless():
 	$AnimationPlayer.play("Helpless")
 
@@ -268,6 +270,9 @@ func state_helpless(delta):
 		$AnimationPlayer.stop()
 		$Flip/Sprite.self_modulate = Color(1, 1, 1, 1)
 		return self.set_state(FighterState.fall_to_stand)
+	_helpless_blink += 10.0 * delta
+	var blink = 0.55 + sin(_helpless_blink) * 0.25
+	$Flip/Sprite.self_modulate = Color(blink, blink, blink, 1)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
@@ -321,6 +326,9 @@ func state_block_roll(delta):
 				_block_roll_state = _block_roll_states.reappear
 		_block_roll_states.reappear:
 			if not $AnimationPlayer.is_playing():
+				if not self.is_on_floor():
+					self.velocity = Vector2(self.velocity.x + _block_roll_direction * 200, self.velocity.y)
+					return self.set_state(FighterState.fall)
 				return self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
 func pre_block_spot_dodge():

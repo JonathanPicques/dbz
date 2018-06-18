@@ -2,10 +2,10 @@ var player_index = 0
 
 var up = false
 var down = false
+var down_once = false
 var left = false
 var right = false
 
-var down_once = false
 
 var run = false
 var jump = false
@@ -13,6 +13,7 @@ var jump_held = false
 
 var grab = false
 var block = false
+var block_once = false
 var attack = false
 var attack_alt = false
 
@@ -27,10 +28,9 @@ func _init(player_index):
 func update_input(delta):
 	self.up = Input.is_action_pressed("player_" + str(self.player_index) + "_up")
 	self.down = Input.is_action_pressed("player_" + str(self.player_index) + "_down")
+	self.down_once = Input.is_action_just_pressed("player_" + str(self.player_index) + "_down")
 	self.left = Input.is_action_pressed("player_" + str(self.player_index) + "_left")
 	self.right = Input.is_action_pressed("player_" + str(self.player_index) + "_right")
-	
-	self.down_once = Input.is_action_just_pressed("player_" + str(self.player_index) + "_down")
 	
 	self.run = Input.is_action_pressed("player_" + str(self.player_index) + "_run")
 	self.jump = Input.is_action_just_pressed("player_" + str(self.player_index) + "_jump") or \
@@ -39,6 +39,7 @@ func update_input(delta):
 		Input.is_action_pressed("player_" + str(self.player_index) + "_up") # TODO: disable tap-to-jump
 	
 	self.block = Input.is_action_pressed("player_" + str(self.player_index) + "_block")
+	self.block_once = Input.is_action_just_pressed("player_" + str(self.player_index) + "_block")
 	self.attack = Input.is_action_pressed("player_" + str(self.player_index) + "_attack")
 	self.attack_alt = Input.is_action_pressed("player_" + str(self.player_index) + "_attack_alt")
 	
