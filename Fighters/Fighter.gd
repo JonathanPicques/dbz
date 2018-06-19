@@ -106,9 +106,13 @@ func is_on_ceiling():
 	return .is_on_ceiling()
 
 func is_on_one_way_platform():
-	$GroundRayCast2D.force_raycast_update()
-	if self.is_on_floor() and $GroundRayCast2D.is_colliding():
-		return $GroundRayCast2D.get_collider().get_collision_layer_bit(PhysicsLayer.one_way)
+	var extents = $CollisionShape2D.shape.extents
+	if self.is_on_floor():
+		for i in range(-1, 2): # [-1, 0, 1]
+			$GroundRayCast2D.set_position(Vector2(i * extents.x, $GroundRayCast2D.position.y))
+			$GroundRayCast2D.force_raycast_update()
+			if $GroundRayCast2D.is_colliding() and $GroundRayCast2D.get_collider().get_collision_layer_bit(PhysicsLayer.one_way):
+				return true
 	return false
 
 func get_input_velocity():
