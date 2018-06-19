@@ -315,7 +315,7 @@ func state_block_roll(delta):
 	match _block_roll_state:
 		_block_roll_states.disappear:
 			if $Flip/Sprite.get_texture() == null:
-				self.velocity = Vector2(self.velocity.x + _block_roll_direction * 2000, self.velocity.y)
+				self.velocity = Vector2(self.velocity.x + _block_roll_direction * 1000, self.velocity.y)
 				_block_roll_state = _block_roll_states.teleport
 				$AnimationPlayer.play_backwards("Block Roll")
 				if _block_roll_direction == self.direction:
@@ -359,8 +359,8 @@ func state_block_airborne_dodge(delta):
 			self.velocity = self.velocity * 0.6
 			return self.set_state(FighterState.stand)
 		return self.set_state(FighterState.helpless)
-	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Stand":
-		$AnimationPlayer.play("Stand")
+	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Fall Recovery":
+		$AnimationPlayer.play("Fall Recovery")
 		self.velocity = self.velocity * 0.6
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 

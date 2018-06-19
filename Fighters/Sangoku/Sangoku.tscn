@@ -1,28 +1,27 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Fighters/Sangoku/Sangoku.gd" type="Script" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Stand/Stand_01.png" type="Texture" id=2]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Stand/Stand_01_Normal.png" type="Texture" id=3]
-[ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=4]
-[ext_resource path="res://Fighters/Sangoku/Anims/Block.tres" type="Animation" id=5]
-[ext_resource path="res://Fighters/Sangoku/Anims/Block Roll.tres" type="Animation" id=6]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_01.png" type="Texture" id=7]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_02.png" type="Texture" id=8]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_03.png" type="Texture" id=9]
-[ext_resource path="res://Fighters/Sangoku/Anims/Fall.tres" type="Animation" id=10]
-[ext_resource path="res://Fighters/Sangoku/Anims/Fall Recovery.tres" type="Animation" id=11]
-[ext_resource path="res://Fighters/Sangoku/Anims/Flinch.tres" type="Animation" id=12]
-[ext_resource path="res://Fighters/Sangoku/Anims/Flinch Bounce.tres" type="Animation" id=13]
-[ext_resource path="res://Fighters/Sangoku/Anims/Ground neutral.tres" type="Animation" id=14]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Helpless/Helpless_01.png" type="Texture" id=15]
-[ext_resource path="res://Fighters/Sangoku/Anims/Jump.tres" type="Animation" id=16]
-[ext_resource path="res://Fighters/Sangoku/Anims/Run.tres" type="Animation" id=17]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_01.png" type="Texture" id=18]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_02.png" type="Texture" id=19]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_03.png" type="Texture" id=20]
-[ext_resource path="res://Fighters/Sangoku/Anims/Stand.tres" type="Animation" id=21]
-[ext_resource path="res://Fighters/Sangoku/Anims/Walk.tres" type="Animation" id=22]
-[ext_resource path="res://Fighters/Attack.gd" type="Script" id=23]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Stand/Stand_01_Normal.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/FrameTimer.gd" type="Script" id=3]
+[ext_resource path="res://Fighters/Sangoku/Anims/Block.tres" type="Animation" id=4]
+[ext_resource path="res://Fighters/Sangoku/Anims/Block Roll.tres" type="Animation" id=5]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_01.png" type="Texture" id=6]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_02.png" type="Texture" id=7]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Crouch/Crouch_03.png" type="Texture" id=8]
+[ext_resource path="res://Fighters/Sangoku/Anims/Fall.tres" type="Animation" id=9]
+[ext_resource path="res://Fighters/Sangoku/Anims/Fall Recovery.tres" type="Animation" id=10]
+[ext_resource path="res://Fighters/Sangoku/Anims/Flinch.tres" type="Animation" id=11]
+[ext_resource path="res://Fighters/Sangoku/Anims/Flinch Bounce.tres" type="Animation" id=12]
+[ext_resource path="res://Fighters/Sangoku/Anims/Ground neutral.tres" type="Animation" id=13]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Helpless/Helpless_01.png" type="Texture" id=14]
+[ext_resource path="res://Fighters/Sangoku/Anims/Jump.tres" type="Animation" id=15]
+[ext_resource path="res://Fighters/Sangoku/Anims/Run.tres" type="Animation" id=16]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_01.png" type="Texture" id=17]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_02.png" type="Texture" id=18]
+[ext_resource path="res://Fighters/Sangoku/Sprites/Run/RunWall_03.png" type="Texture" id=19]
+[ext_resource path="res://Fighters/Sangoku/Anims/Stand.tres" type="Animation" id=20]
+[ext_resource path="res://Fighters/Sangoku/Anims/Walk.tres" type="Animation" id=21]
+[ext_resource path="res://Fighters/Attack.gd" type="Script" id=22]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -99,7 +98,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.08, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -369,7 +368,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 15 ) ]
+"values": [ ExtResource( 14 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -393,7 +392,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -412,7 +411,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ]
+"values": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Flip/Sprite:position")
@@ -444,14 +443,12 @@ player_index = 1
 
 [node name="Flip" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Flip" index="0"]
 
-position = Vector2( 1, -4 )
-texture = ExtResource( 2 )
-normal_map = ExtResource( 3 )
+position = Vector2( -12.5, -20 )
+normal_map = ExtResource( 2 )
 _sections_unfolded = [ "Material" ]
 __meta__ = {
 "_edit_lock_": true
@@ -727,7 +724,7 @@ process_mode = 0
 wait_time = 1.0
 one_shot = true
 autostart = false
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 
@@ -736,20 +733,20 @@ autoplay = "Stand"
 playback_process_mode = 0
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Block = ExtResource( 5 )
-"anims/Block Roll" = ExtResource( 6 )
+anims/Block = ExtResource( 4 )
+"anims/Block Roll" = ExtResource( 5 )
 anims/Crouch = SubResource( 11 )
-anims/Fall = ExtResource( 10 )
-"anims/Fall Recovery" = ExtResource( 11 )
-anims/Flinch = ExtResource( 12 )
-"anims/Flinch Bounce" = ExtResource( 13 )
-"anims/Ground neutral" = ExtResource( 14 )
+anims/Fall = ExtResource( 9 )
+"anims/Fall Recovery" = ExtResource( 10 )
+anims/Flinch = ExtResource( 11 )
+"anims/Flinch Bounce" = ExtResource( 12 )
+"anims/Ground neutral" = ExtResource( 13 )
 anims/Helpless = SubResource( 12 )
-anims/Jump = ExtResource( 16 )
-anims/Run = ExtResource( 17 )
+anims/Jump = ExtResource( 15 )
+anims/Run = ExtResource( 16 )
 "anims/Run Wall" = SubResource( 13 )
-anims/Stand = ExtResource( 21 )
-anims/Walk = ExtResource( 22 )
+anims/Stand = ExtResource( 20 )
+anims/Walk = ExtResource( 21 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -757,7 +754,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 position = Vector2( 0, 13.3 )
 shape = SubResource( 14 )
-script = ExtResource( 23 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 damage = 10
 knockback_base = 15
