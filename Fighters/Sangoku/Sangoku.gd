@@ -20,6 +20,7 @@ const walk_deceleration = 720
 const block_deceleration = 720
 const stand_deceleration = 720
 const crouch_deceleration = 720
+const block_air_dodge_deceleration = 1000
 
 func _physics_process(delta):
 	self.udpate_input(delta)
@@ -47,8 +48,8 @@ func update_state(delta):
 		FighterState.block: self.state_block(delta)
 		FighterState.block_to_stand: self.state_block_to_stand(delta)
 		FighterState.block_roll: self.state_block_roll(delta)
+		FighterState.block_air_dodge: self.state_block_air_dodge(delta)
 		FighterState.block_spot_dodge: self.state_block_spot_dodge(delta)
-		FighterState.block_airborne_dodge: self.state_block_airborne_dodge(delta)
 		# Ground attacks
 		FighterState.neutral_attack: self.state_neutral_attack(delta)
 		# Hit / Hurt
@@ -61,6 +62,7 @@ func update_state(delta):
 func set_state(state, prev_state = self.state):
 	self.state = state
 	self.state_prev = prev_state
+	self.state_once = true
 	match state:
 		# Move
 		FighterState.stand: self.pre_stand()
@@ -81,8 +83,8 @@ func set_state(state, prev_state = self.state):
 		FighterState.block: self.pre_block()
 		FighterState.block_to_stand: self.pre_block_to_stand()
 		FighterState.block_roll: self.pre_block_roll()
+		FighterState.block_air_dodge: self.pre_block_air_dodge()
 		FighterState.block_spot_dodge: self.pre_block_spot_dodge()
-		FighterState.block_airborne_dodge: self.pre_block_airborne_dodge()
 		# Ground attacks
 		FighterState.neutral_attack: self.pre_neutral_attack()
 		# Hit / Hurt
@@ -221,7 +223,7 @@ func state_jump(delta):
 			self.velocity = Vector2(0, self.velocity.y)
 		return self.set_state(FighterState.jump)
 	elif self.input.block:
-		return self.set_state(FighterState.block_airborne_dodge)
+		return self.set_state(FighterState.block_air_dodge)
 		return
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	if not self.input.jump_held or $FrameTimer.after_frame(9): # ignore gravity for X frames if jump is held
@@ -239,7 +241,7 @@ func state_fall(delta):
 			self.velocity = Vector2(0, self.velocity.y)
 		return self.set_state(FighterState.jump)
 	elif self.input.block_once:
-		return self.set_state(FighterState.block_airborne_dodge)
+		return self.set_state(FighterState.block_air_dodge)
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 	self.set_collision_mask_bit(PhysicsLayer.one_way, not self.input.down)
@@ -331,6 +333,22 @@ func state_block_roll(delta):
 					return self.set_state(FighterState.fall)
 				return self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
+func pre_block_air_dodge():
+	$FrameTimer.wait_for(16)
+	$AnimationPlayer.play("Block Roll")
+	self.velocity = Vector2(1, 0.35) * 560
+	self.set_collision_mask_bit(PhysicsLayer.one_way, true)
+
+func state_block_air_dodge(delta):
+	if self.state_once and self.is_on_floor():
+		self.velocity = self.velocity * 0.6
+		self.state_once = false
+	if $FrameTimer.is_stopped():
+		return self.set_state(FighterState.stand if self.is_on_floor() else FighterState.helpless)
+	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Fall Recovery":
+		$AnimationPlayer.play("Fall Recovery")
+	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_air_dodge_deceleration)
+
 func pre_block_spot_dodge():
 	$FrameTimer.wait_for(12)
 	$AnimationPlayer.play("Block Roll")
@@ -346,23 +364,6 @@ func state_block_spot_dodge(delta):
 		_block_roll_states.reappear:
 			if $FrameTimer.is_stopped():
 				return self.set_state(FighterState.stand if not self.input.block else FighterState.block)
-
-func pre_block_airborne_dodge():
-	$FrameTimer.wait_for(16)
-	$AnimationPlayer.play("Block Roll")
-	self.velocity = Vector2(1, 0.35) * 560
-	self.set_collision_mask_bit(PhysicsLayer.one_way, true)
-
-func state_block_airborne_dodge(delta):
-	if $FrameTimer.is_stopped():
-		if self.is_on_floor():
-			self.velocity = self.velocity * 0.6
-			return self.set_state(FighterState.stand)
-		return self.set_state(FighterState.helpless)
-	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Fall Recovery":
-		$AnimationPlayer.play("Fall Recovery")
-		self.velocity = self.velocity * 0.6
-	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_deceleration)
 
 ##################
 # Ground attacks #

@@ -22,8 +22,8 @@ enum FighterState {
 	block,
 	block_to_stand,
 	block_roll,
+	block_air_dodge,
 	block_spot_dodge,
-	block_airborne_dodge,
 	# Ground attacks
 	dash_attack,
 	neutral_attack,
@@ -64,6 +64,7 @@ export var player_index = 1
 var input = preload("Input.gd").new(player_index)
 var state = FighterState.fall
 var state_prev = FighterState.fall
+var state_once = false
 
 var velocity = Vector2()
 var velocity_prev = Vector2()
