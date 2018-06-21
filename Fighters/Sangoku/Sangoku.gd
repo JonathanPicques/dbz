@@ -173,10 +173,10 @@ func state_walk_wall(delta):
 	self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_walk_turn_around():
-	$FrameTimer.wait_for(3)
+	$TimerFrame.wait_for(3)
 
 func state_walk_turn_around(delta):
-	if $FrameTimer.is_stopped():
+	if $TimerFrame.is_stopped():
 		self.change_direction(-self.direction)
 		return self.set_state(FighterState.stand)
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, walk_deceleration)
@@ -212,13 +212,13 @@ func state_run_turn_around(delta):
 func pre_jump():
 	self.jumps -= 1
 	self.velocity = Vector2(self.velocity.x, -jump_strength if self.jumps > 0 else -double_jump_strength)
-	$FrameTimer.wait_for(15)
+	$TimerFrame.wait_for(15)
 	$AnimationPlayer.play("Jump")
 
 func state_jump(delta):
 	if self.velocity.y > -0:
 		return self.set_state(FighterState.fall)
-	elif $FrameTimer.is_stopped() and self.input.jump and self.jumps > 0:
+	elif $TimerFrame.is_stopped() and self.input.jump and self.jumps > 0:
 		if self.input_direction != self.direction and self.input_direction != self.velocity_direction:
 			self.velocity = Vector2(0, self.velocity.y)
 		return self.set_state(FighterState.jump)
@@ -226,7 +226,7 @@ func state_jump(delta):
 		return self.set_state(FighterState.block_air_dodge)
 		return
 	self.velocity = self.get_horizontal_input_movement(delta, self.velocity, self.input_direction, air_acceleration, air_deceleration, air_max_speed)
-	if not self.input.jump_held or $FrameTimer.after_frame(9): # ignore gravity for X frames if jump is held
+	if not self.input.jump_held or $TimerFrame.after_frame(9): # ignore gravity for X frames if jump is held
 		self.velocity = self.get_vertical_acceleration(delta, self.velocity, gravity, fall_max_speed)
 
 func pre_fall():
@@ -334,7 +334,7 @@ func state_block_roll(delta):
 				return self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
 func pre_block_air_dodge():
-	$FrameTimer.wait_for(16)
+	$TimerFrame.wait_for(16)
 	$AnimationPlayer.play("Block Roll")
 	self.velocity = Vector2(1, 0.35) * 560
 	self.set_collision_mask_bit(PhysicsLayer.one_way, true)
@@ -343,26 +343,26 @@ func state_block_air_dodge(delta):
 	if self.state_once and self.is_on_floor():
 		self.velocity = self.velocity * 0.6
 		self.state_once = false
-	if $FrameTimer.is_stopped():
+	if $TimerFrame.is_stopped():
 		return self.set_state(FighterState.stand if self.is_on_floor() else FighterState.helpless)
 	elif self.velocity.y > 0 and self.is_on_floor() and $AnimationPlayer.get_current_animation() != "Fall Recovery":
 		$AnimationPlayer.play("Fall Recovery")
 	self.velocity = self.get_horizontal_deceleration(delta, self.velocity, block_air_dodge_deceleration)
 
 func pre_block_spot_dodge():
-	$FrameTimer.wait_for(12)
+	$TimerFrame.wait_for(12)
 	$AnimationPlayer.play("Block Roll")
 	_block_roll_state = _block_roll_states.disappear
 
 func state_block_spot_dodge(delta):
 	match _block_roll_state:
 		_block_roll_states.disappear:
-			if $FrameTimer.is_stopped():
-				$FrameTimer.wait_for(12)
+			if $TimerFrame.is_stopped():
+				$TimerFrame.wait_for(12)
 				$AnimationPlayer.play_backwards("Block Roll")
 				_block_roll_state = _block_roll_states.reappear
 		_block_roll_states.reappear:
-			if $FrameTimer.is_stopped():
+			if $TimerFrame.is_stopped():
 				return self.set_state(FighterState.stand if not self.input.block else FighterState.block)
 
 ##################

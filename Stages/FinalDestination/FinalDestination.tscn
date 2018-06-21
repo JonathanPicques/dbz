@@ -113,7 +113,8 @@ texture = ExtResource( 4 )
 
 [node name="Sangoku - Player 1" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 632.435, 462.451 )
+editor/display_folded = true
+position = Vector2( 840.009, 359.469 )
 
 [node name="Aura" parent="Sangoku - Player 1" index="4" instance=ExtResource( 6 )]
 

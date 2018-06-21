@@ -6,7 +6,6 @@ var down_once = false
 var left = false
 var right = false
 
-
 var run = false
 var jump = false
 var jump_held = false
