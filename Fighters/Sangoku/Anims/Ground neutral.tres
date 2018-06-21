@@ -1,9 +1,9 @@
 [gd_resource type="Animation" load_steps=5 format=2]
 
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_01.png" type="Texture" id=1]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_02.png" type="Texture" id=2]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_03.png" type="Texture" id=3]
-[ext_resource path="res://Fighters/Sangoku/Sprites/Ground/Neutral_04.png" type="Texture" id=4]
+[ext_resource path="res://Fighters/Sangoku/Textures/Ground/Neutral_01.png" type="Texture" id=1]
+[ext_resource path="res://Fighters/Sangoku/Textures/Ground/Neutral_02.png" type="Texture" id=2]
+[ext_resource path="res://Fighters/Sangoku/Textures/Ground/Neutral_03.png" type="Texture" id=3]
+[ext_resource path="res://Fighters/Sangoku/Textures/Ground/Neutral_04.png" type="Texture" id=4]
 
 [resource]
 
