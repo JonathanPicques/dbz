@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rampage.ogg-8cd3e494ce1862340bffe7e632bfd916.oggstr"
+
+[deps]
+
+source_file="res://Audio/Musics/Rampage.ogg"
+dest_files=[ "res://.import/Rampage.ogg-8cd3e494ce1862340bffe7e632bfd916.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
